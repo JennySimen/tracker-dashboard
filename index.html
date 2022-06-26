@@ -1,59 +1,60 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <title> Admin dashboard </title>
-    <link rel="stylesheet" href="css/index.css">
-    <!-- Boxicons CDN Link -->
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
+
+<head>
+  <meta charset="UTF-8">
+  <title> Admin dashboard </title>
+  <link rel="stylesheet" href="css/index.css">
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
 <body>
-    <!--sidebar begins here-->
+  <!--sidebar begins here-->
   <div class="sidebar">
     <div class="logo-details">
-      <i class='bx bxl-t-plus-plus'></i> <!--type of icon-->
+      <i class='bx bxl-t-plus-plus'></i>
       <span class="logo_name">TrackMe</span>
     </div>
-      <ul class="nav-links">
-        <li>
-          <a href="#" class="active">
-            <i class='bx bx-grid-alt' ></i>
-            <span class="links_name">Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a href="map.html">
-            <i class='bx bx-map' ></i>
-            <span class="links_name">Map</span>
-          </a>
-        </li>
-          <li>
-            <a href="workers.html">
-              <i class='bx bx-message' ></i>
-              <span class="links_name">Workers</span>
-            </a>
-          </li>
-        <li>
-          <a href="#">
-            <i class='bx bx-pie-chart-alt-2' ></i>
-            <span class="links_name">Analytics</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class='bx bx-message' ></i>
-            <span class="links_name">Messages</span>
-          </a>
-        </li>
-        <li class="log_out">
-          <a href="#">
-            <i class='bx bx-log-out'></i>
-            <span class="links_name">Log out</span>
-          </a>
-        </li>
-      </ul>
+    <ul class="nav-links">
+      <li>
+        <a href="#" class="active">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="map.html">
+          <i class='bx bx-map'></i>
+          <span class="links_name">Map</span>
+        </a>
+      </li>
+      <li>
+        <a href="barcode.html">
+          <i class='bx bx-map'></i>
+          <span class="links_name">Barcode</span>
+        </a>
+      </li>
+      <li>
+        <a href="workers.html">
+          <i class='bx bx-message'></i>
+          <span class="links_name">Workers</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-message'></i>
+          <span class="links_name">Messages</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="#">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
   </div>
   <!-- sidebar ends here -->
   <section class="home-section">
@@ -64,54 +65,60 @@
       </div>
       <div class="search-box">
         <input type="text" placeholder="Search...">
-        <i class='bx bx-search' ></i>
+        <i class='bx bx-search'></i>
       </div>
       <div class="profile-details">
         <!--<img src="images/profile.jpg" alt="">-->
         <span class="admin_name">Admin</span>
-        <i class='bx bx-chevron-down' ></i>
+        <i class='bx bx-chevron-down'></i>
       </div>
     </nav>
+    <div id="loader" class="loader show">
+      <div class="loader-body">
+        <img alt="loader-img" src="./assets/images/loader.gif" />
+        <p>Loading your data...</p>
+      </div>
+    </div>
 
     <div class="home-content">
       <div class="overview-boxes">
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Current Drivers</div>
-            <div class="number">10</div>
+            <div class="box-topic">Users Count</div>
+            <div class="number" id="user-count">00</div>
             <div class="indicator">
-              <i class='bx bx-up-arrow-alt'></i>
-              <span class="text">Up from yesterday</span>
+              <i class='bx bx-user'></i>
+              <span class="text">Total workers + drivers</span>
             </div>
           </div>
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Workers Count</div>
-            <div class="number">5000</div>
+            <div class="box-topic">Total Workers</div>
+            <div class="number" id="worker-count">00</div>
             <div class="indicator">
-              <i class='bx bx-up-arrow-alt'></i>
-              <span class="text">Up from yesterday</span>
+              <i class='bx bx-user down'></i>
+              <span class="text">Workers in the fields</span>
             </div>
           </div>
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Total wieight/tons</div>
-            <div class="number">10000</div>
+            <div class="box-topic">Tons of FFB</div>
+            <div class="number" id="ffb-daily-count">00</div>
             <div class="indicator">
-              <i class='bx bx-up-arrow-alt'></i>
-              <span class="text">Up from yesterday</span>
+              <i class='bx bx-data'></i>
+              <span class="text">Tons for today</span>
             </div>
           </div>
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Total Return</div>
-            <div class="number">11,086</div>
+            <div class="box-topic">Total Barcode</div>
+            <div class="number" id="barcode-count">00</div>
             <div class="indicator">
-              <i class='bx bx-down-arrow-alt down'></i>
-              <span class="text">Down From Today</span>
+              <i class=' bx bx-barcode down'></i>
+              <span class="text">Codes generated today</span>
             </div>
           </div>
         </div>
@@ -132,41 +139,41 @@
               <li><a href="#">02 Jan 2021</a></li>
             </ul>
             <ul class="details">
-            <li class="topic">Customer</li>
-            <li><a href="#">Alex Doe</a></li>
-            <li><a href="#">David Mart</a></li>
-            <li><a href="#">Roe Parter</a></li>
-            <li><a href="#">Diana Penty</a></li>
-            <li><a href="#">Martin Paw</a></li>
-            <li><a href="#">Doe Alex</a></li>
-            <li><a href="#">Aiana Lexa</a></li>
-            <li><a href="#">Rexel Mags</a></li>
-             <li><a href="#">Tiana Loths</a></li>
-          </ul>
-          <ul class="details">
-            <li class="topic">Sales</li>
-            <li><a href="#">Delivered</a></li>
-            <li><a href="#">Pending</a></li>
-            <li><a href="#">Returned</a></li>
-            <li><a href="#">Delivered</a></li>
-            <li><a href="#">Pending</a></li>
-            <li><a href="#">Returned</a></li>
-            <li><a href="#">Delivered</a></li>
-             <li><a href="#">Pending</a></li>
-            <li><a href="#">Delivered</a></li>
-          </ul>
-          <ul class="details">
-            <li class="topic">Total</li>
-            <li><a href="#">$204.98</a></li>
-            <li><a href="#">$24.55</a></li>
-            <li><a href="#">$25.88</a></li>
-            <li><a href="#">$170.66</a></li>
-            <li><a href="#">$56.56</a></li>
-            <li><a href="#">$44.95</a></li>
-            <li><a href="#">$67.33</a></li>
-             <li><a href="#">$23.53</a></li>
-             <li><a href="#">$46.52</a></li>
-          </ul>
+              <li class="topic">Customer</li>
+              <li><a href="#">Alex Doe</a></li>
+              <li><a href="#">David Mart</a></li>
+              <li><a href="#">Roe Parter</a></li>
+              <li><a href="#">Diana Penty</a></li>
+              <li><a href="#">Martin Paw</a></li>
+              <li><a href="#">Doe Alex</a></li>
+              <li><a href="#">Aiana Lexa</a></li>
+              <li><a href="#">Rexel Mags</a></li>
+              <li><a href="#">Tiana Loths</a></li>
+            </ul>
+            <ul class="details">
+              <li class="topic">Sales</li>
+              <li><a href="#">Delivered</a></li>
+              <li><a href="#">Pending</a></li>
+              <li><a href="#">Returned</a></li>
+              <li><a href="#">Delivered</a></li>
+              <li><a href="#">Pending</a></li>
+              <li><a href="#">Returned</a></li>
+              <li><a href="#">Delivered</a></li>
+              <li><a href="#">Pending</a></li>
+              <li><a href="#">Delivered</a></li>
+            </ul>
+            <ul class="details">
+              <li class="topic">Total</li>
+              <li><a href="#">$204.98</a></li>
+              <li><a href="#">$24.55</a></li>
+              <li><a href="#">$25.88</a></li>
+              <li><a href="#">$170.66</a></li>
+              <li><a href="#">$56.56</a></li>
+              <li><a href="#">$44.95</a></li>
+              <li><a href="#">$67.33</a></li>
+              <li><a href="#">$23.53</a></li>
+              <li><a href="#">$46.52</a></li>
+            </ul>
           </div>
           <div class="button">
             <a href="#">See All</a>
@@ -176,78 +183,306 @@
           <div class="title">Top Seling Product</div>
           <ul class="top-sales-details">
             <li>
-            <a href="#">
-              <!--<img src="images/sunglasses.jpg" alt="">-->
-              <span class="product">Vuitton Sunglasses</span>
-            </a>
-            <span class="price">$1107</span>
-          </li>
-          <li>
-            <a href="#">
-               <!--<img src="images/jeans.jpg" alt="">-->
-              <span class="product">Hourglass Jeans </span>
-            </a>
-            <span class="price">$1567</span>
-          </li>
-          <li>
-            <a href="#">
-             <!-- <img src="images/nike.jpg" alt="">-->
-              <span class="product">Nike Sport Shoe</span>
-            </a>
-            <span class="price">$1234</span>
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/scarves.jpg" alt="">-->
-              <span class="product">Hermes Silk Scarves.</span>
-            </a>
-            <span class="price">$2312</span>
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/blueBag.jpg" alt="">-->
-              <span class="product">Succi Ladies Bag</span>
-            </a>
-            <span class="price">$1456</span>
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/bag.jpg" alt="">-->
-              <span class="product">Gucci Womens's Bags</span>
-            </a>
-            <span class="price">$2345</span>
-          <li>
-            <a href="#">
-              <!--<img src="images/addidas.jpg" alt="">-->
-              <span class="product">Addidas Running Shoe</span>
-            </a>
-            <span class="price">$2345</span>
-          </li>
-          <li>
-            <a href="#">
-             <!--<img src="images/shirt.jpg" alt="">-->
-              <span class="product">Bilack Wear's Shirt</span>
-            </a>
-            <span class="price">$1245</span>
-          </li>
+              <a href="#">
+                <!--<img src="images/sunglasses.jpg" alt="">-->
+                <span class="product">Vuitton Sunglasses</span>
+              </a>
+              <span class="price">$1107</span>
+            </li>
+            <li>
+              <a href="#">
+                <!--<img src="images/jeans.jpg" alt="">-->
+                <span class="product">Hourglass Jeans </span>
+              </a>
+              <span class="price">$1567</span>
+            </li>
+            <li>
+              <a href="#">
+                <!-- <img src="images/nike.jpg" alt="">-->
+                <span class="product">Nike Sport Shoe</span>
+              </a>
+              <span class="price">$1234</span>
+            </li>
+            <li>
+              <a href="#">
+                <!--<img src="images/scarves.jpg" alt="">-->
+                <span class="product">Hermes Silk Scarves.</span>
+              </a>
+              <span class="price">$2312</span>
+            </li>
+            <li>
+              <a href="#">
+                <!--<img src="images/blueBag.jpg" alt="">-->
+                <span class="product">Succi Ladies Bag</span>
+              </a>
+              <span class="price">$1456</span>
+            </li>
+            <li>
+              <a href="#">
+                <!--<img src="images/bag.jpg" alt="">-->
+                <span class="product">Gucci Womens's Bags</span>
+              </a>
+              <span class="price">$2345</span>
+            <li>
+              <a href="#">
+                <!--<img src="images/addidas.jpg" alt="">-->
+                <span class="product">Addidas Running Shoe</span>
+              </a>
+              <span class="price">$2345</span>
+            </li>
+            <li>
+              <a href="#">
+                <!--<img src="images/shirt.jpg" alt="">-->
+                <span class="product">Bilack Wear's Shirt</span>
+              </a>
+              <span class="price">$1245</span>
+            </li>
           </ul>
         </div>
       </div>
+      <section>
+        <button id="create-employee">Create Employee</button>
+        <button id="update-employee">Update Employee</button>
+        <button id="delete-employee">Delete Employee</button>
+      </section>
     </div>
   </section>
 
   <script>
-   let sidebar = document.querySelector(".sidebar");
-let sidebarBtn = document.querySelector(".sidebarBtn");
-sidebarBtn.onclick = function() {
-  sidebar.classList.toggle("active");
-  if(sidebar.classList.contains("active")){
-  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
-}else
-  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-}
- </script>
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+  </script>
+
+  <!-- Firebase sdk setup -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp, } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import {
+      getFirestore,
+      getDocs,
+      collection,
+      addDoc,
+      updateDoc,
+      deleteDoc,
+      doc,
+      query,
+      where,
+    } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCwxMVF2fcArl-qCk0eu3VXndHRgFVn9Tw",
+      authDomain: "trackme-237.firebaseapp.com",
+      projectId: "trackme-237",
+      storageBucket: "trackme-237.appspot.com",
+      messagingSenderId: "826451219070",
+      appId: "1:826451219070:web:b3741cb1702a8cdc2dbe2f"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Database collection
+    const EMPLOYEE_TABLE = "employee";
+    const FBB_DAILY_TABLE = "fbb_daily";
+    const BARCODE = "barcode";
+
+    //Firestore connection
+    const database = getFirestore();
+
+
+    // Get totoal users count
+
+    // This function builds the query for all users count in firestore database
+    const getUsersCountRef = () => {
+      return getDocs(collection(database, EMPLOYEE_TABLE));
+    };
+
+    // This function runs the query and resolves the result
+    const getUsersCount = async () => {
+      const querySnapshot = await getUsersCountRef();
+      return querySnapshot.size;
+    }
+
+    // This function builds the query for only workers in firestore database
+    const getWorkersCountRef = () => {
+      const q = query(collection(database, EMPLOYEE_TABLE), where("type", "==", "WORKERS"));
+      return getDocs(q);
+    };
+
+    // This function runs the query and resolves the result
+    const getWorkersCount = async () => {
+      const querySnapshot = await getWorkersCountRef();
+      return querySnapshot.size;
+    }
+
+    // This function builds the query for daily fbb count in firestore database
+    const getDailyFBBCountRef = () => {
+      return getDocs(collection(database, FBB_DAILY_TABLE));
+    };
+
+    // This function runs the query and resolves the result
+    const getDailyFBBCount = async () => {
+      const querySnapshot = await getDailyFBBCountRef();
+      return querySnapshot.size;
+    }
+
+    // This function builds the query for daily fbb count in firestore database
+    const getBarcodeCountRef = () => {
+      return getDocs(collection(database, BARCODE));
+    };
+
+    // This function runs the query and resolves the result
+    const getBarcodeCount = async () => {
+      const querySnapshot = await getBarcodeCountRef();
+      return querySnapshot.size;
+    }
+
+    // const addEmployeeRef = (user) => {
+    //   return addDoc(collection(database, "employee"), user);
+    // };
+
+    // const updateEmployeeRef = (user) => {
+    //   return updateDoc(doc(database, "employee", user.id), user.data);
+    // };
+
+    // const deleteEmployeeRef = (userId) => {
+    //   return deleteDoc(doc(database, "employee", userId));
+    // };
+
+    // const getEmployeeWithQueryRef = (key, value) => {
+    //   const q = query(collection(database, "employee"), where(key, "==", "Terry"));
+    //   return getDocs(q);
+    // }
+
+    // const getEmployees = async () => {
+    //   const querySnapshot = await getEmployeesRef();
+    //   let employees = [];
+    //   console.log(querySnapshot.size);
+    //   querySnapshot.forEach((doc) => {
+    //     employees.push({ ...doc.data() });
+    //   });
+    //   return employees;
+    // }
+
+    // const addEmployee = async (user) => {
+
+    //   const querySnapshot = await addEmployeeRef(user);
+
+    //   console.log("Employee added");
+    // }
+
+    // const updateEmployee = async (user) => {
+
+    //   const querySnapshot = await updateEmployeeRef(user);
+
+    //   console.log("Employee updated");
+    // }
+
+    // const deleteEmployee = async (userId) => {
+
+    //   const querySnapshot = await deleteEmployeeRef(userId);
+
+    //   console.log("Employee deleted");
+    // }
+
+    // const getEmployeeWithQuery = async (key, value) => {
+    //   const querySnapshot = await getEmployeeWithQueryRef(key, value);
+    //   let employees = [];
+
+    //   querySnapshot.forEach((doc) => {
+    //     employees.push({ ...doc.data() });
+    //     console.log("Document data:", employees[0]['name']);
+    //   });
+    //   return employees;
+    // }
+
+    window.addEventListener("DOMContentLoaded", async (e) => {
+      // Get all data when page loads
+      let [
+        usersCount,
+        workersCount,
+        dailyFBBCount,
+        barcodeCount,
+      ] = await Promise.all(
+        [
+          getUsersCount(),
+          getWorkersCount(),
+          getDailyFBBCount(),
+          getBarcodeCount(),
+        ]
+      );
+
+      // hide loader when the data arrives
+      // #085877
+      // #e87d88
+      // #8fdacb
+
+      let loaderElement = document.getElementById("loader");
+
+      if (
+        typeof usersCount == "number" &&
+        typeof workersCount == "number" &&
+        typeof dailyFBBCount == "number" &&
+        typeof barcodeCount == "number"
+      ) {
+        loaderElement.classList.remove("show");
+        loaderElement.classList.add("hide");
+      }
+
+      document.getElementById("user-count").innerText = padO(usersCount);
+      document.getElementById("worker-count").innerText = padO(workersCount);
+      document.getElementById("ffb-daily-count").innerText = padO(dailyFBBCount);
+      document.getElementById("barcode-count").innerText = padO(barcodeCount);
+    });
+
+    // Create new employee
+    const createEmployeeBtn = document.getElementById("create-employee");
+    createEmployeeBtn.addEventListener("click", async () => {
+      const userData = {
+        NID: "4984748208",
+        name: "Jane Doe",
+        image: "https://us.123rf.com/450wm/warrengoldswain/warrengoldswain1610/warrengoldswain161000081/65425247-portrait-of-real-black-african-man-with-no-expression-id-or-passport-photo-full-collection-of-divers.jpg?ver=6",
+      }
+      addEmployee(userData);
+    });
+
+    // update employee data
+    const updateEmployeeBtn = document.getElementById("update-employee");
+    updateEmployeeBtn.addEventListener("click", async () => {
+      const userData = {
+        id: "8itBo9MDYmYjFhgYavow",
+        data: {
+          name: "Terry Lorel",
+          image: "https://us.123rf.com/450wm/warrengoldswain/warrengoldswain1610/warrengoldswain161000081/65425247-portrait-of-real-black-african-man-with-no-expression-id-or-passport-photo-full-collection-of-divers.jpg?ver=6",
+        }
+      }
+      updateEmployee(userData);
+    });
+
+    // update employee data
+    const deleteEmployeeBtn = document.getElementById("delete-employee");
+    deleteEmployeeBtn.addEventListener("click", async () => {
+      const userId = "8itBo9MDYmYjFhgYavow";
+      deleteEmployee(userId);
+    });
+
+    // adds 0 infront of number when it is less than 10
+    const padO = (number) => {
+      return ('0' + number).slice(-2);
+    }
+  </script>
 
 </body>
-</html>
 
+</html>
