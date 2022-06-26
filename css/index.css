@@ -340,7 +340,7 @@ nav .profile-details i {
 .home-content .sales-boxes {
   display: flex;
   justify-content: space-between;
-  /* padding: 0 20px; */
+  min-height: 600px;
 }
 
 /* left box */
@@ -357,41 +357,38 @@ nav .profile-details i {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 30px;
 }
 
 .sales-boxes .box .title {
   font-size: 24px;
   font-weight: 500;
-  /* margin-bottom: 10px; */
 }
 
-.sales-boxes .sales-details li.topic {
+.sales-boxes .sales-details .topic {
   font-size: 20px;
   font-weight: 500;
 }
 
-.sales-boxes .sales-details li {
-  list-style: none;
-  margin: 8px 0;
-}
-
-.sales-boxes .sales-details li a {
+.sales-boxes .sales-details td {
+  margin: 8px 10px;
   font-size: 18px;
   color: #333;
   font-size: 400;
   text-decoration: none;
 }
 
-.sales-boxes .box .button {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
+/* .sales-boxes .sales-details li a {
+  font-size: 18px;
+  color: #333;
+  font-size: 400;
+  text-decoration: none;
+} */
 
 .sales-boxes .box .button a {
   color: #fff;
-  background: #0A2558;
-  padding: 4px 12px;
+  background: #085877;
+  padding: 7px 20px;
   font-size: 15px;
   font-weight: 400;
   border-radius: 4px;
@@ -399,8 +396,30 @@ nav .profile-details i {
   transition: all 0.3s ease;
 }
 
+.small-text {
+  font-size: small;
+}
+
+.user-table-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
 .sales-boxes .box .button a:hover {
-  background: #0d3073;
+  background: #fff;
+  color: #085877;
+  border: 1px solid #085877;
+  margin-bottom: 20px;
+}
+
+.dashboard-table {
+  width: 100%;
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
 }
 
 /* Right box */
