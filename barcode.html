@@ -114,11 +114,11 @@
             <label>Set how many codes you want to generate for today</label>
           </div>
           <div>
-            <input type="number" id="fname" name="fname" value="25">
+            <input type="number" id="max_num" name="max_num" value="25">
           </div>
         </div>
         <div class="btn-section">
-          <button class="submit-btn">Generate</button>
+          <button id="submit-btn" class="submit-btn">Generate</button>
         </div>
       </div>
     </div>
@@ -182,6 +182,15 @@
       return barcodes;
     }
 
+    const addBarcodeQuery = (codeData) => {
+      return addDoc(collection(database, BARCODE), codeData);
+    };
+
+    const addBarcode = async (codeData) => {
+      const querySnapshot = await addBarcodeQuery(codeData);
+      console.log("Barcode added");
+    }
+
 
     // Get all data when page loads
     let [
@@ -204,6 +213,47 @@
 
     let tableBody = document.getElementById("barcode-table-data").innerHTML + generate_barcode(barcodes);
     document.getElementById("barcode-table-data").innerHTML = tableBody;
+
+
+    const saveCode = async () => {
+      //Close the modal
+      document.querySelector(".close-button").click();
+
+      //toggle loader
+      loaderElement.classList.add("show");
+      loaderElement.classList.remove("hide");
+
+      const maxCodes = document.getElementById("max_num").value;
+      const codes = generate_unique_code(parseInt(maxCodes));
+
+      try {
+        codes.forEach((code) => {
+          let barcode = {
+            code: code,
+            date: getTodayDate(),
+            checked_out: false,
+            checked_in: false,
+            created_by: "jsnjsnnfjh"
+          }
+          addBarcode(barcode);
+        });
+
+        // get new barcodes and add to table
+        let newBarcodes = await getBarcodes();
+        document.getElementById("barcode-table-data").innerHTML = generate_barcode(newBarcodes);
+
+        //toggle loader
+        loaderElement.classList.remove("show");
+        loaderElement.classList.add("hide");
+
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    let codeBtn = document.getElementById("submit-btn");
+    codeBtn.addEventListener("click", saveCode);
+
   </script>
 
 
@@ -226,10 +276,6 @@
     trigger.addEventListener("click", toggleModal);
     closeButton.addEventListener("click", toggleModal);
     window.addEventListener("click", windowOnClick);
-
-    const generateCode = () => {
-
-    }
   </script>
 
   <script>
