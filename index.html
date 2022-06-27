@@ -42,12 +42,7 @@
           <span class="links_name">Workers</span>
         </a>
       </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-message'></i>
-          <span class="links_name">Messages</span>
-        </a>
-      </li>
+
       <li class="log_out">
         <a href="#">
           <i class='bx bx-log-out'></i>
@@ -174,6 +169,7 @@
   <script src="./js/date.js"></script>
   <script src="./js/generate_dashboard_table.js"></script>
   <script src="./js/utils.js"></script>
+  <script src="./js/firebase.js"></script>
 
   <!-- Firebase sdk setup -->
   <script type="module">
@@ -207,17 +203,10 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
 
-    // Database collection
-    const EMPLOYEE_TABLE = "employee";
-    const FBB_DAILY_TABLE = "fbb_daily";
-    const BARCODE = "barcode";
-    const USER_FBB_COUNT = "user_fbb_count";
 
     //Firestore connection
     const database = getFirestore();
 
-
-    // Get totoal users count
 
     // This function builds the query for all users count in firestore database
     const getUsersCountQuery = () => {
@@ -232,7 +221,7 @@
 
     // This function builds the query for all users count in firestore database
     const getfirst10UserDataQuery = () => {
-      const q = query(collection(database, EMPLOYEE_TABLE), where("last_active", "==", getTodayDate()));
+      const q = query(collection(database, EMPLOYEE_TABLE), where("last_active", "==", getTodayDate()), where("type", "==", "WORKERS"));
       return getDocs(q);
     };
 

@@ -23,3 +23,16 @@ const generate_top_users = (data) => {
 
     return li;
 }
+
+const generate_barcode = (data) => {
+    let tr = "";
+    data.forEach(barcode => {
+        tr += "<tr>";
+        tr += "<td>" + barcode["code"] + "</td>";
+        tr += "<td>" + barcode["checked_in"] + "</td>";
+        tr += "<td>" + barcode["checked_out"] + "</td>";
+        tr += "</tr>";
+    });
+
+    return tr;
+}
