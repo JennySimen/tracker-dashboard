@@ -206,11 +206,169 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+.loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 240px;
+  right: 0;
+  bottom: 0;
+  background-color: #00000080;
+  z-index: 200;
+}
 
+.loader.show {
+  display: block;
+}
 
+.loader.hide {
+  display: none;
+}
 
+.loader-body {
+  height: 150px;
+  width: 350px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-left: 30%;
+  margin-right: auto;
+  margin-top: 18%;
+}
 
+.loader-body img {
+  width: 100px;
+  height: 100px;
+  margin-top: 3%;
+  margin-left: 35%;
+}
 
+.loader-body p {
+  text-align: center;
+  margin-top: -20px;
+}
+
+.workers-table-header {
+  margin-bottom: 10px;
+  width: 95%;
+  padding-top: 100px;
+}
+
+.workers-table-header .button a:hover {
+  background: #fff;
+  color: #085877;
+  border: 1px solid #085877;
+  margin-bottom: 20px;
+}
+
+.workers-table-header .button a {
+  color: #fff;
+  background: #085877;
+  padding: 7px 20px;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  float: right;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal h1 {
+  font-weight: 600;
+}
+
+.modal form {
+  margin-top: 1rem;
+}
+
+.modal .input-section {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.label-container {
+  margin: 20px 3rem;
+}
+
+.btn-container {
+  margin: auto;
+  text-align: center;
+}
+
+.submit-btn {
+  width: 100%;
+  background-color: #085877;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border: 1px solid #085877;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #fff;
+  color: #085877;
+}
+
+.btn-section {
+  margin: auto;
+  width: 25%;
+}
+
+input[type=number],
+select {
+  width: 30%;
+  padding: 12px 20px;
+  margin-top: 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+  min-height: 350px;
+}
+
+.close-button {
+  float: right;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
 
 
 
