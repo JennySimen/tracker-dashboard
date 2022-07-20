@@ -113,9 +113,8 @@
             <div><input type="text" id="name" name="name"></div>
             <div> <label for="Category">Category</label></div>
             <div> <input type="text" id="category" name="category"></div>
-            <div><input type="text" id="gender" name="gender"></div>
-            <div><label for="last_active">Last_active</label></div>
-            <div><input type="date" id="last_active" name="last_active"></div>
+            <div> <label for="gender">Gender</label></div>
+            <div><input type="text" id="gender" name="gender"></div><br>
             <div><input type="file" id="pic" name="picture"></div>
           </form>
         </div>
@@ -239,21 +238,6 @@
       var gender = document.getElementById('gender').value;
       var last_active = document.getElementById('last_active').value;
       var pic = document.getElementById('pic').value;
-
-      // database.collection("employee").doc().set({
-      // NID: NID,
-      // gender: gender,
-      // image: pic,
-      // last_active: last_active,
-      // name: name,
-      // type: category
-      // })
-      //   .then(() => {
-      //     console.log("Document successfully written!");
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error writing document: ", error);
-      //   });
 
       const employeeData = {
         NID: NID,
