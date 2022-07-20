@@ -106,20 +106,21 @@
         <h1>Add new employee</h1>
         <hr />
         <div class="input-section">
-          <div>
-            <label>Set how many codes you want to generate for today</label>
-          </div>
-          <div>
-            <form>
-              <label for="fname">First Name</label>
-              <input type="text" id="fname" name="fname">
-              <label for="lname">Last Name</label>
-              <input type="text" id="lname" name="lname">
-            </form>
-          </div>
+          <form>
+            <div><label for="nid">NID</label></div>
+            <div><input type="text" id="nid" name="nid"></div>
+            <div><label for="name">Name</label></div>
+            <div><input type="text" id="name" name="name"></div>
+            <div> <label for="Category">Category</label></div>
+            <div> <input type="text" id="category" name="category"></div>
+            <div><input type="text" id="gender" name="gender"></div>
+            <div><label for="last_active">Last_active</label></div>
+            <div><input type="date" id="last_active" name="last_active"></div>
+            <div><input type="file" id="pic" name="picture"></div>
+          </form>
         </div>
         <div class="btn-section">
-          <button id="submit-btn" class="submit-btn">ADD</button>
+          <button type="button" id="addbtn" class="submit-btn">ADD</button>
         </div>
       </div>
     </div>
@@ -186,17 +187,17 @@
 
 
     //Firestore connection
-    const database = getFirestore();
+    const database = getFirestore(app);
 
 
     // This function builds the query for all users count in firestore database
-    const getUsersQuery = () => {
+    const getEmployeesQuery = () => {
       return getDocs(collection(database, EMPLOYEE_TABLE));
     };
 
     // This function runs the query and resolves the result
-    const getUsers = async () => {
-      const querySnapshot = await getUsersQuery();
+    const getEmployees = async () => {
+      const querySnapshot = await getEmployeesQuery();
       let employees = [];
       querySnapshot.forEach((doc) => {
         employees.push({ ...doc.data() });
@@ -204,8 +205,21 @@
       return employees;
     }
 
+    const addEmployeeQuery = (codeData) => {
+      return addDoc(collection(database, EMPLOYEE_TABLE), codeData);
+    };
 
-    let employees = await getUsers();
+    const addEmployee = async (codeData) => {
+      try {
+        const querySnapshot = await addEmployeeQuery(codeData);
+        console.log("employee added");
+      } catch (error) {
+        console.log("Opps! employee could not be added");
+      }
+    }
+
+
+    let employees = await getEmployees();
     // hide loader when the data arrives
     let loaderElement = document.getElementById("loader");
 
@@ -216,6 +230,44 @@
 
     let tableBody = document.getElementById("employees-table-data").innerHTML + generate_employee_table(employees);
     document.getElementById("employees-table-data").innerHTML = tableBody;
+
+    //add new employee function
+    addbtn.addEventListener('click', async (e) => {
+      var NID = document.getElementById('nid').value;
+      var name = document.getElementById('name').value;
+      var category = document.getElementById('category').value;
+      var gender = document.getElementById('gender').value;
+      var last_active = document.getElementById('last_active').value;
+      var pic = document.getElementById('pic').value;
+
+      // database.collection("employee").doc().set({
+      // NID: NID,
+      // gender: gender,
+      // image: pic,
+      // last_active: last_active,
+      // name: name,
+      // type: category
+      // })
+      //   .then(() => {
+      //     console.log("Document successfully written!");
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error writing document: ", error);
+      //   });
+
+      const employeeData = {
+        NID: NID,
+        gender: gender,
+        image: pic,
+        last_active: last_active,
+        name: name,
+        type: category
+      }
+
+      addEmployee(employeeData);
+
+    })
+
 
   </script>
 
@@ -239,6 +291,7 @@
     closeButton.addEventListener("click", toggleModal);
     window.addEventListener("click", windowOnClick);
   </script>
+
 
 </body>
 
