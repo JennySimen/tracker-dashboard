@@ -25,9 +25,9 @@
         </a>
       </li>
       <li>
-        <a href="map.html">
+        <a href="report.html">
           <i class='bx bx-map'></i>
-          <span class="links_name">Map</span>
+          <span class="links_name">Report</span>
         </a>
       </li>
       <li>
@@ -151,6 +151,37 @@
           <ul class="top-sales-details" id="top-workers"></ul>
         </div>
       </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <div>
+      <canvas id="myChart" style="width:100%;max-width:100%"></canvas>
+
+      <script>
+        var xValues = ["Mon", "Teus", "Wed", "Thurs", "Fri", "sat", "sun"];
+        var yValues = [55, 49, 44, 24, 15, 30, 90];
+        var barColors = ["red", "green", "blue", "orange", "brown", "yellow", "purple"];
+
+        new Chart("myChart", {
+          type: "bar",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: "chart"
+            }
+          }
+        });
+      </script>
+    </div>
     </div>
   </section>
 
