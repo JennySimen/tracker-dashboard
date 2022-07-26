@@ -182,13 +182,19 @@
       return barcodes;
     }
 
+    //function to save input
+
     const addBarcodeQuery = (codeData) => {
       return addDoc(collection(database, BARCODE), codeData);
     };
 
     const addBarcode = async (codeData) => {
-      const querySnapshot = await addBarcodeQuery(codeData);
-      console.log("Barcode added");
+      try {
+        const querySnapshot = await addBarcodeQuery(codeData);
+        console.log("Barcode added");
+      } catch (error) {
+        console.log("Opps! could not fetch barcode");
+      }
     }
 
 
