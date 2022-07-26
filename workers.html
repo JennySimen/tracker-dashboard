@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <title> Admin dashboard </title>
   <link rel="stylesheet" href="css/workers.css">
+  <link rel="stylesheet" href="css/color.css">
+  <link rel="stylesheet" href="css/common.css">
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,19 +84,22 @@
     </div>
 
     <div class="workers-table-header">
+      <div class="title">
+        Employees
+      </div>
       <div class="button">
         <a class="trigger" href="#">ADD EMPLOYEE</a>
       </div>
-
-
     </div>
     <table>
       <thead>
         <tr>
+          <th class="topic"></th>
           <th class="topic">NID</th>
           <th class="topic">Name</th>
           <th class="topic">Category</th>
           <th class="topic">Gender</th>
+          <th class="topic">Actions</th>
         </tr>
       </thead>
       <tbody id="employees-table-data"></tbody>
@@ -108,15 +113,47 @@
         <hr />
         <div class="input-section">
           <form>
-            <div><label for="nid">NID</label></div>
-            <div><input type="text" id="nid" name="nid"></div>
-            <div><label for="name">Name</label></div>
-            <div><input type="text" id="name" name="name"></div>
-            <div> <label for="Category">Category</label></div>
-            <div> <input type="text" id="category" name="category"></div>
-            <div> <label for="gender">Gender</label></div>
-            <div><input type="text" id="gender" name="gender"></div><br>
-            <div><input type="file" id="pic" name="picture"></div>
+            <div class="flex">
+              <div class="form-control">
+                <div><label for="name">Full Name <span class="red">*</span></label></div>
+                <div><input type="text" id="name" name="name"></div>
+              </div>
+              <div class="form-control">
+                <div><label for="nid">National ID (NID) <span class="red">*</span></label></div>
+                <div><input type="text" id="nid" name="nid"></div>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="form-control">
+                <div> <label for="gender">Gender</label> <span class="red">*</span></div>
+                <div>
+                  <select name="gender" id="gender">
+                    <option value="">Select a value</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-control">
+                <div> <label for="Category">Category</label> <span class="red">*</span></div>
+                <div>
+                  <select name="category" id="category">
+                    <option value="">Select a value</option>
+                    <option value="worker">Worker</option>
+                    <option value="Security">Security</option>
+                    <option value="admin">Administrator</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-control file-type">
+              <div><label for="picture">Picture</label></div>
+              <label class="file-label" for="file">
+                <div class="file-area">Click to upload</div>
+                <input type="file" id="pic" name="picture">
+              </label>
+            </div>
+            <p id="filename" class="filename"></p>
           </form>
         </div>
         <div class="btn-section">
@@ -124,6 +161,7 @@
         </div>
       </div>
     </div>
+
   </section>
 
   </section>
@@ -161,7 +199,7 @@
       getFirestore,
       getDocs,
       collection,
-      addDoc,
+      setDoc,
       updateDoc,
       deleteDoc,
       doc,
@@ -205,8 +243,12 @@
       return employees;
     }
 
-    const addEmployeeQuery = (codeData) => {
-      return addDoc(collection(database, EMPLOYEE_TABLE), codeData);
+    // This function adds new employee
+    const addEmployeeQuery = async (codeData) => {
+      // Generate unique id
+      const newIdRef = await doc(collection(database, EMPLOYEE_TABLE));
+      codeData.id = newIdRef.id;
+      return setDoc(newIdRef, codeData);
     };
 
     const addEmployee = async (codeData) => {
@@ -217,6 +259,27 @@
         console.log("Opps! employee could not be added");
       }
     }
+
+    // delete employee function
+
+    const deleteEmployeeRef = (id) => {
+      return deleteDoc(doc(database, EMPLOYEE_TABLE, id));
+    };
+
+    const deleteEmployee = async (id) => {
+      try {
+        console.log(id);
+        const querySnapshot = await deleteEmployeeRef(id);
+
+        console.log("Employee deleted");
+      } catch (error) {
+        console.log("Opps! employee could not be deleted");
+      }
+
+    }
+
+
+
 
 
     let employees = await getEmployees();
@@ -233,26 +296,54 @@
 
     //add new employee function
     addbtn.addEventListener('click', async (e) => {
+      document.querySelector(".close-button").click();
+      // Show loader
+      loaderElement.classList.add("show");
+      loaderElement.classList.remove("hide");
+
       var NID = document.getElementById('nid').value;
       var name = document.getElementById('name').value;
       var category = document.getElementById('category').value;
       var gender = document.getElementById('gender').value;
-      var last_active = document.getElementById('last_active').value;
       var pic = document.getElementById('pic').value;
 
       const employeeData = {
         NID: NID,
         gender: gender,
         image: pic,
-        last_active: last_active,
+        last_active: getTodayDate(),
         name: name,
         type: category
       }
 
-      addEmployee(employeeData);
+      await addEmployee(employeeData);
 
-    })
+      window.location.reload();
 
+    });
+
+    const deleteBtns = document.querySelectorAll(".del-btn");
+
+    deleteBtns.forEach(delBtn => {
+      delBtn.addEventListener('click', async (e) => {
+        let loaderElement = document.getElementById("loader");
+        loaderElement.classList.add("show");
+        loaderElement.classList.remove("hide");
+
+        const nationalId = delBtn.getAttribute("data-nid");
+        await deleteEmployee(nationalId);
+
+        window.location.reload();
+      })
+    });
+
+    // File upload
+    const fileInput = document.querySelector('input[type=file]');
+    var filenameContainer = document.querySelector('#filename');
+
+    fileInput.addEventListener('change', function () {
+      filenameContainer.innerText = fileInput.value.split('\\').pop();
+    });
 
   </script>
 
@@ -276,7 +367,6 @@
     closeButton.addEventListener("click", toggleModal);
     window.addEventListener("click", windowOnClick);
   </script>
-
 
 </body>
 

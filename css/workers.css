@@ -156,6 +156,14 @@ nav .search-box .bx-search {
   transition: all 0.4 ease;
 }
 
+.text-right {
+  text-align: right;
+}
+
+.text-right i {
+  font-size: 20px;
+}
+
 .home-section nav .profile-details {
   display: flex;
   align-items: center;
@@ -192,7 +200,7 @@ nav .profile-details i {
 table {
   font-family: arial, sans-serif;
   width: 95%;
-  padding: 8rem 0 0 18rem;
+  padding: 2rem 0 0 0;
 }
 
 td,
@@ -249,16 +257,20 @@ tr:nth-child(even) {
 }
 
 .workers-table-header {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 10px;
   width: 95%;
-  padding-top: 100px;
+}
+
+.workers-table-header .title {
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .workers-table-header .button a:hover {
   background: #fff;
   color: #085877;
-  border: 1px solid #085877;
-  margin-bottom: 20px;
 }
 
 .workers-table-header .button a {
@@ -272,6 +284,7 @@ tr:nth-child(even) {
   transition: all 0.3s ease;
   float: right;
   margin: 0 2rem;
+  border: 1px solid #085877;
 }
 
 .modal {
@@ -297,15 +310,11 @@ tr:nth-child(even) {
 }
 
 .modal .input-section {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  text-align: center;
+  margin: 2rem;
 }
 
 .label-container {
-  margin: 20px 3rem;
+  margin: 10px 3rem;
 }
 
 .btn-container {
@@ -336,9 +345,8 @@ tr:nth-child(even) {
 
 .modal .modal-content .input-section form input[type=text],
 select {
-  width: 40%;
   padding: 12px 20px;
-  margin-top: 20px;
+  margin-top: 5px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -371,6 +379,54 @@ select {
   transform: scale(1.0);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
+
+.no-data-text {
+  text-align: center;
+  font-size: large;
+}
+
+.workers-section {
+  padding: 8rem 0 0 18rem;
+}
+
+
+/* file upload */
+input[type="file"] {
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.file-area {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #085877;
+  color: #085877;
+}
+
+.file-label {
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  width: 150px;
+  margin-top: 1rem;
+}
+
+.filename {
+  height: 20px;
+  margin-top: 1rem;
+}
+
 
 
 
