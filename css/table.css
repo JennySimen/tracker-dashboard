@@ -1,0 +1,47 @@
+.content-table-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  width: 95%;
+}
+
+.content-table .title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.content-table-header .button a:hover {
+  background: #fff;
+  color: #085877;
+}
+
+.content-table-header .button a {
+  color: #fff;
+  background: #085877;
+  padding: 7px 20px;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  float: right;
+  margin: 0 2rem;
+  border: 1px solid #085877;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    margin: 10px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
