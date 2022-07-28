@@ -26,19 +26,25 @@
       </li>
       <li>
         <a href="report.html">
-          <i class='bx bx-map'></i>
+          <i class='bx bx-edit'></i>
           <span class="links_name">Report</span>
         </a>
       </li>
       <li>
         <a href="barcode.html">
-          <i class='bx bx-map'></i>
+          <i class='bx bx-barcode'></i>
           <span class="links_name">Barcode</span>
         </a>
       </li>
       <li>
+        <a href="scan.html">
+          <i class='bx bx-scan'></i>
+          <span class="links_name">Scan</span>
+        </a>
+      </li>
+      <li>
         <a href="workers.html">
-          <i class='bx bx-message'></i>
+          <i class='bx bx-user'></i>
           <span class="links_name">Workers</span>
         </a>
       </li>
@@ -58,11 +64,6 @@
         <i class='bx bx-menu sidebarBtn'></i>
         <span class="dashboard">Dashboard</span>
       </div>
-      <div class="search-box">
-        <input id="searchbar" onkeyup="search()" type="text" name="search" placeholder="Search..">
-        <i class='bx bx-search'></i>
-      </div>
-
 
       <div class="profile-details">
         <!--<img src="images/profile.jpg" alt="">-->
@@ -78,6 +79,7 @@
     </div>
 
     <div class="home-content">
+      <h1>Today's Statistics</h1>
       <div class="overview-boxes">
         <div class="box">
           <div class="right-side">
@@ -427,22 +429,6 @@
 
     tableTitle.innerText = tableTitle.innerText + getTodayDate() + ")";
 
-
-    // function for search
-    function search() {
-      let input = document.getElementById('searchbar').value
-      input = input.toLowerCase();
-      let x = document.getElementsByClassName('home-content');
-
-      for (i = 0; i < x.length; i++) {
-        if (!x[i].innerHTML.toLowerCase().includes(input)) {
-          x[i].style.display = "none";
-        }
-        else {
-          x[i].style.display = "list-item";
-        }
-      }
-    }
 
     //function for logout 
     logout.addEventListener('click', (e) => {
