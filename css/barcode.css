@@ -286,6 +286,17 @@ tr:nth-child(even) {
   transition: all 0.3s ease;
 }
 
+.barcode-table-header .filter {
+  width: 20%;
+  padding: 0 20px;
+  margin-top: 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
 .modal {
   position: fixed;
   left: 0;
@@ -387,7 +398,6 @@ select {
   text-align: center;
   font-size: large;
 }
-
 
 
 

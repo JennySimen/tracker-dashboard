@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <title> Admin dashboard </title>
   <link rel="stylesheet" href="css/barcode.css">
+  <link rel="stylesheet" href="css/color.css">
+
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -90,6 +92,17 @@
       <div class="button">
         <a class="trigger" href="#">Generate Code</a>
       </div>
+      <div class="button">
+        <a class="trigger" href="#">Print code</a>
+      </div>
+      <select name="filter" id="filter">
+        <option value="">Select a filter</option>
+        <option value="Female">Today</option>
+        <option value="Male">This week</option>
+        <option value="Male">This month</option>
+        <option value="Male">Last 3 months</option>
+        <option value="Male">Last 6 months</option>
+      </select>
 
     </div>
 
