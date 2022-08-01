@@ -143,7 +143,7 @@
                   <th class="topic">NID Number</th>
                   <th class="topic">Full Name</th>
                   <th class="topic">Gender</th>
-                  <th class="topic">Details</th>
+                  <th class="topic">Type</th>
                 </tr>
               </thead>
               <tbody id="dashboard-table-data"></tbody>
@@ -259,7 +259,7 @@
 
     // This function builds the query for all users count in firestore database
     const getfirst10UserDataQuery = () => {
-      const q = query(collection(database, EMPLOYEE_TABLE), where("last_active", "==", getTodayDate()), where("type", "==", "WORKERS"));
+      const q = query(collection(database, EMPLOYEE_TABLE), where("last_active", "==", getTodayDate()));
       return getDocs(q);
     };
 
