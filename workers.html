@@ -287,9 +287,6 @@
 
 
        //This function gets active employee data
-     
-
-
     const getTodayEmpRef = () => {
       const q = query(collection(database, EMPLOYEE_TABLE), where("last_active", "==", getTodayDate()));
       return getDocs(q);
@@ -315,9 +312,7 @@
       } else {
         return await getEmployees();
       }
-    }
-
-    
+    }   
 
     let employees = await pageData();
    
