@@ -249,6 +249,7 @@
       return employees;
     }
 
+
     // This function adds new employee
     const addEmployeeQuery = async (codeData) => {
       // Generate unique id
@@ -285,10 +286,41 @@
     }
 
 
+       //This function gets active employee data
+     
 
 
+    const getTodayEmpRef = () => {
+      const q = query(collection(database, EMPLOYEE_TABLE), where("last_active", "==", getTodayDate()));
+      return getDocs(q);
+    }
 
-    let employees = await getEmployees();
+    const getTodayEmployees = async () => {
+      const querySnapshot = await getTodayEmpRef();
+      let employees = [];
+      querySnapshot.forEach((doc) => {
+        employees.push({ ...doc.data() });
+      });
+      return employees;
+    }
+ 
+
+    const pageData = async () => {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const dateParams = urlParams.get("type");
+
+      if (dateParams && dateParams === "today_emp") {
+        return await getTodayEmployees();
+      } else {
+        return await getEmployees();
+      }
+    }
+
+    
+
+    let employees = await pageData();
+   
     // hide loader when the data arrives
     let loaderElement = document.getElementById("loader");
 
