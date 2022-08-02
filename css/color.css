@@ -5,3 +5,25 @@
 .green {
     color: green;
 }
+
+.light-red {
+    background-color: rgba(255, 0, 0, 0.395);
+    color: white;
+  padding: 7px 20px;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.light-green {
+    background-color: rgba(0, 128, 0, 0.588);
+    color: white;
+    padding: 7px 20px;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
