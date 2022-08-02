@@ -4,7 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <title> Admin dashboard </title>
+  <link rel="stylesheet" href="css/print.min.css">
   <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/button.css">
+
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -157,34 +160,18 @@
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <div class="graph-section">
 
-    <div>
-      <canvas id="myChart" style="width:100%;max-width:100%"></canvas>
+      <div class="chart-button">
+        <div class="btn-section">
+          <button type="button" id="printbtn" class="submit-btn">PRINT</button>
+          <button type="button" id="refreshbtn" class="submit-btn">REFRESH</button>
+        </div>
+      </div>
 
-      <script>
-        var xValues = ["Mon", "Teus", "Wed", "Thurs", "Fri", "sat", "sun"];
-        var yValues = [55, 49, 44, 24, 15, 30, 90];
-        var barColors = ["red", "green", "blue", "orange", "brown", "yellow", "purple"];
-
-        new Chart("myChart", {
-          type: "bar",
-          data: {
-            labels: xValues,
-            datasets: [{
-              backgroundColor: barColors,
-              data: yValues
-            }]
-          },
-          options: {
-            legend: { display: false },
-            title: {
-              display: true,
-              text: "chart"
-            }
-          }
-        });
-      </script>
+      <div id="graph-area">
+        <canvas id="myChart" style="width:100%;max-width:100%"></canvas>
+      </div>
     </div>
     </div>
   </section>
@@ -205,6 +192,40 @@
   <script src="./js/generate_dashboard_table.js"></script>
   <script src="./js/utils.js"></script>
   <script src="./js/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+  <script src="./js/print.min.js"></script>
+
+<!-- Graph data -->
+  <script>
+    var xValues = ["Mon", "Teus", "Wed", "Thurs", "Fri", "sat", "sun"];
+    var yValues = [55, 49, 44, 24, 15, 30, 90];
+    var barColors = ["red", "green", "blue", "orange", "brown", "yellow", "purple"];
+
+    new Chart("myChart", {
+      type: "bar",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: "Report"
+        }
+      }
+    });
+
+    let printbtn = document.getElementById("printbtn");
+    //function to print
+    printbtn.addEventListener('click', (e) => {
+      printJS('myChart', 'html')
+    });
+
+  </script>
 
   <!-- Firebase sdk setup -->
   <script type="module">
@@ -439,7 +460,7 @@
       }).catch((error) => {
         // An error happened.
       });
-    });
+    });  
 
     // // Create new employee
     // const createEmployeeBtn = document.getElementById("create-employee");

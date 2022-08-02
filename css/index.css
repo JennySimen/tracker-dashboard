@@ -430,6 +430,17 @@ nav .profile-details i {
   color: #333;
 }
 
+/* graph card style */
+
+.graph-section #graph-area {
+  width: 96%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* Responsive Media Query */
 @media (max-width: 1240px) {
   .sidebar {

@@ -1,0 +1,21 @@
+.btn-section {
+    margin: auto;
+    width: 25%;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background-color: #085877;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 0;
+    border: 1px solid #085877;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #fff;
+    color: #085877;
+  }
+  
