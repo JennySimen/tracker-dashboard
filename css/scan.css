@@ -138,39 +138,28 @@ nav .sidebar-button i {
   margin-right: 10px;
 }
 
-.home-section nav .search-box {
-  position: relative;
-  height: 50px;
-  max-width: 550px;
-  width: 100%;
-  margin: 0 20px;
-}
-
-nav .search-box input {
-  height: 100%;
-  width: 100%;
-  outline: none;
+.home-section nav .profile-details {
+  display: flex;
+  align-items: center;
   background: #F5F6FA;
   border: 2px solid #EFEEF1;
   border-radius: 6px;
-  font-size: 18px;
-  padding: 0 15px;
+  height: 50px;
+  min-width: 190px;
+  padding: 0 15px 0 2px;
 }
 
-nav .search-box .bx-search {
-  position: absolute;
-  height: 40px;
-  width: 40px;
-  background: #2697FF;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-  border-radius: 4px;
-  line-height: 40px;
-  text-align: center;
-  color: #fff;
-  font-size: 22px;
-  transition: all 0.4 ease;
+nav .profile-details .admin_name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 10px;
+  white-space: nowrap;
+}
+
+nav .profile-details i {
+  font-size: 25px;
+  color: #333;
 }
 
 .dashboard-section {
@@ -180,21 +169,24 @@ nav .search-box .bx-search {
   width: 95%;
 }
 
+
 .dashboard-section .light-red:hover {
   background: #fff;
   color: rgba(255, 0, 0, 0.395);
-  border: 1px solid #085877;
+  border: 1px solid rgba(255, 0, 0, 0.395);
   margin-bottom: 20px;
 }
 
-.dashboard .light-green .button a {
-  color: #fff;
-  padding: 7px 20px;
-  font-size: 15px;
-  font-weight: 400;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: all 0.3s ease;
+.dashboard-section a{
+  color: #ffff;
+}
+
+
+.dashboard-section .light-green:hover {
+  background-color:white;
+  color: rgba(0, 128, 0, 0.588); 
+  border: 1px solid rgba(0, 128, 0, 0.588);
+  margin-bottom: 20px;
 }
 
 
