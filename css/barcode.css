@@ -286,8 +286,8 @@ tr:nth-child(even) {
   transition: all 0.3s ease;
 }
 
-.barcode-table-header .filter {
-  width: 20%;
+.barcode-table-header select {
+  width: 18%;
   padding: 0 20px;
   margin-top: 0;
   display: inline-block;
