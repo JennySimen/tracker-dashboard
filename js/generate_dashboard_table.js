@@ -5,6 +5,7 @@ const generate_table = (data) => {
         tr += "<td>" + user["NID"] + "</td>";
         tr += "<td>" + user["name"] + "</td>";
         tr += "<td>" + user["gender"] + "</td>";
+        tr += "<td>" + user["type"] + "</td>";
         tr += "<td class=''>See more</td>";
         tr += "</tr>";
     });
