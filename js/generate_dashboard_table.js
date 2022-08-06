@@ -57,7 +57,9 @@ const generate_employee_table = (data) => {
             tr += "<td class='text-right'>" +
                 "<i class='bx bx-edit green edit-btn' data-nid=" + employee["id"] + "></i>" +
                 "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                "<i class='bx bx-trash red del-btn' data-nid=" + employee["id"] + "></i></td>";
+                "<i class='bx bx-trash red del-btn' data-nid=" + employee["id"] +  "></i>" +
+                "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                "<i class='bx bxs-user-badge blue badge-btn' data-nid=" + employee["id"] + "></td>";
             tr += "</tr>";
         });
     }
