@@ -166,27 +166,36 @@ nav .profile-details i {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  width: 95%;
+padding: 100px;  
+}
+
+.dashboard-section a {
+  color: #085877;
 }
 
 
-.dashboard-section .light-red:hover {
+.dashboard-section .scan-user {
+  background: rgba(255, 0, 0, 0.395);
+  color: #fff;
+  padding: 10rem;
+}
+
+.dashboard-section .scan-user:hover {
   background: #fff;
   color: rgba(255, 0, 0, 0.395);
   border: 1px solid rgba(255, 0, 0, 0.395);
-  margin-bottom: 20px;
 }
 
-.dashboard-section a{
-  color: #ffff;
+.dashboard-section .scan-badge {
+  background: rgba(0, 128, 0, 0.588);
+  color: #fff;
+  padding: 10rem;
 }
 
-
-.dashboard-section .light-green:hover {
+.dashboard-section .scan-badge:hover {
   background-color:white;
   color: rgba(0, 128, 0, 0.588); 
   border: 1px solid rgba(0, 128, 0, 0.588);
-  margin-bottom: 20px;
 }
 
 
