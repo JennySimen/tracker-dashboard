@@ -35,6 +35,9 @@ const generate_barcode = (data) => {
             tr += "<td>" + barcode["code"] + "</td>";
             tr += "<td>" + barcode["checked_in"] + "</td>";
             tr += "<td>" + barcode["checked_out"] + "</td>";
+            tr += "<td>" +
+            `<img id='barcode' src='https://api.qrserver.com/v1/create-qr-code/?data=${barcode["code"]}&amp;size=100x100' alt='' title='HELLO' width='50' height='50' />`
+            + "</td>";
             tr += "</tr>";
         });
     }
