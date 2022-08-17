@@ -174,13 +174,13 @@ padding: 100px;
 }
 
 
-.dashboard-section .scan-user {
+.dashboard-section #scan-user {
   background: rgba(255, 0, 0, 0.395);
   color: #fff;
   padding: 10rem;
 }
 
-.dashboard-section .scan-user:hover {
+.dashboard-section #scan-user:hover {
   background: #fff;
   color: rgba(255, 0, 0, 0.395);
   border: 1px solid rgba(255, 0, 0, 0.395);
@@ -198,7 +198,107 @@ padding: 100px;
   border: 1px solid rgba(0, 128, 0, 0.588);
 }
 
+.user-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
 
+.user-modal h1 {
+  font-weight: 600;
+}
+
+.user-modal form {
+  margin-top: 1rem;
+}
+
+.user-modal .input-section {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.label-container {
+  margin: 20px 3rem;
+}
+
+.btn-container {
+  margin: auto;
+  text-align: center;
+}
+
+.submit-btn {
+  width: 100%;
+  background-color: #085877;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border: 1px solid #085877;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #fff;
+  color: #085877;
+}
+
+.btn-section {
+  margin: auto;
+  width: 25%;
+}
+
+input[type=number],
+select {
+  width: 30%;
+  padding: 12px 20px;
+  margin-top: 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+  min-height: 350px;
+}
+
+.close-button {
+  float: right;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.no-data-text {
+  text-align: center;
+  font-size: large;
+}
 
 
 
