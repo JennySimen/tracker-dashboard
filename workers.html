@@ -68,7 +68,7 @@
         <span class="dashboard">Dashboard</span>
       </div>
       <div class="search-box">
-        <input type="text" placeholder="Search...">
+        <input type="text" id="myInput" onkeyup="myFunction()" name="search" placeholder="Search...">
         <i class='bx bx-search'></i>
       </div>
       <div class="profile-details">
@@ -97,7 +97,7 @@
         <a class="trigger" href="#">ADD EMPLOYEE</a>
       </div>
     </div>
-    <table>
+    <table id="myTable">
       <thead>
         <tr>
           <th class="topic"></th>
@@ -285,6 +285,17 @@
 
     }
 
+    // Update employee function
+    const updateEmployeeRef = (id) => {
+      return updateDoc(doc(database, EMPLOYEE_TABLE, id));
+    };
+
+    const updateEmployee = async (employee) => {
+
+    const querySnapshot = await updateEmployeeRef(employee);
+
+    console.log("Employee updated");
+}
 
        //This function gets active employee data
     const getTodayEmpRef = () => {
@@ -357,6 +368,7 @@
 
     const deleteBtns = document.querySelectorAll(".del-btn");
 
+    //delete employee function 
     deleteBtns.forEach(delBtn => {
       delBtn.addEventListener('click', async (e) => {
         let loaderElement = document.getElementById("loader");
@@ -370,6 +382,52 @@
       })
     });
 
+    // update employee function
+
+    const updateBtns = document.querySelectorAll(".edit-btn");
+    // updateBtn.addEventListener("click", async () => {
+    //   const userData = {
+    //     id: "8itBo9MDYmYjFhgYavow",
+    //     data: {
+    //       name: "Terry Lorel",
+    //       image: "https://us.123rf.com/450wm/warrengoldswain/warrengoldswain1610/warrengoldswain161000081/65425247-portrait-of-real-black-african-man-with-no-expression-id-or-passport-photo-full-collection-of-divers.jpg?ver=6",
+    //     }
+    //   }
+    //   updateEmployee(userData);
+    // });
+
+     //add new employee function
+     UpdateBtns.forEach(updateBtn => {
+
+     updateBtn.addEventListener('click', async (e) => {
+      document.querySelector(".close-button").click();
+      // Show loader
+      loaderElement.classList.add("show");
+      loaderElement.classList.remove("hide");
+
+      var NID = document.getElementById('nid').value;
+      var name = document.getElementById('name').value;
+      var category = document.getElementById('category').value;
+      var gender = document.getElementById('gender').value;
+      var pic = document.getElementById('pic').value;
+
+      const employeeData = {
+        NID: NID,
+        gender: gender,
+        image: pic,
+        last_active: getTodayDate(),
+        name: name,
+        type: category
+      }
+
+      await updateEmployee(employeeData);
+
+      window.location.reload();
+
+    });
+  });
+
+    
     // File upload
     const fileInput = document.querySelector('input[type=file]');
     var filenameContainer = document.querySelector('#filename');
@@ -400,6 +458,28 @@
     closeButton.addEventListener("click", toggleModal);
     window.addEventListener("click", windowOnClick);
   </script>
+
+<script>
+  function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+  </script>
+  
 
 </body>
 

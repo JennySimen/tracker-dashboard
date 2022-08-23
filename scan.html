@@ -98,6 +98,31 @@
         </div>
       </div>
 
+      <div class="goods-modal">
+        <div class="modal-content">
+          <span class="goods-close-button"><i class="bx bx-x"></i></span>
+          <h1>Scan Goods</h1>
+          <hr />
+          
+          <div class="btn-section">
+            <button id="submit-btn" class="submit-btn">Scan</button>
+          </div>
+        </div>
+      </div>
+
+      
+<div class="row">
+  <div class="col">
+    <div id="reader" width="600px"></div>
+  </div>
+  <div class="col" style="padding:30px;">
+    <h4>SCAN RESULT</h4>
+    <div id="result">Result Here</div>
+  </div>
+</div>
+
+      
+
     </section>
 
 
@@ -168,9 +193,6 @@
 
   const scanUser = document.getElementById("scan-user");
 
-  // scanUser.addEventListener('click', async (e) => {
-  //     alert("button works");
-  // });
   
   </script>
 
@@ -194,6 +216,47 @@
   userCloseButton.addEventListener("click", toggleModal);
   window.addEventListener("click", windowOnClick);
 </script>
+
+<!-- <script>
+  // modal functionality
+  const goodsModal = document.querySelector(".goods-modal");
+  const goodsTrigger = document.querySelector(".goods-trigger");
+  const goodsCloseButton = document.querySelector(".goods-close-button");
+
+  const toggleModal2 = () => {
+    goodsModal.classList.toggle("show-modal");
+  }
+
+  function windowOnClick(event) {
+    if (event.target === goodsModal) {
+      toggleModal();
+    }
+  }
+
+  goodsTrigger.addEventListener("click", toggleModal);
+  goodsCloseButton.addEventListener("click", toggleModal);
+  window.addEventListener("click", windowOnClick);
+</script> -->
+
+<script src="js/html5-qrcode.min.js"></script>
+<script type="text/javascript">
+  function onScanSuccess(decodedText, decodedResult) {
+     // handle the scanned code as you like, for example:
+     console.log(`Code matched = ${decodedText}`, decodedResult);
+ }
+
+ let QRconfig = {
+     fps: 10,
+     qrbox: {width: 100, height: 100},
+     rememberLastUsedCamera: true,
+     // Only support camera scan type.
+     supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
+ };
+
+ let html5QrcodeScanner = new Html5QrcodeScanner(
+     "reader", QRconfig, /* verbose= */ false);
+ html5QrcodeScanner.render(onScanSuccess);
+  </script>
 
 </body>
 </html>
