@@ -381,6 +381,7 @@ select {
   width: 50rem;
   border-radius: 0.5rem;
   min-height: 350px;
+  
 }
 
 .close-button {
@@ -412,18 +413,6 @@ select {
 .row{
   display:flex;
 }
-
-.result{
-  background-color: green;
-  color:#fff;
-  padding:20px;
-}
-.row{
-  display:flex;
-}
-
-
-
 
 
 
