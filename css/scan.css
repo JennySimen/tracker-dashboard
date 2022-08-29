@@ -186,13 +186,13 @@ padding: 100px;
   border: 1px solid rgba(255, 0, 0, 0.395);
 }
 
-.dashboard-section .scan-badge {
+.dashboard-section #scan-goods {
   background: rgba(0, 128, 0, 0.588);
   color: #fff;
   padding: 10rem;
 }
 
-.dashboard-section .scan-badge:hover {
+.dashboard-section #scan-goods:hover {
   background-color:white;
   color: rgba(0, 128, 0, 0.588); 
   border: 1px solid rgba(0, 128, 0, 0.588);

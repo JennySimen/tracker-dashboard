@@ -81,8 +81,8 @@
       <div id="scan-user">
         <a class="user-trigger" href="#">Scan Employee</a>
       </div>
-      <div class="scan-badge">
-        <a class="goodsbtn" href="#">Scan Goods</a>
+      <div id="scan-goods">
+        <a class="goods-trigger" href="#">Scan Goods</a>
       </div>
     </div>
 
@@ -92,7 +92,7 @@
           <h1>Scan Users badge</h1>
           <hr />
             <div class="col">
-              <div id="reader" width="20px"></div>
+              <div id="reader" width="00px"></div>
             </div>
             <!-- <div class="col" style="padding:30px;">
               <h4>SCAN RESULT</h4>
@@ -104,15 +104,14 @@
             <button id="submit-btn" class="submit-btn">Scan</button>
           </div> -->
         </div>
-
+        
       <div class="goods-modal">
         <div class="modal-content">
           <span class="goods-close-button"><i class="bx bx-x"></i></span>
           <h1>Scan Goods</h1>
           <hr />
-          
-          <div class="btn-section">
-            <button id="submit-btn" class="submit-btn">Scan</button>
+          <div class="col">
+            <div id="reader" width="00px"></div>
           </div>
         </div>
       </div>
@@ -186,6 +185,7 @@
   const database = getFirestore(app);
 
   const scanUser = document.getElementById("scan-user");
+  const scanGoods = document.getElementById("scan-goods");
 
   
   </script>
@@ -211,7 +211,7 @@
   window.addEventListener("click", windowOnClick);
 </script>
 
-<!-- <script>
+<script>
   // modal functionality
   const goodsModal = document.querySelector(".goods-modal");
   const goodsTrigger = document.querySelector(".goods-trigger");
@@ -230,7 +230,7 @@
   goodsTrigger.addEventListener("click", toggleModal);
   goodsCloseButton.addEventListener("click", toggleModal);
   window.addEventListener("click", windowOnClick);
-</script> -->
+</script>
 
 <script src="js/html5-qrcode.min.js"></script>
 <script type="text/javascript">
