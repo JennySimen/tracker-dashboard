@@ -259,6 +259,13 @@ tr:nth-child(even) {
   width: 95%;
 }
 
+.barcode-table-header .right-container {
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+
+}
+
 .barcode-table-header .title {
   font-size: 24px;
   font-weight: 500;
@@ -275,6 +282,10 @@ tr:nth-child(even) {
   margin-bottom: 20px;
 }
 
+.barcode-table-header .button {
+  margin-top: 5px;
+}
+
 .barcode-table-header .button a {
   color: #fff;
   background: #085877;
@@ -287,13 +298,21 @@ tr:nth-child(even) {
 }
 
 .barcode-table-header select {
-  width: 18%;
+  width: 150px;
   padding: 0 20px;
   margin-top: 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+.no-print {
+  display: none;
+}
+
+.print {
+  display: revert;
 }
 
 

@@ -91,28 +91,28 @@
         Barcodes
         <span id="today-date" class="small-text">- (generated on&nbsp;</span>
       </div>
-      <div class="button">
-        <a class="trigger" href="#">Generate</a>
+      <div class="right-container">
+        <div class="button">
+          <a class="trigger" href="#">Generate</a>
+        </div>
+        <div class="button">
+          <a class="trigger" id="print-barcodes-table" href="#">Print</a>
+        </div>
+        <select name="filter" id="filter-barcodes">
+          <option value="">Filter</option>
+          <option value="today">Today</option>
+          <option value="week">This week</option>
+        </select>
       </div>
-      <div class="button">
-        <a class="trigger" href="#">Print</a>
-      </div>
-      <select name="filter" id="filter">
-        <option value="">Filter</option>
-        <option value="Today">Today</option>
-        <option value="Week">This week</option>
-        <option value="Month">This month</option>
-      </select>
-
     </div>
 
-    <table>
+    <table id="barcodes-main-table">
       <thead>
         <tr>
-          <th class="topic">Code</th>
-          <th class="topic">Checked In</th>
-          <th class="topic">Checked Out</th>
-          <th class="topic"></th>
+          <th class="topic print">Code</th>
+          <th class="topic print">Checked In</th>
+          <th class="topic print">Checked Out</th>
+          <th class="topic print">QR</th>
         </tr>
       </thead>
       <tbody id="barcode-table-data"></tbody>
@@ -144,6 +144,7 @@
   <script src="./js/generate_dashboard_table.js"></script>
   <script src="./js/utils.js"></script>
   <script src="./js/firebase.js"></script>
+  <script src="./js/print.min.js"></script>
 
   <!-- Firebase sdk setup -->
   <script type="module">
@@ -189,6 +190,20 @@
     // This function runs the query and resolves the result
     const getBarcodes = async () => {
       const querySnapshot = await getBarcodesQuery();
+      let barcodes = [];
+      querySnapshot.forEach((doc) => {
+        barcodes.push({ ...doc.data() });
+      });
+      return barcodes;
+    }
+
+    const getFilterBarcodesQuery = (filterData) => {
+      const q = query(collection(database, BARCODE), where("date", "in", filterData));
+      return getDocs(q);
+    };
+
+    const getFilterBarcodes = async (filterData) => {
+      const querySnapshot = await getFilterBarcodesQuery(filterData);
       let barcodes = [];
       querySnapshot.forEach((doc) => {
         barcodes.push({ ...doc.data() });
@@ -271,6 +286,56 @@
 
     let codeBtn = document.getElementById("submit-btn");
     codeBtn.addEventListener("click", saveCode);
+
+
+    // Filter barcode in table
+
+    let filterSelect = document.getElementById("filter-barcodes");
+    filterSelect.addEventListener("change", async (event) => {
+      let value = event.srcElement.value;
+      switch (value) {
+        case "today":
+          let todayBarcodes = await getBarcodes();
+          document.getElementById("barcode-table-data").innerHTML = generate_barcode(todayBarcodes);
+          break;
+      
+          case "week":
+          console.log(getThisWeekDate());
+          let weekBarcodes = await getFilterBarcodes(getThisWeekDate());
+          document.getElementById("barcode-table-data").innerHTML = generate_barcode(weekBarcodes);
+          break;
+
+        default:
+          break;
+      }
+    });
+
+  </script>
+
+  <script>
+    // Print button functionality
+    let focuser = setInterval(() => window.dispatchEvent(new Event('focus')), 500);
+    let printBtn = document.getElementById("print-barcodes-table");
+    printBtn.addEventListener('click', (e) => {
+      let printables = document.querySelectorAll(".print");
+      printables.forEach(printEl => {
+        printEl.classList.remove("print");
+        printEl.classList.add("no-print");
+      });
+      printJS({
+        printable: 'barcodes-main-table', 
+        type: 'html',
+        onPrintDialogClose: () => {
+          clearInterval(focuser);
+
+          printables.forEach(printEl => {
+            printEl.classList.add("print");
+            printEl.classList.remove("no-print");
+          });
+        }
+    });
+      
+    });
 
   </script>
 
