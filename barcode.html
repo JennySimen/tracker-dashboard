@@ -155,6 +155,7 @@
       getDocs,
       collection,
       addDoc,
+      setDoc,
       updateDoc,
       deleteDoc,
       doc,
@@ -204,6 +205,7 @@
 
     const getFilterBarcodes = async (filterData) => {
       const querySnapshot = await getFilterBarcodesQuery(filterData);
+      console.log(querySnapshot);
       let barcodes = [];
       querySnapshot.forEach((doc) => {
         barcodes.push({ ...doc.data() });
@@ -213,8 +215,10 @@
 
     //function to save input
 
-    const addBarcodeQuery = (codeData) => {
-      return addDoc(collection(database, BARCODE), codeData);
+    const addBarcodeQuery = async (codeData) => {
+      const newIdRef = await doc(collection(database, BARCODE));
+      codeData.id = newIdRef.id;
+      return setDoc(newIdRef, codeData);
     };
 
     const addBarcode = async (codeData) => {
@@ -298,9 +302,8 @@
           let todayBarcodes = await getBarcodes();
           document.getElementById("barcode-table-data").innerHTML = generate_barcode(todayBarcodes);
           break;
-      
-          case "week":
-          console.log(getThisWeekDate());
+
+        case "week":
           let weekBarcodes = await getFilterBarcodes(getThisWeekDate());
           document.getElementById("barcode-table-data").innerHTML = generate_barcode(weekBarcodes);
           break;
@@ -323,7 +326,7 @@
         printEl.classList.add("no-print");
       });
       printJS({
-        printable: 'barcodes-main-table', 
+        printable: 'barcodes-main-table',
         type: 'html',
         onPrintDialogClose: () => {
           clearInterval(focuser);
@@ -333,8 +336,8 @@
             printEl.classList.remove("no-print");
           });
         }
-    });
-      
+      });
+
     });
 
   </script>

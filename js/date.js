@@ -11,10 +11,10 @@ const getTodayDate = () => {
 
 const getThisWeekDate = () => {
     const dateArr = [];
-    const noOfDays = Array(7).keys();
+    const noOfDays = Array(10).keys();
     Array.from(noOfDays).map((idx) => {
         const d = new Date(); 
-        d.setDate(d.getDate() - d.getDay() + idx);
+        d.setDate(d.getDate() - idx);
         dateArr.push(formatDate(d)); 
     });
 
@@ -26,7 +26,7 @@ const getThisMonthDate = () => {
     const noOfDays = Array(30).keys();
     Array.from(noOfDays).map((idx) => {
         const d = new Date(); 
-        d.setDate(d.getDate() - d.getDay() + idx);
+        d.setDate(d.getDate() - idx);
         dateArr.push(formatDate(d)); 
     });
 
@@ -38,7 +38,7 @@ const getSixMonthDate = () => {
     const noOfDays = Array(182).keys();
     Array.from(noOfDdays).map((idx) => {
         const d = new Date();
-        d.setDate(d.getDate() - d.getDay() + idx);
+        d.setDate(d.getDate() - idx);
         dateArr.push(formatDate(d));
     });
 

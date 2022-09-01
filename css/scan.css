@@ -97,9 +97,10 @@
 }
 
 .home-section h1 {
-  color:#085877;
-  margin: 8px 15px ;
+  color: #085877;
+  margin: 8px 15px;
 }
+
 .sidebar.active~.home-section {
   width: calc(100% - 60px);
   left: 60px;
@@ -162,11 +163,16 @@ nav .profile-details i {
   color: #333;
 }
 
+.scan-body {
+  padding-top: 7rem;
+  padding-left: 2rem;
+}
+
 .dashboard-section {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 10px;
-padding: 100px;  
+  padding: 100px;
 }
 
 .dashboard-section a {
@@ -174,28 +180,32 @@ padding: 100px;
 }
 
 
-.dashboard-section #scan-user {
+.dashboard-section .user-trigger {
   background: rgba(255, 0, 0, 0.395);
   color: #fff;
-  padding: 10rem;
+  padding: 3rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 0, 0, 0.395);
+  text-decoration: none;
 }
 
-.dashboard-section #scan-user:hover {
+.dashboard-section .user-trigger:hover {
   background: #fff;
   color: rgba(255, 0, 0, 0.395);
-  border: 1px solid rgba(255, 0, 0, 0.395);
 }
 
-.dashboard-section #scan-goods {
+.dashboard-section .goods-trigger {
   background: rgba(0, 128, 0, 0.588);
   color: #fff;
-  padding: 10rem;
+  padding: 3rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 128, 0, 0.588);
+  text-decoration: none;
 }
 
-.dashboard-section #scan-goods:hover {
-  background-color:white;
-  color: rgba(0, 128, 0, 0.588); 
-  border: 1px solid rgba(0, 128, 0, 0.588);
+.dashboard-section .goods-trigger:hover {
+  color: rgba(0, 128, 0, 0.588);
+  background-color: white;
 }
 
 .user-modal {
@@ -278,6 +288,10 @@ select {
   width: 50rem;
   border-radius: 0.5rem;
   min-height: 350px;
+}
+
+.modal-content i {
+  float: right;
 }
 
 .close-button {
@@ -381,7 +395,7 @@ select {
   width: 50rem;
   border-radius: 0.5rem;
   min-height: 350px;
-  
+
 }
 
 .close-button {
@@ -405,13 +419,14 @@ select {
 }
 
 
-.result{
+.result {
   background-color: green;
-  color:#fff;
-  padding:20px;
+  color: #fff;
+  padding: 20px;
 }
-.row{
-  display:flex;
+
+.row {
+  display: flex;
 }
 
 

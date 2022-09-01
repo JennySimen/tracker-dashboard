@@ -28,13 +28,13 @@ const generate_top_users = (data) => {
 const generate_barcode = (data) => {
     let tr = "";
     if (data.length === 0) {
-        tr += "<tr><td colspan='3'  class='no-data-text'>There are no barcodes yet!</td></tr>";
+        tr += "<tr class='print'><td colspan='5'  class='no-data-text'>There are no barcodes yet!</td></tr>";
     } else {
         data.forEach(barcode => {
             tr += "<tr>";
-            tr += "<td>" + barcode["code"] + "</td>";
-            tr += "<td>" + barcode["checked_in"] + "</td>";
-            tr += "<td>" + barcode["checked_out"] + "</td>";
+            tr += "<td class='print'>" + barcode["code"] + "</td>";
+            tr += "<td class='print'>" + barcode["checked_in"] + "</td>";
+            tr += "<td class='print'>" + barcode["checked_out"] + "</td>";
             tr += "<td>" +
             `<img id='barcode' src='https://api.qrserver.com/v1/create-qr-code/?data=${barcode["code"]}&amp;size=100x100' alt='' title='HELLO' width='50' height='50' />`
             + "</td>";
