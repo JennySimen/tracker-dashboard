@@ -85,22 +85,22 @@
         <div id="scan-user">
           <a class="user-trigger" href="#">Get Employee</a>
         </div>
-        <div>
-          <a class="goods-trigger" href="#">Check in Goods</a>
+        <div id="check-in">
+          <a class="checkIn-trigger" href="#">Check in Goods</a>
         </div>
-        <div id="scan-goods">
-          <a class="goods-trigger" href="#">Check out Goods</a>
+        <div id="check-out">
+          <a class="checkOut-trigger" href="#">Check out Goods</a>
         </div>
       </div>
 
       <h3>Employees Section</h3>
       <hr />
       <div class="dashboard-section">
-        <div id="scan-user">
-          <a class="user-trigger" href="#">Log in Employee</a>
+        <div id="loginEmp">
+          <a class="login-trigger" href="#">Log in Employee</a>
         </div>
-        <div id="scan-user">
-          <a class="user-trigger" href="#">Log out Employee</a>
+        <div id="logoutEmp">
+          <a class="logout-trigger" href="#">Log out Employee</a>
         </div>
       </div>
     </div>
@@ -116,9 +116,20 @@
       </div>
     </div>
 
-    <div class="goods-modal">
+    <div class="checkin-modal">
       <div class="modal-content">
-        <span class="goods-close-button"><i class="bx bx-x"></i></span>
+        <span class="checkin-close-button"><i class="bx bx-x"></i></span>
+        <h1>Check-In Goods</h1>
+        <hr />
+        <div class="col">
+          <div id="reader" width="00px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkout-modal">
+      <div class="modal-content">
+        <span class="checkout-close-button"><i class="bx bx-x"></i></span>
         <h1>Scan Goods</h1>
         <hr />
         <div class="col">
@@ -228,7 +239,8 @@
     }
 
     const scanUser = document.getElementById("scan-user");
-    const scanGoods = document.getElementById("scan-goods");
+    const checkIn = document.getElementById("check-in");
+    const checkOut = document.getElementById("check-out");
 
 
     const onScanSuccess = async (decodedText, decodedResult) => {
@@ -274,22 +286,43 @@
 
   <script>
     // modal functionality
-    const goodsModal = document.querySelector(".goods-modal");
-    const goodsTrigger = document.querySelector(".goods-trigger");
-    const goodsCloseButton = document.querySelector(".goods-close-button");
+    const checkinModal = document.querySelector(".checkin-modal");
+    const checkinTrigger = document.querySelector(".checkIn-trigger");
+    const checkinCloseButton = document.querySelector(".checkin-close-button");
 
     const toggleModal2 = () => {
-      goodsModal.classList.toggle("show-modal");
+      checkinModal.classList.toggle("show-modal");
     }
 
     function windowOnClick(event) {
-      if (event.target === goodsModal) {
+      if (event.target === checkinModal) {
         toggleModal();
       }
     }
 
-    goodsTrigger.addEventListener("click", toggleModal);
-    goodsCloseButton.addEventListener("click", toggleModal);
+    checkinTrigger.addEventListener("click", toggleModal);
+    checkinCloseButton.addEventListener("click", toggleModal);
+    window.addEventListener("click", windowOnClick);
+  </script>
+
+  <script>
+    // modal functionality
+    const checkoutModal = document.querySelector(".checkout-modal");
+    const checkoutTrigger = document.querySelector(".checkOut-trigger");
+    const checkoutCloseButton = document.querySelector(".checkout-close-button");
+
+    const toggleModal3 = () => {
+      checkoutModal.classList.toggle("show-modal");
+    }
+
+    function windowOnClick(event) {
+      if (event.target === checkoutModal) {
+        toggleModal();
+      }
+    }
+
+    checkoutTrigger.addEventListener("click", toggleModal);
+    checkoutCloseButton.addEventListener("click", toggleModal);
     window.addEventListener("click", windowOnClick);
   </script>
 
