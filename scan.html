@@ -202,7 +202,7 @@
 
     const updateCode = async (code) => {
       const querySnapshot = await updateCheckInRef(code);
-      console.log("Code updated");
+      alert("Code updated");
     }
 
     // This function builds the query for daily fbb count in firestore database
@@ -234,7 +234,7 @@
     const onScanSuccess = async (decodedText, decodedResult) => {
       // handle the scanned code as you like, for example:
       let data = await getCode(parseInt(decodedText));
-      data.checked_in = true;
+      data.checked_in = true; //update 1 value ie check-in
       await updateCode(data);
     }
 
