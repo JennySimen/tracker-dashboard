@@ -130,13 +130,25 @@
     <div class="checkout-modal">
       <div class="modal-content">
         <span class="checkout-close-button"><i class="bx bx-x"></i></span>
-        <h1>Scan Goods</h1>
+        <h1>Checkout Goods</h1>
         <hr />
         <div class="col">
           <div id="reader" width="00px"></div>
         </div>
       </div>
     </div>
+
+    <div class="login-modal">
+      <div class="modal-content">
+        <span class="login-close-button"><i class="bx bx-x"></i></span>
+        <h1>Login Employee</h1>
+        <hr />
+        <div class="col">
+          <div id="reader" width="00px"></div>
+        </div>
+      </div>
+    </div>
+
 
   </section>
 
@@ -341,6 +353,48 @@
     window.addEventListener("click", windowOnClick);
   </script>
 
+  <script>
+    // modal functionality
+    const loginModal = document.querySelector(".login-modal");
+    const loginTrigger = document.querySelector(".login-trigger");
+    const loginCloseButton = document.querySelector(".login-close-button");
+
+    const toggleModal4 = () => {
+      loginModal.classList.toggle("show-modal");
+    }
+
+    function windowOnClick(event) {
+      if (event.target === loginModal) {
+        toggleModal();
+      }
+    }
+
+    loginTrigger.addEventListener("click", toggleModal);
+    loginCloseButton.addEventListener("click", toggleModal);
+    window.addEventListener("click", windowOnClick);
+  </script>
+
+
+  <script>
+    // modal functionality
+    const logoutModal = document.querySelector(".logout-modal");
+    const logoutTrigger = document.querySelector(".logout-trigger");
+    const logoutCloseButton = document.querySelector(".logout-close-button");
+
+    const toggleModal5 = () => {
+      logoutModal.classList.toggle("show-modal");
+    }
+
+    function windowOnClick(event) {
+      if (event.target === logoutModal) {
+        toggleModal();
+      }
+    }
+
+    logoutTrigger.addEventListener("click", toggleModal);
+    logoutCloseButton.addEventListener("click", toggleModal);
+    window.addEventListener("click", windowOnClick);
+  </script>
 
 </body>
 

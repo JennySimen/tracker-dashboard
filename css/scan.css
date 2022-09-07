@@ -222,6 +222,35 @@ nav .profile-details i {
   background-color: white;
 }
 
+.dashboard-section .login-trigger {
+  background: rgba(0, 128, 0, 0.588);
+  color: #fff;
+  padding: 3rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 128, 0, 0.588);
+  text-decoration: none;
+}
+
+.dashboard-section .login-trigger:hover {
+  color: rgba(0, 128, 0, 0.588);
+  background-color: white;
+}
+
+.dashboard-section .logout-trigger {
+  background: rgba(0, 128, 0, 0.588);
+  color: #fff;
+  padding: 3rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 128, 0, 0.588);
+  text-decoration: none;
+}
+
+.dashboard-section .logout-trigger:hover {
+  color: rgba(0, 128, 0, 0.588);
+  background-color: white;
+}
+
+
 .user-modal {
   position: fixed;
   left: 0;
@@ -387,6 +416,99 @@ select {
   margin-bottom: 1rem;
   text-align: center;
 }
+
+.checkin-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.checkin-modal h1 {
+  font-weight: 600;
+}
+
+.checkin-modal form {
+  margin-top: 1rem;
+}
+
+.checkin-modal .input-section {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.login-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.login-modal h1 {
+  font-weight: 600;
+}
+
+.login-modal form {
+  margin-top: 1rem;
+}
+
+.login-modal .input-section {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.logout-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.logout-modal h1 {
+  font-weight: 600;
+}
+
+.logout-modal form {
+  margin-top: 1rem;
+}
+
+.logout-modal .input-section {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+
+
+
+
+
 
 
 
