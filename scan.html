@@ -256,11 +256,21 @@
       // handle the scanned code as you like, for example:
       let data = await getCode(parseInt(decodedText));
       let checkoutCode = await getCode(parseInt(decodedText));
-      data.checked_in = true; //update 1 value ie check-in
-      checkoutCode.checked_out = true;
 
-      await updateCode(data);
-      await updateCheckOut(checkoutCode);
+      switch (value) {
+        case 1:
+          // code block
+          data.checked_in = true; //update 1 value ie check-in
+          await updateCode(data);
+          break;
+        case 2:
+          // code block
+          checkoutCode.checked_out = true;
+          await updateCheckOut(checkoutCode);
+          break;
+        default:
+        // code block
+      }
     }
 
     let QRconfig = {
