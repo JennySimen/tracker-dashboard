@@ -254,23 +254,26 @@
 
     const onScanSuccess = async (decodedText, decodedResult) => {
       // handle the scanned code as you like, for example:
+
+      var data, checkoutCode;
+
       let data = await getCode(parseInt(decodedText));
       let checkoutCode = await getCode(parseInt(decodedText));
 
-      switch (value) {
-        case 1:
-          // code block
-          data.checked_in = true; //update 1 value ie check-in
-          await updateCode(data);
-          break;
-        case 2:
-          // code block
-          checkoutCode.checked_out = true;
-          await updateCheckOut(checkoutCode);
-          break;
-        default:
-        // code block
+      if (data = await getCode(parseInt(decodedText))) {
+        //  block of code to be executed if condition1 is true
+        data.checked_in = true; //update 1 value ie check-in
+        await updateCode(data);
+
+      } else if (checkoutCode = await getCode(parseInt(decodedText))) {
+        //  block of code to be executed if the condition1 is false and condition2 is true
+        checkoutCode.checked_out = true;
+        await updateCheckOut(checkoutCode);
+
+      } else {
+        //  block of code to be executed if the condition1 is false and condition2 is false
       }
+
     }
 
     let QRconfig = {
