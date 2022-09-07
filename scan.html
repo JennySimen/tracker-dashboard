@@ -211,9 +211,18 @@
       return updateDoc(doc(database, BARCODE, code.id), code);
     };
 
+    const updateCheckOutRef = (code) => {
+      return updateDoc(doc(database, BARCODE, code.id), code);
+    }
+
     const updateCode = async (code) => {
       const querySnapshot = await updateCheckInRef(code);
-      alert("Code updated");
+      alert("Code check-in updated");
+    }
+
+    const updateCheckOut = async (code) => {
+      const querySnapshot = await updateCheckOutRef(code);
+      alert("Code check-out updated");
     }
 
     // This function builds the query for daily fbb count in firestore database
