@@ -168,9 +168,22 @@
       </div>
     </div>
 
+    <!-- modal to create employee badge -->
+    <div class="badge-modal badge-hide-modal">
+      <div class="modal-content">
+        <span class="badge-close-button"><i class="bx bx-x"></i></span>
+        <h1> Employee Badge</h1>
+        <hr />
+        <div class="user-badge">
+          <img src="assets/images/default.jpeg" />
+        </div>
+        <div class="btn-section">
+          <button type="button" id="print" class="submit-btn">PRINT</button>
+        </div>
+      </div>
+    </div>
   </section>
 
-  </section>
   <!-- table ends here -->
 
 
@@ -292,12 +305,12 @@
 
     const updateEmployee = async (employee) => {
 
-    const querySnapshot = await updateEmployeeRef(employee);
+      const querySnapshot = await updateEmployeeRef(employee);
 
-    console.log("Employee updated");
-}
+      console.log("Employee updated");
+    }
 
-       //This function gets active employee data
+    //This function gets active employee data
     const getTodayEmpRef = () => {
       const q = query(collection(database, EMPLOYEE_TABLE), where("last_active", "==", getTodayDate()));
       return getDocs(q);
@@ -311,7 +324,7 @@
       });
       return employees;
     }
- 
+
 
     const pageData = async () => {
       const queryString = window.location.search;
@@ -323,10 +336,10 @@
       } else {
         return await getEmployees();
       }
-    }   
+    }
 
     let employees = await pageData();
-   
+
     // hide loader when the data arrives
     let loaderElement = document.getElementById("loader");
 
@@ -382,7 +395,34 @@
       })
     });
 
-    // update employee function
+    const badgeBtns = document.querySelectorAll(".badge-btn");
+
+    //generate badge function
+    badgeBtns.forEach(badgeBtn => {
+      const badgeModal = document.querySelector(".badge-modal");
+      const badgeCloseButton = document.querySelector(".badge-close-button");
+
+      const openModal = () => {
+        badgeModal.classList.add("show-modal");
+        badgeModal.classList.remove("badge-hide-modal")
+      }
+
+      const closeModal = () => {
+        badgeModal.classList.remove("show-modal");
+        badgeModal.classList.add("badge-hide-modal")
+      }
+
+      function windowOnClick(event) {
+        if (event.target === badgeModal) {
+          closeModal();
+        }
+      }
+      badgeBtn.addEventListener('click', openModal);
+      badgeCloseButton.addEventListener("click", closeModal);
+      window.addEventListener("click", windowOnClick);
+    });
+
+    // // update employee function
 
     const updateBtns = document.querySelectorAll(".edit-btn");
     // updateBtn.addEventListener("click", async () => {
@@ -396,38 +436,38 @@
     //   updateEmployee(userData);
     // });
 
-     //add new employee function
-  //    UpdateBtns.forEach(updateBtn => {
+    //add new employee function
+    //    UpdateBtns.forEach(updateBtn => {
 
-  //    updateBtn.addEventListener('click', async (e) => {
-  //     document.querySelector(".close-button").click();
-  //     // Show loader
-  //     loaderElement.classList.add("show");
-  //     loaderElement.classList.remove("hide");
+    //    updateBtn.addEventListener('click', async (e) => {
+    //     document.querySelector(".close-button").click();
+    //     // Show loader
+    //     loaderElement.classList.add("show");
+    //     loaderElement.classList.remove("hide");
 
-  //     var NID = document.getElementById('nid').value;
-  //     var name = document.getElementById('name').value;
-  //     var category = document.getElementById('category').value;
-  //     var gender = document.getElementById('gender').value;
-  //     var pic = document.getElementById('pic').value;
+    //     var NID = document.getElementById('nid').value;
+    //     var name = document.getElementById('name').value;
+    //     var category = document.getElementById('category').value;
+    //     var gender = document.getElementById('gender').value;
+    //     var pic = document.getElementById('pic').value;
 
-  //     const employeeData = {
-  //       NID: NID,
-  //       gender: gender,
-  //       image: pic,
-  //       last_active: getTodayDate(),
-  //       name: name,
-  //       type: category
-  //     }
+    //     const employeeData = {
+    //       NID: NID,
+    //       gender: gender,
+    //       image: pic,
+    //       last_active: getTodayDate(),
+    //       name: name,
+    //       type: category
+    //     }
 
-  //     await updateEmployee(employeeData);
+    //     await updateEmployee(employeeData);
 
-  //     window.location.reload();
+    //     window.location.reload();
 
-  //   });
-  // });
+    //   });
+    // });
 
-    
+
     // File upload
     const fileInput = document.querySelector('input[type=file]');
     var filenameContainer = document.querySelector('#filename');
@@ -435,6 +475,29 @@
     fileInput.addEventListener('change', function () {
       filenameContainer.innerText = fileInput.value.split('\\').pop();
     });
+
+    //profile pic upload
+    // const profilePic = document.getElementById("profileImage");
+    // const imageUpload = document.getElementById("imageUpload");
+
+    // profilePic.addEventListener('click', (e) => {
+    //   imageUpload.onclick();
+    // });
+
+    // $("#profileImage").click(function (e) {
+    //   $("#imageUpload").click();
+    // });
+
+    // function fasterPreview(uploader) {
+    //   if (uploader.files && uploader.files[0]) {
+    //     $('#profileImage').attr('src',
+    //       window.URL.createObjectURL(uploader.files[0]));
+    //   }
+    // }
+
+    // $("#imageUpload").change(function () {
+    //   fasterPreview(this);
+    // });
 
   </script>
 
@@ -459,36 +522,38 @@
     window.addEventListener("click", windowOnClick);
   </script>
 
-<script>
- function filterTable() {
-  let filter = myInput.value.toUpperCase();
-  rows = myTable.getElementsByTagName("tr");
-  let flag = false;
 
-  for (let row of rows) {
-    let cells = row.getElementsByTagName("td");
-    for (let cell of cells) {
-      if (cell.textContent.toUpperCase().indexOf(filter) > -1) {
-        flag = true;
-        break;
+
+  <script>
+    function filterTable() {
+      let filter = myInput.value.toUpperCase();
+      rows = myTable.getElementsByTagName("tr");
+      let flag = false;
+
+      for (let row of rows) {
+        let cells = row.getElementsByTagName("td");
+        for (let cell of cells) {
+          if (cell.textContent.toUpperCase().indexOf(filter) > -1) {
+            flag = true;
+            break;
+          }
+        }
+
+        if (flag) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+
+        flag = false;
       }
     }
 
-    if (flag) {
-      row.style.display = "";
-    } else {
-      row.style.display = "none";
-    }
-
-    flag = false;
-  }
-}
-
-myInput.addEventListener('keyup', function(event) {
-  filterTable();
-});
+    myInput.addEventListener('keyup', function (event) {
+      filterTable();
+    });
   </script>
-  
+
 
 </body>
 
