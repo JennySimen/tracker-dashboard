@@ -460,6 +460,15 @@ input[type="file"] {
 }
 
 
+.user-badge {
+  align-items: center;
+  border: 1px solid #eee;
+  width: 500px;
+  padding: 2rem 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
 
 #imageUpload {
   display: none;
@@ -470,10 +479,15 @@ input[type="file"] {
 }
 
 #profile-container {
-  vertical-align: middle;
-  width: 150px;
-  height: 150px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#profile-container img {
+  width: 200px;
+  height: 200px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
@@ -481,9 +495,18 @@ input[type="file"] {
   border-radius: 50%;
 }
 
-#profile-container img {
-  width: 150px;
-  height: 150px;
+.user-info-section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.user-info-section #name {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.user-info-section #ategory {
+  font-size: 1.25rem;
 }
 
 
