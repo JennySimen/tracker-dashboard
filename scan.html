@@ -227,6 +227,10 @@
       return updateDoc(doc(database, BARCODE, code.id), code);
     }
 
+    const updateLoginRef = (code) => {
+      return updateDoc(doc(database, EMPLOYEE_TABLE, code.nid), where("code", "==", "nid"));
+    }
+
     const updateCode = async (code) => {
       const querySnapshot = await updateCheckInRef(code);
       alert("Code check-in updated");
@@ -237,6 +241,9 @@
       alert("Code check-out updated");
     }
 
+  const updateLogin = async (code) => {
+    const querySnapshot = await updateLoginRef(code);
+  }
     // This function builds the query for daily fbb count in firestore database
     const getBarcodeQuery = () => {
       return getDocs(collection(database, BARCODE));
@@ -262,18 +269,21 @@
     const scanUser = document.getElementById("scan-user");
     const checkIn = document.getElementById("check-in");
     const checkOut = document.getElementById("check-out");
-
+    const loginEmp = document.getElementById("loginEmp");
 
     const onScanSuccess = async (decodedText, decodedResult) => {
       // handle the scanned code as you like, for example:
       let data = await getCode(parseInt(decodedText));
       let checkoutCode = await getCode(parseInt(decodedText));
+      let loginEmpVal = await getCode(parseInt(decodedText)); 
 
       data.checked_in = true; //update 1 value ie check-in
       checkoutCode.checked_out = true;
+      loginEmpVal.last_active = getTodayDate();
 
       await updateCode(data);
       await updateCheckOut(checkoutCode);
+      await updateLogin(loginEmpVal);
     }
 
 
