@@ -227,23 +227,23 @@
       return updateDoc(doc(database, BARCODE, code.id), code);
     }
 
-    const getScanEmpRef = (code) => {
-      return updateDoc(doc(database, EMPLOYEE_TABLE, code.nid), where("code", "==", "nid"));
-      alert("User scanned correctly")
-    }
+    // const getScanEmpRef = (code) => {
+    //   return updateDoc(doc(database, EMPLOYEE_TABLE, code.nid), where("code", "==", "nid"));
+    //   alert("User scanned correctly")
+    // }
 
-    const getScanEmployee = async () => {
-      const querySnapshot = await getScanEmpRef();
-      let scanEmp = [];
-      // querySnapshot.forEach((doc) => {
-      //   scanEmp.push({ ...doc.data() });
-      // });
-      return scanEmp;
-    }
+    // const getScanEmployee = async () => {
+    //   const querySnapshot = await getScanEmpRef();
+    //   let scanEmp = [];
+    //   // querySnapshot.forEach((doc) => {
+    //   //   scanEmp.push({ ...doc.data() });
+    //   // });
+    //   return scanEmp;
+    // }
 
 
     const updateLoginRef = (code) => {
-      return updateDoc(doc(database, EMPLOYEE_TABLE, code.nid), where("code", "==", "nid"));
+      return updateDoc(doc(database, EMPLOYEE_TABLE, code.nid));
       alert("User logged in")
     }
 
@@ -293,8 +293,8 @@
       // handle the scanned code as you like, for example:
       let data = await getCode(parseInt(decodedText));
       let checkoutCode = await getCode(parseInt(decodedText));
-      // let loginCode = await getCode(parseInt(decodedText));
-      let scanEmployee = await getCode(parseInt(decodedText));
+      let loginCode = await getCode(parseInt(decodedText));
+      // let scanEmployee = await getCode(parseInt(decodedText));
       let loginEmpVal = await getCode(parseInt(decodedText));
 
       data.checked_in = true; //update 1 value ie check-in
@@ -303,7 +303,7 @@
 
       await updateCode(data);
       await updateCheckOut(checkoutCode);
-      await getScanEmployee(scanEmployee);
+      // await getScanEmployee(scanEmployee);
       await updateLogin(loginEmpVal);
     }
 
