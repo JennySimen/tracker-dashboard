@@ -228,13 +228,13 @@
     }
 
     const getScanEmpRef = (code) => {
-      const q = query(collection(database, EMPLOYEE_TABLE, code.NID), where("code", "==", "NID"));
-      return getDocs(q);
+      return updateDoc(doc(database, EMPLOYEE_TABLE, code.nid), where("code", "==", "nid"));
+      alert("User scanned correctly")
     }
 
     const getScanEmployee = async () => {
       const querySnapshot = await getScanEmpRef();
-      // let scanEmp = [];
+      let scanEmp = [];
       // querySnapshot.forEach((doc) => {
       //   scanEmp.push({ ...doc.data() });
       // });
@@ -243,7 +243,8 @@
 
 
     const updateLoginRef = (code) => {
-      return updateDoc(doc(database, EMPLOYEE_TABLE, code.NID), where("code", "==", "nid"));
+      return updateDoc(doc(database, EMPLOYEE_TABLE, code.nid), where("code", "==", "nid"));
+      alert("User logged in")
     }
 
     const updateCode = async (code) => {
