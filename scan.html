@@ -227,7 +227,6 @@
       return updateDoc(doc(database, BARCODE, code.id), code);
     }
 
-<<<<<<< HEAD
     const getScanEmpRef = (code) => {
       const q = query(collection(database, EMPLOYEE_TABLE, code.NID), where("code", "==", "NID"));
       return getDocs(q);
@@ -243,12 +242,10 @@
     }
 
 
-=======
     const updateLoginRef = (code) => {
-      return updateDoc(doc(database, EMPLOYEE_TABLE, code.nid), where("code", "==", "nid"));
+      return updateDoc(doc(database, EMPLOYEE_TABLE, code.NID), where("code", "==", "nid"));
     }
 
->>>>>>> 1ee9d5b3ef92b4850d4b0a3efc2779edc3e2daed
     const updateCode = async (code) => {
       const querySnapshot = await updateCheckInRef(code);
       alert("Code check-in updated");
@@ -259,9 +256,9 @@
       alert("Code check-out updated");
     }
 
-  const updateLogin = async (code) => {
-    const querySnapshot = await updateLoginRef(code);
-  }
+    const updateLogin = async (code) => {
+      const querySnapshot = await updateLoginRef(code);
+    }
     // This function builds the query for daily fbb count in firestore database
     const getBarcodeQuery = () => {
       return getDocs(collection(database, BARCODE));
@@ -288,22 +285,16 @@
     const checkIn = document.getElementById("check-in");
     const checkOut = document.getElementById("check-out");
     const loginEmp = document.getElementById("loginEmp");
-<<<<<<< HEAD
     const logoutEmp = document.getElementById("logoutEmp");
 
-=======
->>>>>>> 1ee9d5b3ef92b4850d4b0a3efc2779edc3e2daed
 
     const onScanSuccess = async (decodedText, decodedResult) => {
       // handle the scanned code as you like, for example:
       let data = await getCode(parseInt(decodedText));
       let checkoutCode = await getCode(parseInt(decodedText));
-<<<<<<< HEAD
       // let loginCode = await getCode(parseInt(decodedText));
       let scanEmployee = await getCode(parseInt(decodedText));
-=======
-      let loginEmpVal = await getCode(parseInt(decodedText)); 
->>>>>>> 1ee9d5b3ef92b4850d4b0a3efc2779edc3e2daed
+      let loginEmpVal = await getCode(parseInt(decodedText));
 
       data.checked_in = true; //update 1 value ie check-in
       checkoutCode.checked_out = true;
@@ -311,11 +302,8 @@
 
       await updateCode(data);
       await updateCheckOut(checkoutCode);
-<<<<<<< HEAD
       await getScanEmployee(scanEmployee);
-=======
       await updateLogin(loginEmpVal);
->>>>>>> 1ee9d5b3ef92b4850d4b0a3efc2779edc3e2daed
     }
 
 
