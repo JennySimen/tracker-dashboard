@@ -227,6 +227,21 @@
       return updateDoc(doc(database, BARCODE, code.id), code);
     }
 
+    const getScanEmpRef = (code) => {
+      const q = query(collection(database, EMPLOYEE_TABLE, code.NID), where("code", "==", "NID"));
+      return getDocs(q);
+    }
+
+    const getScanEmployee = async () => {
+      const querySnapshot = await getScanEmpRef();
+      // let scanEmp = [];
+      // querySnapshot.forEach((doc) => {
+      //   scanEmp.push({ ...doc.data() });
+      // });
+      return scanEmp;
+    }
+
+
     const updateCode = async (code) => {
       const querySnapshot = await updateCheckInRef(code);
       alert("Code check-in updated");
@@ -262,18 +277,23 @@
     const scanUser = document.getElementById("scan-user");
     const checkIn = document.getElementById("check-in");
     const checkOut = document.getElementById("check-out");
+    const loginEmp = document.getElementById("loginEmp");
+    const logoutEmp = document.getElementById("logoutEmp");
 
 
     const onScanSuccess = async (decodedText, decodedResult) => {
       // handle the scanned code as you like, for example:
       let data = await getCode(parseInt(decodedText));
       let checkoutCode = await getCode(parseInt(decodedText));
+      // let loginCode = await getCode(parseInt(decodedText));
+      let scanEmployee = await getCode(parseInt(decodedText));
 
       data.checked_in = true; //update 1 value ie check-in
       checkoutCode.checked_out = true;
 
       await updateCode(data);
       await updateCheckOut(checkoutCode);
+      await getScanEmployee(scanEmployee);
     }
 
 
