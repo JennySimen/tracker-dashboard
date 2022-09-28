@@ -242,8 +242,9 @@
     // }
 
 
-    const updateLoginRef = (code) => {
-      return updateDoc(doc(database, EMPLOYEE_TABLE, code.nid));
+    const empLoginRef = (code) => {
+      const q = query(doc(database, EMPLOYEE_TABLE), where("code", "==", "nid"));
+      return getDocs(q);
       alert("User logged in")
     }
 
@@ -257,8 +258,8 @@
       alert("Code check-out updated");
     }
 
-    const updateLogin = async (code) => {
-      const querySnapshot = await updateLoginRef(code);
+    const empLogin = async (code) => {
+      const querySnapshot = await empLoginRef(code);
     }
     // This function builds the query for daily fbb count in firestore database
     const getBarcodeQuery = () => {
@@ -304,7 +305,7 @@
       await updateCode(data);
       await updateCheckOut(checkoutCode);
       // await getScanEmployee(scanEmployee);
-      await updateLogin(loginEmpVal);
+      await empLogin(loginEmpVal);
     }
 
 
