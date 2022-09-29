@@ -243,7 +243,7 @@
 
 
     const empLoginRef = (code) => {
-      const q = query(doc(database, EMPLOYEE_TABLE), where("code", "==", "nid"));
+      const q = query(collection(database, EMPLOYEE_TABLE), where("code", "==", "nid"));
       return getDocs(q);
       alert("User logged in")
     }
@@ -294,7 +294,7 @@
       // handle the scanned code as you like, for example:
       let data = await getCode(parseInt(decodedText));
       let checkoutCode = await getCode(parseInt(decodedText));
-      let loginCode = await getCode(parseInt(decodedText));
+      // let loginCode = await getCode(parseInt(decodedText));
       // let scanEmployee = await getCode(parseInt(decodedText));
       let loginEmpVal = await getCode(parseInt(decodedText));
 
