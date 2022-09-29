@@ -163,9 +163,9 @@
     <div class="graph-section">
 
       <div class="chart-button">
-        <div class="btn-section">
-          <button type="button" id="printbtn" class="submit-btn">PRINT</button>
-          <button type="button" id="refreshbtn" class="submit-btn">REFRESH</button>
+        <div class="graph-btn-section">
+          <button type="button" id="printbtn" class="graph-print-button"><i class='bx bx-printer'></i></button>
+          <button type="button" id="refreshbtn" class="graph-print-button"><i class='bx bx-refresh'></i></button>
         </div>
       </div>
 
@@ -195,7 +195,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
   <script src="./js/print.min.js"></script>
 
-<!-- Graph data -->
+  <!-- Graph data -->
   <script>
     var xValues = ["Mon", "Teus", "Wed", "Thurs", "Fri", "sat", "sun"];
     var yValues = [55, 49, 44, 24, 15, 30, 90];
@@ -229,7 +229,7 @@
 
     //function to refresh
     refreshbtn.addEventListener('click', (e) => {
-   
+
 
     });
 
@@ -468,7 +468,7 @@
       }).catch((error) => {
         // An error happened.
       });
-    });  
+    });
 
     // // Create new employee
     // const createEmployeeBtn = document.getElementById("create-employee");
