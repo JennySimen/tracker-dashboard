@@ -13,21 +13,33 @@ const getThisWeekDate = () => {
     const dateArr = [];
     const noOfDays = Array(10).keys();
     Array.from(noOfDays).map((idx) => {
-        const d = new Date(); 
+        const d = new Date();
         d.setDate(d.getDate() - idx);
-        dateArr.push(formatDate(d)); 
+        dateArr.push(formatDate(d));
     });
 
     return dateArr;
+}
+
+const getLast7DaysDate = () => {
+    const week = [];
+    const noOfDays = Array(7).keys();
+    Array.from(noOfDays).map((idx) => {
+        let curr = new Date();
+        let first = curr.getDate() - curr.getDay() + idx;
+        let day = new Date(curr.setDate(first)).toISOString().slice(0, 10);
+        week.push(format2Date(day));
+    });
+    return week;
 }
 
 const getThisMonthDate = () => {
     const dateArr = [];
     const noOfDays = Array(30).keys();
     Array.from(noOfDays).map((idx) => {
-        const d = new Date(); 
+        const d = new Date();
         d.setDate(d.getDate() - idx);
-        dateArr.push(formatDate(d)); 
+        dateArr.push(formatDate(d));
     });
 
     return dateArr;
@@ -46,10 +58,16 @@ const getSixMonthDate = () => {
 }
 
 const formatDate = (dateData) => {
+    console.log("before", dateData);
     var dd = String(dateData.getDate()).padStart(2, '0');
     var mm = String(dateData.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = dateData.getFullYear();
 
     dateData = dd + '/' + mm + '/' + yyyy;
     return dateData;
+}
+
+const format2Date = (dateData) => {
+    const dateArr = dateData.split("-");
+    return dateArr[2] + '/' + dateArr[1] + '/' + dateArr[0]
 }

@@ -195,45 +195,6 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
   <script src="./js/print.min.js"></script>
 
-  <!-- Graph data -->
-  <script>
-    var xValues = ["Mon", "Teus", "Wed", "Thurs", "Fri", "sat", "sun"];
-    var yValues = [55, 49, 44, 24, 15, 30, 90];
-    var barColors = ["red", "green", "blue", "orange", "brown", "yellow", "purple"];
-
-    new Chart("myChart", {
-      type: "bar",
-      data: {
-        labels: xValues,
-        datasets: [{
-          backgroundColor: barColors,
-          data: yValues
-        }]
-      },
-      options: {
-        legend: { display: false },
-        title: {
-          display: true,
-          text: "Report"
-        }
-      }
-    });
-
-    let printbtn = document.getElementById("printbtn");
-    let refreshbtn = document.getElementById("refreshbtn");
-
-    //function to print
-    printbtn.addEventListener('click', (e) => {
-      printJS('myChart', 'html')
-    });
-
-    //function to refresh
-    refreshbtn.addEventListener('click', (e) => {
-
-
-    });
-
-  </script>
 
   <!-- Firebase sdk setup -->
   <script type="module">
@@ -302,9 +263,18 @@
       return employees.slice(0, 10);
     }
 
+    const getTodayUserCount = async () => {
+      const querySnapshot = await getfirst10UserDataQuery();
+      return querySnapshot.size;
+    }
+
     // This function builds the query for only workers in firestore database
     const getWorkersCountQuery = () => {
-      const q = query(collection(database, EMPLOYEE_TABLE), where("type", "==", "WORKERS"));
+      const q = query(
+        collection(database, EMPLOYEE_TABLE),
+        where("type", "==", WORKERS),
+        where("last_active", "==", getTodayDate())
+      );
       return getDocs(q);
     };
 
@@ -327,7 +297,8 @@
 
     // This function builds the query for daily fbb count in firestore database
     const getBarcodeCountQuery = () => {
-      return getDocs(collection(database, BARCODE));
+      const q = query(collection(database, BARCODE), where("date", "==", getTodayDate()));
+      return getDocs(q);
     };
 
     // This function runs the query and resolves the result
@@ -338,7 +309,11 @@
 
     // This function builds the query for all users count in firestore database
     const getTopWorkersQuery = () => {
-      const q = query(collection(database, USER_FBB_COUNT), where("count", ">", "30"));
+      const q = query(
+        collection(database, USER_FBB_COUNT),
+        where("count", ">", "30"),
+        where("date", "==", getTodayDate())
+      );
       return getDocs(q);
     };
 
@@ -350,6 +325,32 @@
         employees.push({ ...doc.data() });
       });
       return employees.slice(0, 10);
+    }
+
+    const getGraphDataQuery = (weekDates) => {
+      const q = query(collection(database, USER_FBB_COUNT), where("date", "in", weekDates));
+      return getDocs(q);
+    };
+
+    const getGraphData = async () => {
+      console.log(getLast7DaysDate());
+      const querySnapshot = await getGraphDataQuery(getLast7DaysDate());
+      let graphData = [];
+      let finalData = [];
+      querySnapshot.forEach((doc) => {
+        graphData.push({ ...doc.data() });
+      });
+
+      getLast7DaysDate().forEach((val) => {
+        let count = 0;
+        graphData.forEach(fbbData => {
+          if (fbbData.date === val) {
+            count += parseInt(fbbData.count);
+          }
+        });
+        finalData.push(count);
+      });
+      return finalData;
     }
 
     // const addEmployeeRef = (user) => {
@@ -420,14 +421,16 @@
         barcodeCount,
         userFirst10Data,
         topWorkers,
+        graphData,
       ] = await Promise.all(
         [
-          getUsersCount(),
+          getTodayUserCount(),
           getWorkersCount(),
           getDailyFBBCount(),
           getBarcodeCount(),
           getfirst10UserData(),
           getTopWorkers(),
+          getGraphData()
         ]
       );
 
@@ -452,6 +455,49 @@
       document.getElementById("dashboard-table-data").innerHTML = tableBody;
       let topWorkersUl = document.getElementById("top-workers").innerHTML + generate_top_users(topWorkers);
       document.getElementById("top-workers").innerHTML = topWorkersUl;
+
+
+
+
+      // Graph Section
+      var xValues = ["Sun", "Mon", "Teus", "Wed", "Thurs", "Fri", "Sat"];
+      // var yValues = [55, 49, 44, 24, 15, 30, 90];
+      var yValues = graphData;
+      var barColors = ["red", "green", "blue", "orange", "brown", "yellow", "purple"];
+
+      let printbtn = document.getElementById("printbtn");
+      let refreshbtn = document.getElementById("refreshbtn");
+
+      //function to print
+      printbtn.addEventListener('click', (e) => {
+        printJS('myChart', 'html')
+      });
+
+      //function to refresh
+      refreshbtn.addEventListener('click', async (e) => {
+        const refreshData = await getGraphData();
+        yValues = refreshData;
+      });
+
+      new Chart("myChart", {
+        type: "bar",
+        data: {
+          labels: xValues,
+          datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+          }]
+        },
+        options: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: "Report"
+          }
+        }
+      });
+
+
     });
 
     let tableTitle = document.getElementById("today-date");
@@ -501,6 +547,46 @@
     //   deleteEmployee(userId);
     // });
   </script>
+
+  <!-- Graph data -->
+  <!-- <script>
+    var xValues = ["Mon", "Teus", "Wed", "Thurs", "Fri", "sat", "sun"];
+    var yValues = [55, 49, 44, 24, 15, 30, 90];
+    var barColors = ["red", "green", "blue", "orange", "brown", "yellow", "purple"];
+
+    new Chart("myChart", {
+      type: "bar",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: "Report"
+        }
+      }
+    });
+
+    let printbtn = document.getElementById("printbtn");
+    let refreshbtn = document.getElementById("refreshbtn");
+
+    //function to print
+    printbtn.addEventListener('click', (e) => {
+      printJS('myChart', 'html')
+    });
+
+    //function to refresh
+    refreshbtn.addEventListener('click', (e) => {
+
+
+    });
+
+  </script> -->
 
 </body>
 
