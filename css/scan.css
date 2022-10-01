@@ -626,4 +626,9 @@ select {
     left: 60px;
     width: calc(100% - 60px);
   }
+
+  .user-modal {
+    width: 50%;
+    height: 50%;
+  }
 }
