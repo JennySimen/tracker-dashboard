@@ -3,10 +3,9 @@ const generate_table = (data) => {
     data.forEach(user => {
         tr += "<tr>";
         tr += "<td>" + user["NID"] + "</td>";
-        tr += "<td>" + user["name"] + "</td>";
-        tr += "<td>" + user["gender"] + "</td>";
-        tr += "<td>" + user["type"] + "</td>";
-        tr += "<td class=''>See more</td>";
+        tr += "<td>" + capitalize(user["name"]) + "</td>";
+        tr += "<td>" + capitalize(user["gender"]) + "</td>";
+        tr += "<td>" + capitalize(user["type"]) + "</td>";
         tr += "</tr>";
     });
 
@@ -36,8 +35,8 @@ const generate_barcode = (data) => {
             tr += "<td class='print'>" + barcode["checked_in"] + "</td>";
             tr += "<td class='print'>" + barcode["checked_out"] + "</td>";
             tr += "<td>" +
-            `<img id='barcode' src='https://api.qrserver.com/v1/create-qr-code/?data=${barcode["code"]}&amp;size=100x100' alt='' title='HELLO' width='50' height='50' />`
-            + "</td>";
+                `<img id='barcode' src='https://api.qrserver.com/v1/create-qr-code/?data=${barcode["code"]}&amp;size=100x100' alt='' title='HELLO' width='50' height='50' />`
+                + "</td>";
             tr += "</tr>";
         });
     }
@@ -60,11 +59,34 @@ const generate_employee_table = (data) => {
             tr += "<td class='text-right'>" +
                 "<i class='bx bx-edit green edit-btn' data-nid=" + employee["id"] + "></i>" +
                 "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                "<i class='bx bx-trash red del-btn' data-nid=" + employee["id"] +  "></i>" +
+                "<i class='bx bx-trash red del-btn' data-nid=" + employee["id"] + "></i>" +
                 "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                "<i class='bx bxs-user-badge blue badge-btn' data-nid=" + employee["id"] + "></td>";
+                "<i class='bx bxs-user-badge badge-btn' data-nid=" + employee["id"] + "></td>";
+
             tr += "</tr>";
         });
     }
     return tr;
 }
+
+
+// const badgeBtns = document.querySelectorAll(".badge-btn");
+
+// //generate badge function
+// badgeBtns.forEach(badgeBtn => {
+//     const badgeModal = document.querySelector(".badge-modal");
+//     const badgeCloseButton = document.querySelector(".badge-close-button");
+
+//     const toggleModal2 = () => {
+//         badgeModal.classList.toggle("show-modal");
+//     }
+
+//     function windowOnClick(event) {
+//         if (event.target === badgeModal) {
+//             toggleModal2(badgeModal);
+//         }
+//     }
+//     badgeBtn.addEventListener('click', toggleModal2);
+//     badgeCloseButton.addEventListener("click", toggleModal2);
+//     window.addEventListener("click", windowOnClick);
+// });
