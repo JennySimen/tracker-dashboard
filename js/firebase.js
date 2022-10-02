@@ -4,6 +4,10 @@ const FBB_DAILY_TABLE = "fbb_daily";
 const BARCODE = "barcode";
 const USER_FBB_COUNT = "user_fbb_count";
 
+const WORKERS = "WORKER"
+const SECURITY = "SECURITY"
+const ADMIN = "ADMINISTRATOR"
+
 const config = {
     apiKey: "AIzaSyCwxMVF2fcArl-qCk0eu3VXndHRgFVn9Tw",
     authDomain: "trackme-237.firebaseapp.com",
