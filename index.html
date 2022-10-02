@@ -333,7 +333,6 @@
     };
 
     const getGraphData = async () => {
-      console.log(getLast7DaysDate());
       const querySnapshot = await getGraphDataQuery(getLast7DaysDate());
       let graphData = [];
       let finalData = [];
@@ -350,6 +349,11 @@
         });
         finalData.push(count);
       });
+      console.log(getLast7DaysDate());
+      console.log("================================================================");
+      console.log(graphData);
+      console.log("================================================================");
+      console.log(finalData);
       return finalData;
     }
 

@@ -97,9 +97,10 @@
 }
 
 .home-section h1 {
-  color:#085877;
-  margin: 8px 15px ;
+  color: #085877;
+  margin: 8px 15px;
 }
+
 .sidebar.active~.home-section {
   width: calc(100% - 60px);
   left: 60px;
@@ -433,13 +434,38 @@ nav .profile-details i {
 /* graph card style */
 
 .graph-section #graph-area {
-  width: 96%;
+  width: 97.5%;
   background: #fff;
   padding: 20px 30px;
-  margin: 15px 20px;
+  margin-top: 15px;
+  margin-right: 0px;
+  margin-bottom: 15px;
+  margin-left: 20px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
+
+.graph-print-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #085877;
+  color: white;
+  border: 0;
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+.graph-btn-section {
+  float: right;
+  margin-right: 50px;
+  margin-top: 20px;
+}
+
+
+
+
+
 
 /* Responsive Media Query */
 @media (max-width: 1240px) {
