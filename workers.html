@@ -295,16 +295,16 @@
         console.log(id);
         const querySnapshot = await deleteEmployeeRef(id);
 
-        console.log("Employee deleted");
+        alert("Employee deleted");
       } catch (error) {
-        console.log("Opps! employee could not be deleted");
+        alert("Opps! employee could not be deleted");
       }
 
     }
 
     // Update employee function
     const updateEmployeeRef = (id) => {
-      return updateDoc(doc(database, EMPLOYEE_TABLE, id));
+      return updateDoc(doc(database, EMPLOYEE_TABLE));
     };
 
     const updateEmployee = async (employee) => {
@@ -399,6 +399,23 @@
       })
     });
 
+    //update employee function
+    const updateBtns = document.querySelectorAll(".edit-btn");
+
+//delete employee function 
+updateBtns.forEach(delBtn => {
+  editBtn.addEventListener('click', async (e) => {
+    let loaderElement = document.getElementById("loader");
+    loaderElement.classList.add("show");
+    loaderElement.classList.remove("hide");
+
+    const nationalId = delBtn.getAttribute("data-nid");
+    await deleteEmployee(nationalId);
+
+    window.location.reload();
+  })
+});
+
     const badgeBtns = document.querySelectorAll(".badge-btn");
 
     //generate badge function
@@ -426,9 +443,9 @@
       window.addEventListener("click", windowOnClick);
     });
 
-    // // update employee function
+    //  // update employee function
 
-    const updateBtns = document.querySelectorAll(".edit-btn");
+    // const updateBtns = document.querySelectorAll(".edit-btn");
     // updateBtn.addEventListener("click", async () => {
     //   const userData = {
     //     id: "8itBo9MDYmYjFhgYavow",

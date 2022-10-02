@@ -360,9 +360,10 @@ select {
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 1rem 1.5rem;
-  width: 50rem;
+  width: 40rem;
   border-radius: 0.5rem;
-  min-height: 350px;
+  min-height: 200px;
+  margin-top: 7rem;
 }
 
 .close-button {
