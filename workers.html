@@ -168,6 +168,7 @@
       </div>
     </div>
 
+
     <!-- modal to create employee badge -->
     <div class="badge-modal badge-hide-modal">
       <div class="modal-content">
@@ -186,6 +187,64 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- modal to create employee badge -->
+  <div class="update-modal update-hide-modal">
+    <div class="modal-content">
+      <span class="update-close-button"><i class="bx bx-x"></i></span>
+      <h1>Update employee</h1>
+      <hr />
+      <div class="input-section">
+        <form>
+          <div class="flex">
+            <div class="form-control">
+              <div><label for="name">Full Name <span class="red">*</span></label></div>
+              <div><input type="text" id="name" name="name"></div>
+            </div>
+            <div class="form-control">
+              <div><label for="nid">National ID (NID) <span class="red">*</span></label></div>
+              <div><input type="text" id="nid" name="nid"></div>
+            </div>
+          </div>
+          <div class="flex">
+            <div class="form-control">
+              <div> <label for="gender">Gender</label> <span class="red">*</span></div>
+              <div>
+                <select name="gender" id="gender">
+                  <option value="">Select a value</option>
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-control">
+              <div> <label for="Category">Category</label> <span class="red">*</span></div>
+              <div>
+                <select name="category" id="category">
+                  <option value="">Select a value</option>
+                  <option value="worker">Worker</option>
+                  <option value="Security">Security</option>
+                  <option value="admin">Administrator</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-control file-type">
+            <div><label for="picture">Picture</label></div>
+            <label class="file-label" for="file">
+              <div class="file-area">Click to upload</div>
+              <input type="file" id="pic" name="picture">
+            </label>
+          </div>
+          <p id="filename" class="filename"></p>
+        </form>
+      </div>
+      <div class="btn-section">
+        <button type="button" id="editBtn" class="submit-btn">UPDATE</button>
+      </div>
+    </div>
+  </div>
   </section>
 
   <!-- table ends here -->
@@ -402,19 +461,32 @@
     //update employee function
     const updateBtns = document.querySelectorAll(".edit-btn");
 
-//delete employee function 
-updateBtns.forEach(delBtn => {
-  editBtn.addEventListener('click', async (e) => {
-    let loaderElement = document.getElementById("loader");
-    loaderElement.classList.add("show");
-    loaderElement.classList.remove("hide");
+    updateBtns.forEach(updateBtn => {
+      const updateModal = document.querySelector(".update-modal");
+      const updateCloseButton = document.querySelector(".update-close-button");
 
-    const nationalId = delBtn.getAttribute("data-nid");
-    await deleteEmployee(nationalId);
+      const openModal = () => {
+        updateModal.classList.add("show-modal");
+        updateModal.classList.remove("update-hide-modal")
+      }
 
-    window.location.reload();
-  })
-});
+      const closeModal = () => {
+        updateModal.classList.remove("show-modal");
+        updateModal.classList.add("update-hide-modal")
+      }
+
+      function windowOnClick(event) {
+        if (event.target === updateModal) {
+          closeModal();
+        }
+      }
+      updateBtn.addEventListener('click', openModal);
+      updateCloseButton.addEventListener("click", closeModal);
+      window.addEventListener("click", windowOnClick);
+
+
+    });
+    // });
 
     const badgeBtns = document.querySelectorAll(".badge-btn");
 
@@ -542,6 +614,28 @@ updateBtns.forEach(delBtn => {
     closeButton.addEventListener("click", toggleModal);
     window.addEventListener("click", windowOnClick);
   </script>
+
+  <!-- <script>
+    // modal functionality
+    const updateModal = document.querySelector(".update-modal");
+    const updateTrigger = document.querySelector(".update-trigger");
+    const updatecloseButton = document.querySelector(".update-close-button");
+
+    const toggleModal1 = () => {
+      updateModal.classList.toggle("show-modal");
+    }
+
+    function windowOnClick(event) {
+      if (event.target === updateModal) {
+        toggleModal1(updateModal);
+      }
+    }
+
+    updateTrigger.addEventListener("click", toggleModal1);
+    updateCloseButton.addEventListener("click", toggleModal1);
+    window.addEventListener("click", windowOnClick);
+  </script> -->
+
 
 
 

@@ -428,6 +428,40 @@ input[type="file"] {
   margin-top: 1rem;
 }
 
+
+.update-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080;
+}
+
+.update-hide-modal {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.update-modal h1 {
+  font-weight: 600;
+}
+
+.update-modal form {
+  margin-top: 1rem;
+}
+
+.update-modal .input-section {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+
 .badge-modal {
   position: fixed;
   left: 0;
@@ -459,7 +493,6 @@ input[type="file"] {
   margin-bottom: 1rem;
   text-align: center;
 }
-
 
 .user-badge {
   align-items: center;
