@@ -57,7 +57,13 @@ const generate_employee_table = (data) => {
             tr += "<td>" + employee["type"] + "</td>";
             tr += "<td>" + employee["gender"] + "</td>";
             tr += "<td class='text-right'>" +
-                "<i class='bx bx-edit green edit-btn' data-nid=" + employee["id"] + "></i>" +
+                "<i class='bx bx-edit green edit-btn'" +
+                "data-nid='" + employee["id"] +
+                "' data-gender='" + employee["gender"] +
+                "' data-type='" + employee["type"] +
+                "' data-name='" + employee["name"] +
+                "' data-id='" + employee["NID"] +
+                "' ></i>" +
                 "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
                 "<i class='bx bx-trash red del-btn' data-nid=" + employee["id"] + "></i>" +
                 "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
@@ -68,25 +74,3 @@ const generate_employee_table = (data) => {
     }
     return tr;
 }
-
-
-// const badgeBtns = document.querySelectorAll(".badge-btn");
-
-// //generate badge function
-// badgeBtns.forEach(badgeBtn => {
-//     const badgeModal = document.querySelector(".badge-modal");
-//     const badgeCloseButton = document.querySelector(".badge-close-button");
-
-//     const toggleModal2 = () => {
-//         badgeModal.classList.toggle("show-modal");
-//     }
-
-//     function windowOnClick(event) {
-//         if (event.target === badgeModal) {
-//             toggleModal2(badgeModal);
-//         }
-//     }
-//     badgeBtn.addEventListener('click', toggleModal2);
-//     badgeCloseButton.addEventListener("click", toggleModal2);
-//     window.addEventListener("click", windowOnClick);
-// });

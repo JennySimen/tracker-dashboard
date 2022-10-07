@@ -199,19 +199,19 @@
         <form>
           <div class="flex">
             <div class="form-control">
-              <div><label for="name">Full Name <span class="red">*</span></label></div>
-              <div><input type="text" id="name" name="name"></div>
+              <div id="name"><label for="name">Full Name <span class="red">*</span></label></div>
+              <div><input type="text" id="update-name" name="name"></div>
             </div>
             <div class="form-control">
-              <div><label for="nid">National ID (NID) <span class="red">*</span></label></div>
-              <div><input type="text" id="nid" name="nid"></div>
+              <div id="nid"><label for="nid">National ID (NID) <span class="red">*</span></label></div>
+              <div><input type="text" id="nid" name="update-nid"></div>
             </div>
           </div>
           <div class="flex">
             <div class="form-control">
-              <div> <label for="gender">Gender</label> <span class="red">*</span></div>
+              <div id="gender"> <label for="gender">Gender</label> <span class="red">*</span></div>
               <div>
-                <select name="gender" id="gender">
+                <select name="gender" id="update-gender">
                   <option value="">Select a value</option>
                   <option value="Female">Female</option>
                   <option value="Male">Male</option>
@@ -219,7 +219,7 @@
               </div>
             </div>
             <div class="form-control">
-              <div> <label for="Category">Category</label> <span class="red">*</span></div>
+              <div id="category"> <label for="Category">Category</label> <span class="red">*</span></div>
               <div>
                 <select name="category" id="category">
                   <option value="">Select a value</option>
@@ -231,7 +231,7 @@
             </div>
           </div>
           <div class="form-control file-type">
-            <div><label for="picture">Picture</label></div>
+            <div id="pic1"><label for="picture">Picture</label></div>
             <label class="file-label" for="file">
               <div class="file-area">Click to upload</div>
               <input type="file" id="pic" name="picture">
@@ -325,7 +325,6 @@
       return employees;
     }
 
-
     // This function adds new employee
     const addEmployeeQuery = async (codeData) => {
       // Generate unique id
@@ -361,19 +360,7 @@
 
     }
 
-    // Update employee function
-    const updateEmployeeRef = (id) => {
-      return updateDoc(doc(database, EMPLOYEE_TABLE));
-    };
-
-    const updateEmployee = async (employee) => {
-
-      const querySnapshot = await updateEmployeeRef(employee);
-
-      console.log("Employee updated");
-    }
-
-    //This function gets active employee data
+    //This function gets active employee data/
     const getTodayEmpRef = () => {
       const q = query(collection(database, EMPLOYEE_TABLE), where("last_active", "==", getTodayDate()));
       return getDocs(q);
@@ -387,7 +374,6 @@
       });
       return employees;
     }
-
 
     const pageData = async () => {
       const queryString = window.location.search;
@@ -480,13 +466,20 @@
           closeModal();
         }
       }
-      updateBtn.addEventListener('click', openModal);
+      updateBtn.addEventListener('click', () => {
+        const userId = updateBtn.getAttribute("data-nid");
+        const name = updateBtn.getAttribute("data-name");
+        const type = updateBtn.getAttribute("data-type");
+        const gender = updateBtn.getAttribute("data-gender")
+        console.log(name);
+        openModal();
+      });
       updateCloseButton.addEventListener("click", closeModal);
       window.addEventListener("click", windowOnClick);
 
-
     });
-    // });
+
+
 
     const badgeBtns = document.querySelectorAll(".badge-btn");
 
@@ -530,9 +523,9 @@
     // });
 
     //add new employee function
-    //    UpdateBtns.forEach(updateBtn => {
+    // UpdateBtns.forEach(updateBtn => {
 
-    //    updateBtn.addEventListener('click', async (e) => {
+    //   updateBtn.addEventListener('click', async (e) => {
     //     document.querySelector(".close-button").click();
     //     // Show loader
     //     loaderElement.classList.add("show");
@@ -558,8 +551,7 @@
     //     window.location.reload();
 
     //   });
-    // });
-
+    //   });
 
     // File upload
     const fileInput = document.querySelector('input[type=file]');
@@ -614,29 +606,6 @@
     closeButton.addEventListener("click", toggleModal);
     window.addEventListener("click", windowOnClick);
   </script>
-
-  <!-- <script>
-    // modal functionality
-    const updateModal = document.querySelector(".update-modal");
-    const updateTrigger = document.querySelector(".update-trigger");
-    const updatecloseButton = document.querySelector(".update-close-button");
-
-    const toggleModal1 = () => {
-      updateModal.classList.toggle("show-modal");
-    }
-
-    function windowOnClick(event) {
-      if (event.target === updateModal) {
-        toggleModal1(updateModal);
-      }
-    }
-
-    updateTrigger.addEventListener("click", toggleModal1);
-    updateCloseButton.addEventListener("click", toggleModal1);
-    window.addEventListener("click", windowOnClick);
-  </script> -->
-
-
 
 
   <script>
