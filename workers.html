@@ -189,7 +189,7 @@
     </div>
   </section>
 
-  <!-- modal to create employee badge -->
+  <!-- modal to update employee info-->
   <div class="update-modal update-hide-modal">
     <div class="modal-content">
       <span class="update-close-button"><i class="bx bx-x"></i></span>
@@ -204,15 +204,14 @@
             </div>
             <div class="form-control">
               <div id="nid"><label for="nid">National ID (NID) <span class="red">*</span></label></div>
-              <div><input type="text" id="nid" name="update-nid"></div>
+              <div><input type="text" id="update-nid" name="nid"></div>
             </div>
           </div>
           <div class="flex">
             <div class="form-control">
               <div id="gender"> <label for="gender">Gender</label> <span class="red">*</span></div>
               <div>
-                <select name="gender" id="update-gender">
-                  <option value="">Select a value</option>
+                <select name="gender" id="update-gender" value=gender1>
                   <option value="Female">Female</option>
                   <option value="Male">Male</option>
                 </select>
@@ -221,8 +220,7 @@
             <div class="form-control">
               <div id="category"> <label for="Category">Category</label> <span class="red">*</span></div>
               <div>
-                <select name="category" id="category">
-                  <option value="">Select a value</option>
+                <select name="category" id="update-category" value=type1>
                   <option value="worker">Worker</option>
                   <option value="Security">Security</option>
                   <option value="admin">Administrator</option>
@@ -231,7 +229,7 @@
             </div>
           </div>
           <div class="form-control file-type">
-            <div id="pic1"><label for="picture">Picture</label></div>
+            <div id="update-pic"><label for="picture">Picture</label></div>
             <label class="file-label" for="file">
               <div class="file-area">Click to upload</div>
               <input type="file" id="pic" name="picture">
@@ -468,12 +466,19 @@
       }
       updateBtn.addEventListener('click', () => {
         const userId = updateBtn.getAttribute("data-nid");
-        const name = updateBtn.getAttribute("data-name");
-        const type = updateBtn.getAttribute("data-type");
-        const gender = updateBtn.getAttribute("data-gender")
-        console.log(name);
+        const name1 = updateBtn.getAttribute("data-name");
+        const type1 = updateBtn.getAttribute("data-type");
+        const gender1 = updateBtn.getAttribute("data-gender");
+        
         openModal();
+
+        document.getElementById("update-name").value = name1;
+        document.getElementById("update-nid").value = userId;
+        document.getElementById("update-type").value = type1;
+        document.getElementById("update-gender").value = gender1;
+
       });
+
       updateCloseButton.addEventListener("click", closeModal);
       window.addEventListener("click", windowOnClick);
 
