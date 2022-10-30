@@ -178,8 +178,8 @@
             <image id="profileImage" src="assets/images/default.png" />
           </div>
           <div class="user-info-section">
-            <p id="name"> Jane Doe</p>
-            <p id="category">Administrator</p>
+            <p id="badge-name"></p>
+            <p id="badge-category"></p>
           </div>
         </div>
         <div class="btn-section">
@@ -469,7 +469,7 @@
         const name1 = updateBtn.getAttribute("data-name");
         const type1 = updateBtn.getAttribute("data-type");
         const gender1 = updateBtn.getAttribute("data-gender");
-        
+
         openModal();
 
         document.getElementById("update-name").value = name1;
@@ -508,7 +508,18 @@
           closeModal();
         }
       }
-      badgeBtn.addEventListener('click', openModal);
+
+      badgeBtn.addEventListener('click', () => {
+        const name2 = badgeBtn.getAttribute("data-name");
+        const type2 = badgeBtn.getAttribute("data-type");
+
+        openModal();
+
+        document.getElementById("badge-name").value = name2;
+        document.getElementById("badge-category").value = type2;
+
+      });
+
       badgeCloseButton.addEventListener("click", closeModal);
       window.addEventListener("click", windowOnClick);
     });
