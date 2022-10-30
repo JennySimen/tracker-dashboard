@@ -81,46 +81,94 @@
       </div>
     </nav>
     <!-- navbar ends here -->
-</section>
+  </section>
 
-<section class="report-section">
+  <section class="report-section">
 
-  <div class="report-table-header">
-    <div class="title">
-      Reports
+    <div class="grid-container">
+      <section class="grid-item1">
+
+        <div id="prod-statistics">
+          <div class="chart-header">
+            <h1>Statistics (Employee / Statistics)</h1>
+          </div>
+          <div>
+            <canvas id="productionChart" style="width:100%;max-width:100%"></canvas>
+          </div>
+        </div>
+
+        <div id="loss-gain" class="report-table">
+          <h1>Loss /Gain statistics</h1>
+          <table>
+            <tr>
+              <th>Month</th>
+              <th>Total FFB Produce</th>
+              <th>% Loss/Gain</th>
+            </tr>
+            <tr>
+              <td>January</td>
+              <td>678</td>
+              <td>20%<i class='bx bx-up-arrow-alt green icon-large'></i></td>
+            </tr>
+            <tr>
+              <td>February</td>
+              <td>1234</td>
+              <td>10%<i class='bx bx-down-arrow-alt red icon-large'></i></td>
+            </tr>
+            <tr>
+              <td>March</td>
+              <td>867</td>
+              <td>5%<i class='bx bx-down-arrow-alt red icon-large'></i></td>
+            </tr>
+            <tr>
+              <td>April</td>
+              <td>867</td>
+              <td>0%<i class='bx bx-right-arrow-alt icon-large'></i></td>
+            </tr>
+            <tr>
+              <td>May</td>
+              <td>867</td>
+              <td>1%<i class='bx bx-down-arrow-alt green icon-large'></i></td>
+            </tr>
+            <tr>
+              <td>June</td>
+              <td>867</td>
+              <td>0%<i class='bx bx-down-arrow-alt icon-large'></i></td>
+            </tr>
+            <tbody id="report-table-data"></tbody>
+          </table>
+        </div>
+
+      </section>
+      <section class="grid-item2">
+        <div class="sub-nav">
+          <h3>Sections</h3>
+          <hr />
+          <div class="sub-menu">
+            <a href="#prod-statistics">Monthly Production</a>
+          </div>
+          <div class="sub-menu">
+            <a href="#loss-gain">Loss / Gain</a>
+          </div>
+          <div class="sub-menu">
+            <a href="#">Employee Performance</a>
+          </div>
+        </div>
+      </section>
     </div>
-    <!-- <div class="button">
-      <a class="trigger" href="#">ADD EMPLOYEE</a>
-    </div> -->
-  </div>
 
-  <table>
-    <tr>
-      <th></th>
-      <th>Report</th>
-      <th>Action</th>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Employee performance</td>
-      <td><i class='bx bx-list-ul green'></i></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Monthly production</td>
-      <td><i class='bx bx-list-ul green'></i></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Loss/Gain</td>
-      <td><i class='bx bx-list-ul green'></i></td>
-    </tr>
-    <tbody id="report-table-data"></tbody>
-  </table>
-</div>
-</section>
-   
-<!-- Firebase sdk setup -->
+    </div>
+  </section>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script> -->
+  <script src="./js/date.js"></script>
+  <script src="./js/generate_dashboard_table.js"></script>
+  <script src="./js/utils.js"></script>
+  <script src="./js/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+  <script src="./js/print.min.js"></script>
+
+  <!-- Firebase sdk setup -->
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp, } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
@@ -160,7 +208,34 @@
 
     const auth = getAuth();
 
-    </script>
+
+    var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    new Chart("productionChart", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [{
+          data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000, 5000, 7000],
+          borderColor: "green",
+          fill: false,
+          legendText: "employee"
+        }, {
+          data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100, 699, 3500],
+          borderColor: "blue",
+          fill: false,
+          legendText: "employee",
+          showInLegend: true,
+        }]
+      },
+      options: {
+        legend: {
+          display: true
+        }
+      }
+    });
+
+  </script>
 
   <script>
     let sidebar = document.querySelector(".sidebar");
