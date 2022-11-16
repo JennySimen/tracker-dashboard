@@ -168,15 +168,50 @@ nav .profile-details i {
   padding-left: 2rem;
 }
 
-.dashboard-section {
+.card-section {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 10px;
-  padding: 100px;
 }
 
-.dashboard-section a {
-  color: #085877;
+.card-section button {
+  background-color: #085877;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+.card-section {
+  margin: 50px;
+}
+
+.card-section .box-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 2.5rem;
+}
+
+.card-section .box-container .box {
+  padding: 5rem;
+  text-align: center;
+  border: 2px solid beige;
+  width: 350px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-section .box-container .box img {
+  width: 100px;
+  height: 100px;
+  padding-bottom: 10px;
+}
+
+.card-section .box-container .box p {
+  padding-bottom: 10px;
+}
+
+.card-section .box-container .box:hover {
+  background: #fff;
 }
 
 
@@ -630,5 +665,14 @@ select {
   .user-modal {
     width: 50%;
     height: 50%;
+  }
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
   }
 }

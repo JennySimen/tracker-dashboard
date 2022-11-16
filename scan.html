@@ -6,6 +6,7 @@
   <title> Admin dashboard </title>
   <link rel="stylesheet" href="css/scan.css">
   <link rel="stylesheet" href="css/color.css">
+  <link rel="stylesheet" href="css/common.css">
   <!-- <link rel="stylesheet" href="css/common.css"> -->
   <link rel="stylesheet" href="css/button.css">
 
@@ -78,29 +79,43 @@
     </nav>
 
     <div class="scan-body">
+      <div class="card-section">
+        <div class="box-container">
+          <div class="box">
+            <img src="assets/images/scanUser.png">
+            <p>Click on the button to open up the scanner</p>
+            <div id="scan-user">
+              <button id="scan-user" class="user-trigger">Scan Employee</button>
+            </div>
+          </div>
 
-      <h3>FFB Products Section</h3>
-      <hr />
-      <div class="dashboard-section">
-        <div id="scan-user">
-          <a class="user-trigger" href="#">User</a>
-        </div>
-        <div id="check-in">
-          <a class="checkIn-trigger" href="#">Checkin</a>
-        </div>
-        <div id="check-out">
-          <a class="checkOut-trigger" href="#">Checkout</a>
-        </div>
-      </div>
+          <div class="box">
+            <img src="assets/images/package.png">
+            <p>Click on the button to open up the scanner</p>
+            <div class="overlay"></div>
+            <button class="checkIn-trigger">Check-in goods</button>
+          </div>
 
-      <h3>Employees Section</h3>
-      <hr />
-      <div class="dashboard-section">
-        <div id="loginEmp">
-          <a class="login-trigger" href="#">Login </a>
-        </div>
-        <div id="logoutEmp">
-          <a class="logout-trigger" href="#">Logout</a>
+          <div class="box">
+            <img src="assets/images/package.png">
+            <p>Click on the button to open up the scanner</p>
+            <div class="overlay"></div>
+            <button class="checkOut-trigger">Check-out goods</button>
+          </div>
+
+          <div class="box">
+            <img src="assets/images/login.png">
+            <p>Click on the button to open up the scanner</p>
+            <div class="overlay"></div>
+            <button class="login-trigger">Login Employee</button>
+          </div>
+
+          <div class="box">
+            <img src="assets/images/logout.webp">
+            <p>Click on the button to open up the scanner</p>
+            <div class="overlay"></div>
+            <button class="logout-trigger">Logout Employee</button>
+          </div>
         </div>
       </div>
     </div>
@@ -149,7 +164,7 @@
       </div>
     </div>
 
-    
+
     <div class="logout-modal">
       <div class="modal-content">
         <span class="logout-close-button"><i class="bx bx-x"></i></span>
