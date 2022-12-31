@@ -79,7 +79,7 @@
     </nav>
 
     <div class="scan-body">
-      <div class="card-section">
+      <!-- <div class="card-section">
         <div class="box-container">
           <div class="box">
             <img src="assets/images/scanUser.png">
@@ -113,64 +113,79 @@
             <button id="logoutEmp" class="logout-trigger">Logout Employee</button>
           </div>
         </div>
-      </div>
-    </div>
+      </div> -->
 
-    <div class="user-modal">
-      <div class="modal-content">
-        <span class="user-close-button"><i class="bx bx-x"></i></span>
-        <h1>Scan</h1>
-        <hr />
-        <div class="col">
-          <div id="reader" width="00px"></div>
+      <div class="card-section">
+        <div class="box-container">
+          <div class="box">
+            <img src="assets/images/package.png">
+            <p>Click on the button to open up the scanner</p>
+            <button id="scan-user" class="user-trigger">Scan Employee</button>
+            <button id="check-in" class="checkIn-trigger">Check-in goods</button>
+            <button id="check-out" class="checkOut-trigger">Check-out goods</button>
+            <button id="loginEmp" class="login-trigger">Login Employee</button>
+            <button id="logoutEmp" class="logout-trigger">Logout Employee</button>
+
+          </div>
+
         </div>
       </div>
-    </div>
 
-    <div class="checkin-modal">
-      <div class="modal-content">
-        <span class="checkin-close-button"><i class="bx bx-x"></i></span>
-        <h1>Check-In Goods</h1>
-        <hr />
-        <div class="col">
-          <div id="reader" width="00px"></div>
+      <div class="reader-modal">
+        <div class="modal-content">
+          <span class="reader-close-button"><i class="bx bx-x"></i></span>
+          <h1>QR code Scanner</h1>
+          <hr />
+          <div class="col">
+            <div id="reader" width="00px"></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="checkout-modal">
-      <div class="modal-content">
-        <span class="checkout-close-button"><i class="bx bx-x"></i></span>
-        <h1>Checkout Goods</h1>
-        <hr />
-        <div class="col">
-          <div id="reader" width="00px"></div>
+      <div class="checkin-modal">
+        <div class="modal-content">
+          <span class="checkin-close-button"><i class="bx bx-x"></i></span>
+          <h1>Check-In Goods</h1>
+          <hr />
+          <div class="col">
+            <div id="reader" width="00px"></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="login-modal">
-      <div class="modal-content">
-        <span class="login-close-button"><i class="bx bx-x"></i></span>
-        <h1>Login Employee</h1>
-        <hr />
-        <div class="col">
-          <div id="reader" width="00px"></div>
+      <div class="checkout-modal">
+        <div class="modal-content">
+          <span class="checkout-close-button"><i class="bx bx-x"></i></span>
+          <h1>Checkout Goods</h1>
+          <hr />
+          <div class="col">
+            <div id="reader" width="00px"></div>
+          </div>
         </div>
       </div>
-    </div>
 
-
-    <div class="logout-modal">
-      <div class="modal-content">
-        <span class="logout-close-button"><i class="bx bx-x"></i></span>
-        <h1>Logout Employee</h1>
-        <hr />
-        <div class="col">
-          <div id="reader" width="00px"></div>
+      <div class="login-modal">
+        <div class="modal-content">
+          <span class="login-close-button"><i class="bx bx-x"></i></span>
+          <h1>Login Employee</h1>
+          <hr />
+          <div class="col">
+            <div id="reader" width="00px"></div>
+          </div>
         </div>
       </div>
-    </div>
+
+
+      <div class="logout-modal">
+        <div class="modal-content">
+          <span class="logout-close-button"><i class="bx bx-x"></i></span>
+          <h1>Logout Employee</h1>
+          <hr />
+          <div class="col">
+            <div id="reader" width="00px"></div>
+          </div>
+        </div>
+      </div>
 
 
   </section>
@@ -347,9 +362,9 @@
 
   <script>
     // modal functionality
-    const userModal = document.querySelector(".user-modal");
+    const userModal = document.querySelector(".reader-modal");
     const userTrigger = document.querySelector(".user-trigger");
-    const userCloseButton = document.querySelector(".user-close-button");
+    const userCloseButton = document.querySelector(".reader-close-button");
 
     const toggleModal = () => {
       userModal.classList.toggle("show-modal");
@@ -378,12 +393,12 @@
 
     function windowOnClick(event) {
       if (event.target === checkinModal) {
-        toggleModal();
+        toggleModal2();
       }
     }
 
-    checkinTrigger.addEventListener("click", toggleModal);
-    checkinCloseButton.addEventListener("click", toggleModal);
+    checkinTrigger.addEventListener("click", toggleModal2);
+    checkinCloseButton.addEventListener("click", toggleModal2);
     window.addEventListener("click", windowOnClick);
   </script>
 
@@ -399,12 +414,12 @@
 
     function windowOnClick(event) {
       if (event.target === checkoutModal) {
-        toggleModal();
+        toggleModal3();
       }
     }
 
-    checkoutTrigger.addEventListener("click", toggleModal);
-    checkoutCloseButton.addEventListener("click", toggleModal);
+    checkoutTrigger.addEventListener("click", toggleModal3);
+    checkoutCloseButton.addEventListener("click", toggleModal3);
     window.addEventListener("click", windowOnClick);
   </script>
 
@@ -420,12 +435,12 @@
 
     function windowOnClick(event) {
       if (event.target === loginModal) {
-        toggleModal();
+        toggleModal4();
       }
     }
 
-    loginTrigger.addEventListener("click", toggleModal);
-    loginCloseButton.addEventListener("click", toggleModal);
+    loginTrigger.addEventListener("click", toggleModal4);
+    loginCloseButton.addEventListener("click", toggleModal4);
     window.addEventListener("click", windowOnClick);
   </script>
 
@@ -442,15 +457,17 @@
 
     function windowOnClick(event) {
       if (event.target === logoutModal) {
-        toggleModal();
+        toggleModal5();
       }
     }
 
-    logoutTrigger.addEventListener("click", toggleModal);
-    logoutCloseButton.addEventListener("click", toggleModal);
+    logoutTrigger.addEventListener("click", toggleModal5);
+    logoutCloseButton.addEventListener("click", toggleModal5);
     window.addEventListener("click", windowOnClick);
   </script>
 
 </body>
 
 </html>
+
+<!-- git pull --rebase upstream main  git push origin main     -->

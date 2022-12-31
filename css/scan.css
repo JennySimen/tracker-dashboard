@@ -177,6 +177,7 @@ nav .profile-details i {
   background-color: #085877;
   color: white;
   padding: 10px;
+  margin: 5px;
   border-radius: 5px;
   cursor: pointer;
 
@@ -195,19 +196,19 @@ nav .profile-details i {
 .card-section .box-container .box {
   padding: 5rem;
   text-align: center;
-  border: 2px solid beige;
-  width: 350px;
+  width: 1000px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .card-section .box-container .box img {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   padding-bottom: 10px;
 }
 
 .card-section .box-container .box p {
-  padding-bottom: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .card-section .box-container .box:hover {
@@ -286,7 +287,7 @@ nav .profile-details i {
 }
 
 
-.user-modal {
+.reader-modal {
   position: fixed;
   left: 0;
   top: 0;
@@ -299,15 +300,123 @@ nav .profile-details i {
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.user-modal h1 {
+.reader-modal h1 {
   font-weight: 600;
+  align-items: center;
 }
 
-.user-modal form {
+.reader-modal form {
   margin-top: 1rem;
 }
 
-.user-modal .input-section {
+.reader-modal .input-section {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.label-container {
+  margin: 20px 3rem;
+}
+
+.btn-container {
+  margin: auto;
+  text-align: center;
+}
+
+.submit-btn {
+  width: 100%;
+  background-color: #085877;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border: 1px solid #085877;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #fff;
+  color: #085877;
+}
+
+.btn-section {
+  margin: auto;
+  width: 25%;
+}
+
+input[type=number],
+select {
+  width: 30%;
+  padding: 12px 20px;
+  margin-top: 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+  min-height: 350px;
+}
+
+.modal-content i {
+  float: right;
+}
+
+.reader-close-button {
+  float: right;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.no-data-text {
+  text-align: center;
+  font-size: large;
+}
+
+
+.checkin-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.checkin-modal h1 {
+  font-weight: 600;
+}
+
+.checkin form {
+  margin-top: 1rem;
+}
+
+.checkin .input-section {
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
@@ -393,35 +502,6 @@ select {
 }
 
 
-.checkin-modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #00000080;
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(1.1);
-  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
-}
-
-.checkin-modal h1 {
-  font-weight: 600;
-}
-
-.checkin-modal form {
-  margin-top: 1rem;
-}
-
-.checkin-modal .input-section {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
 
 .checkout-modal {
   position: fixed;
@@ -452,33 +532,11 @@ select {
   text-align: center;
 }
 
-.checkin-modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #00000080;
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(1.1);
-  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
-}
-
-.checkin-modal h1 {
-  font-weight: 600;
-}
-
-.checkin-modal form {
-  margin-top: 1rem;
-}
-
-.checkin-modal .input-section {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  text-align: center;
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 
 .login-modal {
@@ -510,6 +568,13 @@ select {
   text-align: center;
 }
 
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
 .logout-modal {
   position: fixed;
   left: 0;
@@ -539,6 +604,12 @@ select {
   text-align: center;
 }
 
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
 
 
 
