@@ -114,9 +114,11 @@
           <div class="box">
             <img src="assets/images/package.png">
             <p>Click on the button to open up the scanner</p>
-            <button id="scan-user" class="user-trigger">Scan Employee</button>
-            <button id="check-in" class="checkIn-trigger">Check-in goods</button>
-            <button id="check-out" class="checkOut-trigger">Check-out goods</button>
+            <div class="check-in-section">
+              <button id="scan-user" class="user-trigger">Scan Employee</button>
+              <button id="check-in" class="checkIn-trigger hide-btn">Check-in goods</button>
+              <button id="check-out" class="checkOut-trigger hide-btn">Check-out goods</button>
+            </div>
             <button id="loginEmp" class="login-trigger">Login Employee</button>
             <button id="logoutEmp" class="logout-trigger">Logout Employee</button>
 
@@ -131,7 +133,7 @@
           <h1>QR code Scanner</h1>
           <hr />
           <div class="col">
-            <div id="reader" width="00px"></div>
+            <div id="reader-user-ckeck" width="00px"></div>
           </div>
         </div>
       </div>
@@ -275,9 +277,13 @@
 
 
     const empLoginRef = (code) => {
-      const q = query(collection(database, EMPLOYEE_TABLE), where("code", "==", "nid"));
+      const q = query(collection(database, EMPLOYEE_TABLE), where("NID", "==", code));
       return getDocs(q);
-      alert("User logged in")
+    }
+
+    const fbbCountRef = (data) => {
+      const q = query(collection(database, USER_FBB_COUNT), where("userId", "==", data.userId));
+      return getDocs(q);
     }
 
     const updateCode = async (code) => {
@@ -292,6 +298,29 @@
 
     const empLogin = async (code) => {
       const querySnapshot = await empLoginRef(code);
+    }
+
+    const getEmplData = async (code) => {
+      const querySnapshot = await empLoginRef(code);
+      let employee;
+      querySnapshot.forEach((doc) => {
+        employee = doc.data();
+      });
+
+      return employee;
+    }
+
+    const getUserFBBCountData = async (data) => {
+      const querySnapshot = await fbbCountRef(data);
+      let count;
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data());
+        if (data.date === doc.data().date) {
+          count = doc.data().count;
+        }
+      });
+
+      return count;
     }
     // This function builds the query for daily fbb count in firestore database
     const getBarcodeQuery = () => {
@@ -323,21 +352,20 @@
 
 
     const onScanSuccess = async (decodedText, decodedResult) => {
-      // handle the scanned code as you like, for example:
       let data = await getCode(parseInt(decodedText));
-      let checkoutCode = await getCode(parseInt(decodedText));
+      // let checkoutCode = await getCode(parseInt(decodedText));
       // let loginCode = await getCode(parseInt(decodedText));
       // let scanEmployee = await getCode(parseInt(decodedText));
       let loginEmpVal = await getCode(parseInt(decodedText));
 
-      data.checked_in = true; //update 1 value ie check-in
-      checkoutCode.checked_out = true;
-      loginEmpVal.last_active = getTodayDate();
+      // data.checked_in = true; //update 1 value ie check-in
+      // checkoutCode.checked_out = true;
+      // loginEmpVal.last_active = getTodayDate();
 
-      await updateCode(data);
-      await updateCheckOut(checkoutCode);
+      // await updateCode(data);
+      // await updateCheckOut(checkoutCode);
       // await getScanEmployee(scanEmployee);
-      await empLogin(loginEmpVal);
+      // await empLogin(loginEmpVal);
     }
 
 
@@ -349,13 +377,57 @@
       supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
     };
 
-    let html5QrcodeScanner = new Html5QrcodeScanner(
-      "reader", QRconfig, /* verbose= */ false);
-    html5QrcodeScanner.render(onScanSuccess);
+
+    // Handle user check verification using the scanner.
+    // 0. Create variables "activeUser" and "activeFBBCount" to store
+    // scanned user id and its check in/ check out count.
+    // 1. Create a new instance of the scanner using the "reader-user-ckeck" id.
+    // 2. create onSuccess function for "reader-user-ckeck" scanner to get the 
+    // current user id.
+    // This function should display the chick-in | check-out buttons
+
+    //TODO: cnahe scan employee to finish
+
+    let activeUser = {
+      userId: "",
+      name: "",
+      date: ""
+    };
+    let activeFBBCount = 0;
+
+    let userCheckScanner = new Html5QrcodeScanner(
+      "reader-user-ckeck", QRconfig, /* verbose= */ false
+    );
+
+    // const userTrigger1 = document.querySelector(".user-trigger"); //Remove this later
+
+    const userCheckScanOnSuccess = async (decodedText, decodedResult) => {
+      let data = await getCode(parseInt(decodedText));
+      // let data = "436515413523";
+      const emplData = await getEmplData(data);
+      activeUser.userId = emplData.id;
+      activeUser.name = emplData.name;
+      activeUser.date = getTodayDate();
+
+      activeFBBCount = await getUserFBBCountData(activeUser);
+      console.log(activeFBBCount);
+
+      const checkInBtn = document.querySelector(".checkIn-trigger");
+      const checkOutBtn = document.querySelector(".checkOut-trigger");
+      checkInBtn.classList.toggle("hide-btn");
+      checkOutBtn.classList.toggle("hide-btn");
+    }
+
+    // userTrigger1.addEventListener("click", userCheckScanOnSuccess);
+
+    userCheckScanner.render(userCheckScanOnSuccess);
+
+    // Check-in process
+
   </script>
 
   <script>
-    // modal functionality
+    // User FBB count check-in modal functionality
     const userModal = document.querySelector(".reader-modal");
     const userTrigger = document.querySelector(".user-trigger");
     const userCloseButton = document.querySelector(".reader-close-button");
@@ -364,15 +436,8 @@
       userModal.classList.toggle("show-modal");
     }
 
-    function windowOnClick(event) {
-      if (event.target === userModal) {
-        toggleModal();
-      }
-    }
-
     userTrigger.addEventListener("click", toggleModal);
     userCloseButton.addEventListener("click", toggleModal);
-    window.addEventListener("click", windowOnClick);
   </script>
 
   <script>

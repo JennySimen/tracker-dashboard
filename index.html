@@ -311,7 +311,7 @@
     const getTopWorkersQuery = () => {
       const q = query(
         collection(database, USER_FBB_COUNT),
-        where("count", ">", "30"),
+        where("count", ">", 30),
         where("date", "==", getTodayDate())
       );
       return getDocs(q);
@@ -442,10 +442,11 @@
       let loaderElement = document.getElementById("loader");
 
       if (
-        typeof usersCount == "number" &&
-        typeof workersCount == "number" &&
-        typeof dailyFBBCount == "number" &&
-        typeof barcodeCount == "number"
+        typeof usersCount === "number" &&
+        typeof workersCount === "number" &&
+        typeof dailyFBBCount === "number" &&
+        typeof barcodeCount === "number" &&
+        typeof userFirst10Data === "object"
       ) {
         loaderElement.classList.remove("show");
         loaderElement.classList.add("hide");

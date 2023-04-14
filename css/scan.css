@@ -610,6 +610,21 @@ select {
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 
+.check-in-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.hide-btn {
+  display: none;
+}
+
+.show-btn {
+  display: block;
+}
+
 
 
 
