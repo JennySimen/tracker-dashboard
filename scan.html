@@ -115,11 +115,11 @@
           <div class="box">
             <img src="assets/images/package.png">
             <p>Click on the button to open up the scanner</p>
-            <button id="scan-user" class="user-trigger">Scan Employee</button>
+            <!-- <button id="scan-user" class="user-trigger">Scan Employee</button> -->
             <button id="check-in" class="checkIn-trigger">Check-in goods</button>
             <button id="check-out" class="checkOut-trigger">Check-out goods</button>
-            <button id="loginEmp" class="login-trigger">Login Employee</button>
-            <button id="logoutEmp" class="logout-trigger">Logout Employee</button>
+            <!-- <button id="loginEmp" class="login-trigger">Login Employee</button>
+            <button id="logoutEmp" class="logout-trigger">Logout Employee</button> -->
 
           </div>
 
@@ -136,6 +136,7 @@
           </div>
         </div>
       </div>
+
 
       <div class="checkin-modal">
         <div class="modal-content">
@@ -159,7 +160,7 @@
         </div>
       </div>
 
-      <div class="login-modal">
+      <!-- <div class="login-modal">
         <div class="modal-content">
           <span class="login-close-button"><i class="bx bx-x"></i></span>
           <h1>Login Employee</h1>
@@ -180,7 +181,7 @@
             <div id="reader" width="00px"></div>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
   </section>
@@ -316,26 +317,28 @@
       return barcodes[0];
     }
 
-    const scanUser = document.getElementById("scan-user");
+    // const scanUser = document.getElementById("scan-user");
     const checkIn = document.getElementById("check-in");
     const checkOut = document.getElementById("check-out");
-    const loginEmp = document.getElementById("loginEmp");
-    const logoutEmp = document.getElementById("logoutEmp");
+    // const loginEmp = document.getElementById("loginEmp");
+    // const logoutEmp = document.getElementById("logoutEmp");
 
 
     const onScanSuccess = async (decodedText, decodedResult) => {
       // handle the scanned code as you like, for example:
-      let data = await getCode(parseInt(decodedText));
+      // let data = await getCode(parseInt(decodedText));
+      let checkInCode = await getCode(parseInt(decodedText));
       let checkoutCode = await getCode(parseInt(decodedText));
       // let loginCode = await getCode(parseInt(decodedText));
       // let scanEmployee = await getCode(parseInt(decodedText));
       let loginEmpVal = await getCode(parseInt(decodedText));
 
-      data.checked_in = true; //update 1 value ie check-in
+      data.checkInCode = true; //update 1 value ie check-in
       checkoutCode.checked_out = true;
-      loginEmpVal.last_active = getTodayDate();
+      // loginEmpVal.last_active = getTodayDate();
 
-      await updateCode(data);
+      // await updateCode(data);
+      await updateCheckOut(checkoutCode);
       await updateCheckOut(checkoutCode);
       // await getScanEmployee(scanEmployee);
       await empLogin(loginEmpVal);
@@ -355,7 +358,7 @@
     html5QrcodeScanner.render(onScanSuccess);
   </script>
 
-  <script>
+  <!-- <script>
     // modal functionality
     const userModal = document.querySelector(".reader-modal");
     const userTrigger = document.querySelector(".user-trigger");
@@ -374,7 +377,7 @@
     userTrigger.addEventListener("click", toggleModal);
     userCloseButton.addEventListener("click", toggleModal);
     window.addEventListener("click", windowOnClick);
-  </script>
+  </script> -->
 
   <script>
     // modal functionality
@@ -418,7 +421,7 @@
     window.addEventListener("click", windowOnClick);
   </script>
 
-  <script>
+  <!-- <script>
     // modal functionality
     const loginModal = document.querySelector(".login-modal");
     const loginTrigger = document.querySelector(".login-trigger");
@@ -437,10 +440,10 @@
     loginTrigger.addEventListener("click", toggleModal4);
     loginCloseButton.addEventListener("click", toggleModal4);
     window.addEventListener("click", windowOnClick);
-  </script>
+  </script> -->
 
 
-  <script>
+  <!-- <script>
     // modal functionality
     const logoutModal = document.querySelector(".logout-modal");
     const logoutTrigger = document.querySelector(".logout-trigger");
@@ -459,7 +462,7 @@
     logoutTrigger.addEventListener("click", toggleModal5);
     logoutCloseButton.addEventListener("click", toggleModal5);
     window.addEventListener("click", windowOnClick);
-  </script>
+  </script> -->
 
 </body>
 
