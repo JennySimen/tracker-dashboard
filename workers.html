@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/workers.css">
   <link rel="stylesheet" href="css/color.css">
   <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/print.min.css">
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -171,23 +172,26 @@
 
 
     <!-- modal to create employee badge -->
+  
     <div class="badge-modal badge-hide-modal">
       <div class="modal-content">
         <span class="badge-close-button"><i class="bx bx-x"></i></span>
+        <div id="myBadge">
         <div class="user-badge">
           <div id="profile-container">
             <image id="profileImage" src="assets/images/default.png" />
           </div>
           <div class="user-info-section">
-            <p id="badge-name"></p>
+            <p id="badge-name">John Doe</p>
             <p id="badge-category"></p>
           </div>
         </div>
+        </div>
         <div class="btn-section">
-          <button type="button" id="print" class="submit-btn">PRINT</button>
+          <button type="button" id="printBadge" class="submit-btn">PRINT</button>
         </div>
       </div>
-    </div>
+  </div>
   </section>
 
   <!-- modal to update employee info-->
@@ -268,10 +272,12 @@
     }
   </script>
 
-  <script src="./js/date.js"></script>
-  <script src="./js/generate_dashboard_table.js"></script>
-  <script src="./js/utils.js"></script>
-  <script src="./js/firebase.js"></script>
+<script src="./js/date.js"></script>
+<script src="./js/generate_dashboard_table.js"></script>
+<script src="./js/utils.js"></script>
+<script src="./js/firebase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+<script src="./js/print.min.js"></script>
 
   <!-- Firebase sdk setup -->
   <script type="module">
@@ -511,7 +517,7 @@
         }
       }
 
-      badgeBtn.addEventListener('click', () => {
+      badgeBtn.addEventListener('click', () => { 
         const name2 = badgeBtn.getAttribute("data-name");
         const type2 = badgeBtn.getAttribute("data-type");
 
@@ -602,6 +608,14 @@
     //   fasterPreview(this);
     // });
 
+     let printbadge = document.getElementById("printBadge");
+      
+      //function to print
+      printbadge.addEventListener('click', (e) => {
+        printJS('myBadge', 'html')
+      });
+
+
   </script>
 
   <script>
@@ -625,7 +639,7 @@
     window.addEventListener("click", windowOnClick);
   </script>
 
-
+<!-- function for the search box -->
   <script>
     function filterTable() {
       let filter = myInput.value.toUpperCase();
