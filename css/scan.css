@@ -294,7 +294,7 @@ nav .profile-details i {
   height: 100%;
   background-color: #00000080;
   opacity: 0;
-  visibility: hidden;
+  display: none;
   transform: scale(1.1);
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
@@ -383,7 +383,7 @@ select {
 
 .show-modal {
   opacity: 1;
-  visibility: visible;
+  display: block;
   transform: scale(1.0);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
@@ -402,7 +402,7 @@ select {
   height: 100%;
   background-color: #00000080;
   opacity: 0;
-  visibility: hidden;
+  display: none;
   transform: scale(1.1);
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
@@ -489,8 +489,9 @@ select {
 }
 
 .show-modal {
+  /* This is not needed */
   opacity: 1;
-  visibility: visible;
+  display: block;
   transform: scale(1.0);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
@@ -510,7 +511,7 @@ select {
   height: 100%;
   background-color: #00000080;
   opacity: 0;
-  visibility: hidden;
+  display: none;
   transform: scale(1.1);
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
@@ -532,8 +533,9 @@ select {
 }
 
 .show-modal {
+  /* This is not needed */
   opacity: 1;
-  visibility: visible;
+  display: block;
   transform: scale(1.0);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
@@ -546,7 +548,7 @@ select {
   height: 100%;
   background-color: #00000080;
   opacity: 0;
-  visibility: hidden;
+  display: none;
   transform: scale(1.1);
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
@@ -568,8 +570,9 @@ select {
 }
 
 .show-modal {
+  /* This is not needed */
   opacity: 1;
-  visibility: visible;
+  display: block;
   transform: scale(1.0);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
@@ -582,7 +585,7 @@ select {
   height: 100%;
   background-color: #00000080;
   opacity: 0;
-  visibility: hidden;
+  display: none;
   transform: scale(1.1);
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
@@ -604,8 +607,9 @@ select {
 }
 
 .show-modal {
+  /* This is not needed */
   opacity: 1;
-  visibility: visible;
+  display: block;
   transform: scale(1.0);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
@@ -621,8 +625,9 @@ select {
   display: none;
 }
 
-.show-btn {
-  display: block;
+.card-section .red-btn {
+  background-color: red;
+  border: 1px solid red;
 }
 
 

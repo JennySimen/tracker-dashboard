@@ -117,6 +117,7 @@
             <p>Click on the button to open up the scanner</p>
             <div class="check-in-section">
               <button id="scan-user" class="user-trigger">Scan Employee</button>
+              <button id="scan-user-logout" class="stop-empl-trigger red-btn hide-btn">Stop Employee</button>
               <button id="check-in" class="checkIn-trigger hide-btn">Check-in goods</button>
               <button id="check-out" class="checkOut-trigger hide-btn">Check-out goods</button>
             </div>
@@ -145,7 +146,7 @@
           <h1>Check-In Goods</h1>
           <hr />
           <div class="col">
-            <div id="reader" width="00px"></div>
+            <div id="reader-code-checkin" width="00px"></div>
           </div>
         </div>
       </div>
@@ -156,7 +157,7 @@
           <h1>Checkout Goods</h1>
           <hr />
           <div class="col">
-            <div id="reader" width="00px"></div>
+            <div id="reader-code-checkout" width="00px"></div>
           </div>
         </div>
       </div>
@@ -258,10 +259,6 @@
       return updateDoc(doc(database, BARCODE, code.id), code);
     };
 
-    const updateCheckOutRef = (code) => {
-      return updateDoc(doc(database, BARCODE, code.id), code);
-    }
-
     // const getScanEmpRef = (code) => {
     //   return updateDoc(doc(database, EMPLOYEE_TABLE, code.nid), where("code", "==", "nid"));
     //   alert("User scanned correctly")
@@ -282,8 +279,8 @@
       return getDocs(q);
     }
 
-    const fbbCountRef = (data) => {
-      const q = query(collection(database, USER_FBB_COUNT), where("userId", "==", data.userId));
+    const fbbCountRef = (userId) => {
+      const q = query(collection(database, USER_FBB_COUNT), where("userId", "==", userId));
       return getDocs(q);
     }
 
@@ -292,9 +289,20 @@
       alert("Code check-in updated");
     }
 
-    const updateCheckOut = async (code) => {
-      const querySnapshot = await updateCheckOutRef(code);
-      alert("Code check-out updated");
+    const addFBBCountQuery = async (fbbCount) => {
+      // Generate unique id
+      const newIdRef = await doc(collection(database, USER_FBB_COUNT));
+      fbbCount.id = newIdRef.id;
+      return setDoc(newIdRef, fbbCount);
+    };
+
+    const addFBBCount = async (fbbCount) => {
+      try {
+        const querySnapshot = await addFBBCountQuery(fbbCount);
+        alert("fbb count added");
+      } catch (error) {
+        console.log("Opps! FBB Count could not be added");
+      }
     }
 
     const empLogin = async (code) => {
@@ -311,13 +319,13 @@
       return employee;
     }
 
-    const getUserFBBCountData = async (data) => {
-      const querySnapshot = await fbbCountRef(data);
-      let count;
+    const getUserFBBCountData = async (data, code) => {
+      const querySnapshot = await fbbCountRef(data.userId);
+      let count = 0;
       querySnapshot.forEach((doc) => {
         console.log(doc.data());
-        if (data.date === doc.data().date) {
-          count = doc.data().count;
+        if ((data.date === doc.data().date) && (code === doc.data().code.id)) {
+          count = + 1;
         }
       });
 
@@ -378,6 +386,7 @@
       supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
     };
 
+    // ***************************************** START USER SCAN ***********************************************
 
     // Handle user check verification using the scanner.
     // 0. Create variables "activeUser" and "activeFBBCount" to store
@@ -394,7 +403,6 @@
       name: "",
       date: ""
     };
-    let activeFBBCount = 0;
 
     let userCheckScanner = new Html5QrcodeScanner(
       "reader-user-ckeck", QRconfig, /* verbose= */ false
@@ -403,27 +411,110 @@
     // const userTrigger1 = document.querySelector(".user-trigger"); //Remove this later
 
     const userCheckScanOnSuccess = async (decodedText, decodedResult) => {
-      let data = await getCode(parseInt(decodedText));
-      // let data = "436515413523";
+      // TODO:
+      // Display loader here
+
+      // let data = await getCode(parseInt(decodedText));
+      let data = "436515413523";
       const emplData = await getEmplData(data);
       activeUser.userId = emplData.id;
       activeUser.name = emplData.name;
       activeUser.date = getTodayDate();
 
-      activeFBBCount = await getUserFBBCountData(activeUser);
-      console.log(activeFBBCount);
+      console.log(emplData);
 
+      const stopUsrCheckOutBtn = document.querySelector(".stop-empl-trigger");
       const checkInBtn = document.querySelector(".checkIn-trigger");
       const checkOutBtn = document.querySelector(".checkOut-trigger");
+      stopUsrCheckOutBtn.classList.toggle("hide-btn");
       checkInBtn.classList.toggle("hide-btn");
       checkOutBtn.classList.toggle("hide-btn");
+      userTrigger.classList.toggle("hide-btn");
+      // userTrigger1.classList.toggle("hide-btn");
     }
 
     // userTrigger1.addEventListener("click", userCheckScanOnSuccess);
 
     userCheckScanner.render(userCheckScanOnSuccess);
 
-    // Check-in process
+    // ***************************************** END USER SCAN ***********************************************
+
+    // ***************************************** START CODE CHECK IN SCAN ***********************************************
+
+    let codeCheckInScanner = new Html5QrcodeScanner(
+      "reader-code-checkin", QRconfig, /* verbose= */ false
+    );
+
+    const checkIn1 = document.querySelector(".checkIn-trigger"); //Remove this later
+
+    const checkInScanOnSuccess = async (decodedText, decodedResult) => {
+      // let data = await getCode(parseInt(decodedText));
+
+      let data = await getCode(parseInt("1645071189110"));
+      console.log(data);
+      data.checked_in = true;
+      const codeData = await updateCode(data);
+    }
+
+    checkIn1.addEventListener("click", checkInScanOnSuccess);
+
+    // codeCheckInScanner.render(userCheckScanOnSuccess);
+
+    // ***************************************** STOP CODE CHECK IN SCAN ***********************************************
+
+    // ***************************************** START USER LOGOUT SCAN ***********************************************
+
+    const userLogout1 = document.querySelector(".stop-empl-trigger"); //Remove this later
+
+    const userLogoutScanOnSuccess = async () => {
+      const checkInBtn = document.querySelector(".checkIn-trigger");
+      const checkOutBtn = document.querySelector(".checkOut-trigger");
+      checkInBtn.classList.toggle("hide-btn");
+      checkOutBtn.classList.toggle("hide-btn");
+      userLogout1.classList.toggle("hide-btn");
+      userTrigger1.classList.toggle("hide-btn");
+    }
+
+    userLogout1.addEventListener("click", userLogoutScanOnSuccess);
+
+    // ***************************************** STOP USER LOGOUT SCAN ***********************************************
+
+    // ***************************************** START CODE CHECK OUT SCAN ***********************************************
+
+    let codeCheckoutScanner = new Html5QrcodeScanner(
+      "reader-code-checkout", QRconfig, /* verbose= */ false
+    );
+
+    const checkout1 = document.querySelector(".checkOut-trigger"); //Remove this later
+
+    const checkoutScanOnSuccess = async () => {
+      // let data = await getCode(parseInt(decodedText));
+
+      let data = await getCode(parseInt("1651155588702"));
+
+      data.checked_out = true;
+      const codeData = await updateCode(data);
+
+      // Add data in fbb_count table
+      let fbbCount = await getUserFBBCountData(activeUser, data.code)
+      if (fbbCount === 0) {
+        const fbb_count = {
+          code: {
+            id: data.code
+          },
+          date: activeUser.date,
+          name: activeUser.name,
+          userId: activeUser.userId
+        }
+        await addFBBCount(fbb_count);
+      }
+    }
+
+    checkout1.addEventListener("click", checkoutScanOnSuccess);
+
+    // codeCheckoutScanner.render(checkoutScanOnSuccess);
+
+    // ***************************************** STOP CODE CHECK OUT SCAN ***********************************************
 
   </script>
 
@@ -457,9 +548,9 @@
       }
     }
 
-    checkinTrigger.addEventListener("click", toggleModal2);
-    checkinCloseButton.addEventListener("click", toggleModal2);
-    window.addEventListener("click", windowOnClick);
+    // checkinTrigger.addEventListener("click", toggleModal2);
+    // checkinCloseButton.addEventListener("click", toggleModal2);
+    // window.addEventListener("click", windowOnClick);
   </script>
 
   <script>
@@ -478,7 +569,7 @@
       }
     }
 
-    checkoutTrigger.addEventListener("click", toggleModal3);
+    // checkoutTrigger.addEventListener("click", toggleModal3);
     checkoutCloseButton.addEventListener("click", toggleModal3);
     window.addEventListener("click", windowOnClick);
   </script>
@@ -499,9 +590,9 @@
       }
     }
 
-    loginTrigger.addEventListener("click", toggleModal4);
-    loginCloseButton.addEventListener("click", toggleModal4);
-    window.addEventListener("click", windowOnClick);
+    // loginTrigger.addEventListener("click", toggleModal4);
+    // loginCloseButton.addEventListener("click", toggleModal4);
+    // window.addEventListener("click", windowOnClick);
   </script>
 
 
@@ -521,9 +612,9 @@
       }
     }
 
-    logoutTrigger.addEventListener("click", toggleModal5);
-    logoutCloseButton.addEventListener("click", toggleModal5);
-    window.addEventListener("click", windowOnClick);
+    // logoutTrigger.addEventListener("click", toggleModal5);
+    // logoutCloseButton.addEventListener("click", toggleModal5);
+    // window.addEventListener("click", windowOnClick);
   </script>
 
 </body>
