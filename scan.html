@@ -169,7 +169,7 @@
           <h1>Login Employee</h1>
           <hr />
           <div class="col">
-            <div id="reader" width="00px"></div>
+            <div id="reader-code-login" width="00px"></div>
           </div>
         </div>
       </div>
@@ -181,7 +181,7 @@
           <h1>Logout Employee</h1>
           <hr />
           <div class="col">
-            <div id="reader" width="00px"></div>
+            <div id="reader-code-logout" width="00px"></div>
           </div>
         </div>
       </div>
@@ -516,6 +516,26 @@
     codeCheckoutScanner.render(checkoutScanOnSuccess);
 
     // ***************************************** STOP CODE CHECK OUT SCAN ***********************************************
+
+    let employeeLoginScanner = new Html5QrcodeScanner (
+      "reader-code-login", QRconfig, /* verbose= */ false
+    );
+
+    const empLogin1 = document.querySelector(".login-trigger"); //Remove this later
+
+
+    const empLoginScanOnSuccess = async (decodedText, decodedResult) => {
+      // let data = await getCode(parseInt(decodedText));
+
+      let data = await getCode(parseInt("1645071189110"));
+      console.log(data);
+      data.empLogin = true;
+      const codeData = await updateCode(data);
+    }
+
+    empLogin1.addEventListener("click", empLoginScanOnSuccess);
+
+    employeeLoginScanner.render(empLoginScanOnSuccess);
 
   </script>
 
