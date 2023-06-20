@@ -163,7 +163,7 @@
         </div>
       </div>
 
-      <!-- <div class="login-modal">
+      <div class="login-modal">
         <div class="modal-content">
           <span class="login-close-button"><i class="bx bx-x"></i></span>
           <h1>Login Employee</h1>
@@ -184,7 +184,7 @@
             <div id="reader" width="00px"></div>
           </div>
         </div>
-      </div> -->
+      </div>
 
 
   </section>
@@ -357,15 +357,15 @@
     const scanUser = document.getElementById("scan-user");
     const checkIn = document.getElementById("check-in");
     const checkOut = document.getElementById("check-out");
-    // const loginEmp = document.getElementById("loginEmp");
-    // const logoutEmp = document.getElementById("logoutEmp");
+    const loginEmp = document.getElementById("loginEmp");
+    const logoutEmp = document.getElementById("logoutEmp");
 
 
     const onScanSuccess = async (decodedText, decodedResult) => {
       let data = await getCode(parseInt(decodedText));
-      // let checkoutCode = await getCode(parseInt(decodedText));
-      // let loginCode = await getCode(parseInt(decodedText));
-      // let scanEmployee = await getCode(parseInt(decodedText));
+      let checkoutCode = await getCode(parseInt(decodedText));
+      let loginCode = await getCode(parseInt(decodedText));
+      let scanEmployee = await getCode(parseInt(decodedText));
       let loginEmpVal = await getCode(parseInt(decodedText));
 
       // data.checked_in = true; //update 1 value ie check-in
@@ -459,7 +459,7 @@
 
     checkIn1.addEventListener("click", checkInScanOnSuccess);
 
-    // codeCheckInScanner.render(userCheckScanOnSuccess);
+    codeCheckInScanner.render(userCheckScanOnSuccess);
 
     // ***************************************** STOP CODE CHECK IN SCAN ***********************************************
 
@@ -513,7 +513,7 @@
 
     checkout1.addEventListener("click", checkoutScanOnSuccess);
 
-    // codeCheckoutScanner.render(checkoutScanOnSuccess);
+    codeCheckoutScanner.render(checkoutScanOnSuccess);
 
     // ***************************************** STOP CODE CHECK OUT SCAN ***********************************************
 
@@ -549,9 +549,9 @@
       }
     }
 
-    // checkinTrigger.addEventListener("click", toggleModal2);
-    // checkinCloseButton.addEventListener("click", toggleModal2);
-    // window.addEventListener("click", windowOnClick);
+    checkinTrigger.addEventListener("click", toggleModal2);
+    checkinCloseButton.addEventListener("click", toggleModal2);
+    window.addEventListener("click", windowOnClick);
   </script>
 
   <script>
@@ -570,12 +570,12 @@
       }
     }
 
-    // checkoutTrigger.addEventListener("click", toggleModal3);
+    checkoutTrigger.addEventListener("click", toggleModal3);
     checkoutCloseButton.addEventListener("click", toggleModal3);
     window.addEventListener("click", windowOnClick);
   </script>
 
-  <!-- <script>
+   <script>
     // modal functionality
     const loginModal = document.querySelector(".login-modal");
     const loginTrigger = document.querySelector(".login-trigger");
@@ -591,13 +591,13 @@
       }
     }
 
-    // loginTrigger.addEventListener("click", toggleModal4);
-    // loginCloseButton.addEventListener("click", toggleModal4);
-    // window.addEventListener("click", windowOnClick);
+    loginTrigger.addEventListener("click", toggleModal4);
+    loginCloseButton.addEventListener("click", toggleModal4);
+    window.addEventListener("click", windowOnClick);
   </script>
 
 
-  <!-- <script>
+  <script>
     // modal functionality
     const logoutModal = document.querySelector(".logout-modal");
     const logoutTrigger = document.querySelector(".logout-trigger");
@@ -613,9 +613,9 @@
       }
     }
 
-    // logoutTrigger.addEventListener("click", toggleModal5);
-    // logoutCloseButton.addEventListener("click", toggleModal5);
-    // window.addEventListener("click", windowOnClick);
+    logoutTrigger.addEventListener("click", toggleModal5);
+    logoutCloseButton.addEventListener("click", toggleModal5);
+    window.addEventListener("click", windowOnClick);
   </script>
 
 </body>
