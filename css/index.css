@@ -549,6 +549,49 @@ nav .profile-details i {
   .sidebar.active~.home-section nav .profile-details {
     display: none;
   }
+
+  .top-sales .box {
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+
+  .loader {
+    left: 0;
+    right: 0;
+  }
+
+  .loader .loader-body {
+    margin-left: 20px;
+    margin-right: 0;
+    margin-top: 50px;
+  }
+
+  .home-content .sales-boxes {
+    display: flex;
+    justify-content: space-between;
+    min-height: 100px;
+  }
+  .recent-sales {
+
+  }
+  .recent-sales .box {
+    
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .home-section .loader{
+    margin: 0;
+
+  }
+
+  .graph-section {
+    width: 95%;
+    margin-bottom: 15px;
+    margin-top: 50px;
+  }
 }
 
 @media (max-width: 400px) {
