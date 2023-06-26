@@ -367,6 +367,7 @@
       let loginCode = await getCode(parseInt(decodedText));
       let scanEmployee = await getCode(parseInt(decodedText));
       let loginEmpVal = await getCode(parseInt(decodedText));
+      let logoutEmpVal = await getCode(parseInt(decodedText));
 
       // data.checked_in = true; //update 1 value ie check-in
       // checkoutCode.checked_out = true;
@@ -417,6 +418,7 @@
 
       let data = await getCode(parseInt(decodedText));
       // let data = "436515413523";
+      // console.log("QR data: ", data);
       const emplData = await getEmplData(data);
       activeUser.userId = emplData.id;
       activeUser.name = emplData.name;
@@ -536,6 +538,28 @@
     empLogin1.addEventListener("click", empLoginScanOnSuccess);
 
     employeeLoginScanner.render(empLoginScanOnSuccess);
+
+    // ***************************************** STOP EMPLOYEE LOGIN SCAN ***********************************************
+
+    let employeeLogoutScanner = new Html5QrcodeScanner (
+      "reader-code-logout", QRconfig, /* verbose= */ false
+    );
+
+    const empLogout1 = document.querySelector(".logout-trigger"); //Remove this later
+
+
+    const empLogoutScanOnSuccess = async (decodedText, decodedResult) => {
+      // let data = await getCode(parseInt(decodedText));
+
+      let data = await getCode(parseInt("1645071189110"));
+      console.log(data);
+      data.empLogout = true;
+      const codeData = await updateCode(data);
+    }
+
+    empLogout1.addEventListener("click", empLogoutScanOnSuccess);
+
+    employeeLogoutScanner.render(empLogoutScanOnSuccess);
 
   </script>
 
