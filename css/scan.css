@@ -722,6 +722,16 @@ select {
   .sidebar.active~.home-section nav .profile-details {
     display: none;
   }
+
+  .card-section .box-container .box {
+    padding: 40px;
+    margin-left: 20px;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+
 }
 
 @media (max-width: 400px) {
