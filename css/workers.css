@@ -645,9 +645,17 @@ input[type="file"] {
   }
 
   .loader .loader-body {
-    margin-left: 20px;
+    margin-left: 40px;
     margin-right: 0;
     margin-top: 50px;
+  }
+
+  .workers-section {
+    padding-left: 15px;
+  }
+
+  .workers-section .workers-table-header{
+    margin-left: 20px;
   }
 
 }
