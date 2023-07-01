@@ -689,3 +689,12 @@ input[type="file"] {
     width: calc(100% - 60px);
   }
 }
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
