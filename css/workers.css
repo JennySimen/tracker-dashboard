@@ -88,6 +88,25 @@
   width: 100%;
 }
 
+.home-section {
+  position: relative;
+  background: #f5f5f5a0;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+
+.home-section h1 {
+  color: #085877;
+  margin: 8px 15px;
+}
+
+.sidebar.active~.home-section {
+  width: calc(100% - 60px);
+  left: 60px;
+}
+
 .home-section nav {
   display: flex;
   justify-content: space-between;
@@ -195,7 +214,10 @@ nav .profile-details i {
   color: #333;
 }
 
-
+.workers-content{
+  padding-top: 100px;
+  margin-left: 25px;
+}
 
 table {
   font-family: arial, sans-serif;
@@ -630,6 +652,10 @@ input[type="file"] {
 }
 
 @media (max-width: 550px) {
+ .home-section{
+  background-color: #ffff;
+}
+
   .overview-boxes .box {
     width: 100%;
     margin-bottom: 15px;
@@ -649,15 +675,6 @@ input[type="file"] {
     margin-right: 0;
     margin-top: 50px;
   }
-
-  .workers-section {
-    padding-left: 15px;
-  }
-
-  .workers-section .workers-table-header{
-    margin-left: 20px;
-  }
-
 }
 
 @media (max-width: 400px) {
@@ -699,4 +716,3 @@ input[type="file"] {
   }
 }
 
-/* add push content sidebar style */
