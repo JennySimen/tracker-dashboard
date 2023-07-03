@@ -87,6 +87,25 @@
   width: 100%;
 }
 
+.home-section {
+  position: relative;
+  background: #ffff;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+
+.home-section h1 {
+  color: #085877;
+  margin: 8px 15px;
+}
+
+.sidebar.active~.home-section {
+  width: calc(100% - 60px);
+  left: 60px;
+}
+
 .home-section nav {
   display: flex;
   justify-content: space-between;
@@ -184,6 +203,12 @@ nav .profile-details .admin_name {
 nav .profile-details i {
   font-size: 25px;
   color: #333;
+}
+
+.report-body {
+  padding-top: 100px;
+  padding-left: 30px;
+  padding-bottom: 5px;
 }
 
 .button {
