@@ -88,6 +88,24 @@
   width: 100%;
 }
 
+.home-section {
+  position: relative;
+  background: #f5f5f5a0;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+
+.home-section h1 {
+  color: #085877;
+  margin: 8px 15px;
+}
+
+.sidebar.active~.home-section {
+  width: calc(100% - 60px);
+  left: 60px;
+}
 
 .home-section nav {
   display: flex;
@@ -188,12 +206,6 @@ nav .profile-details i {
   color: #333;
 }
 
-
-.workers-section {
-  padding: 8rem 0 0 18rem;
-}
-
-
 table {
   font-family: arial, sans-serif;
   width: 95%;
@@ -253,11 +265,17 @@ tr:nth-child(even) {
   margin-top: -20px;
 }
 
+.code-content-body {
+  padding-left: 30px;
+}
+
 .barcode-table-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
   width: 95%;
+  padding-top: 100px;
+  
 }
 
 .barcode-table-header .right-container {
@@ -503,6 +521,14 @@ select {
 }
 
 @media (max-width: 550px) {
+  .home-section{
+    background-color: #ffff;
+  }
+
+  .modal-content {
+    width: 70%;
+  }
+
   .overview-boxes .box {
     width: 100%;
     margin-bottom: 15px;
