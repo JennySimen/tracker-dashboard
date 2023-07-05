@@ -528,6 +528,11 @@ input[type="file"] {
   color: #fff;
 }
 
+.user-info-section p {
+  color: white;
+  text-align: center;
+}
+
 #imageUpload {
   display: none;
 }

@@ -180,7 +180,7 @@
             <image id="profileImage" src="assets/images/default.png" />
           </div>
           <div class="user-info-section">
-            <p id="badge-name">John Doe</p>
+            <p id="badge-name"></p>
             <p id="badge-category"></p>
           </div>
         </div>
@@ -468,6 +468,8 @@
         const type1 = updateBtn.getAttribute("data-type");
         const gender1 = updateBtn.getAttribute("data-gender");
 
+        console.log(name1);
+
         openModal();
 
         document.getElementById("update-name").value = name1;
@@ -513,8 +515,8 @@
 
         openModal();
 
-        document.getElementById("badge-name").value = name2;
-        document.getElementById("badge-category").value = type2;
+        document.getElementById("badge-name").innerText = document.getElementById("badge-name").value = name2;
+        document.getElementById("badge-category").innerText = document.getElementById("badge-category").value = type2;
 
       });
 
