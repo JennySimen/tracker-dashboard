@@ -68,6 +68,7 @@ const generate_employee_table = (data) => {
                 "<i class='bx bx-trash red del-btn' data-nid=" + employee["id"] + "></i>" +
                 "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
                 "<i class='bx bxs-user-badge badge-btn'" +
+                "' data-nid='" + employee["NID"] +
                 "' data-name='" + employee["name"] +
                 "' data-type='" + employee["type"] +
                 "' ></i>" +

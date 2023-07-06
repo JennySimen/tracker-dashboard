@@ -549,8 +549,8 @@ input[type="file"] {
 }
 
 #profile-container img {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
@@ -559,17 +559,22 @@ input[type="file"] {
   border: 1px solid #fff;
 }
 
+#badgeQr {
+  align-items: center;
+  margin-left: 150px;
+}
+
 .user-info-section {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
-.user-info-section #name {
+.user-info-section #badge-name {
   font-size: 2rem;
   font-weight: 600;
 }
 
-.user-info-section #ategory {
+.user-info-section #badge-category {
   font-size: 1.25rem;
 }
 

@@ -183,6 +183,7 @@
             <p id="badge-name"></p>
             <p id="badge-category"></p>
           </div>
+          <div id="badgeQr"></div>
         </div>
         </div>
         <div class="btn-section">
@@ -468,8 +469,6 @@
         const type1 = updateBtn.getAttribute("data-type");
         const gender1 = updateBtn.getAttribute("data-gender");
 
-        console.log(name1);
-
         openModal();
 
         document.getElementById("update-name").value = name1;
@@ -510,11 +509,16 @@
       }
 
       badgeBtn.addEventListener('click', () => { 
+        const userId2 = badgeBtn.getAttribute("data-nid");
+        const badgeNIDCreator = `<img id='badgeQrImg' src='https://api.qrserver.com/v1/create-qr-code/?data=${userId2}&amp;size=100x100'alt='' title='HELLO' width='100' height='100' />`;
         const name2 = badgeBtn.getAttribute("data-name");
         const type2 = badgeBtn.getAttribute("data-type");
 
+        console.log(userId2);
+
         openModal();
 
+        document.getElementById("badgeQr").innerHTML = document.getElementById("badgeQr").value = badgeNIDCreator;
         document.getElementById("badge-name").innerText = document.getElementById("badge-name").value = name2;
         document.getElementById("badge-category").innerText = document.getElementById("badge-category").value = type2;
 
