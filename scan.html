@@ -332,6 +332,21 @@
 
       return count;
     }
+
+    const getUserCount = async (data, code) => {
+      const querySnapshot = await empLoginRef(data.code);
+      let count = 0;
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data());
+        if ((data.date === doc.data().date) && (code == doc.data().employee.nid)) {
+          count = + 1;
+        }
+      });
+      return count;
+
+      console.log (count);
+    }
+    
     // This function builds the query for daily fbb count in firestore database
     const getBarcodeQuery = () => {
       return getDocs(collection(database, BARCODE));
@@ -529,7 +544,7 @@
     const empLoginScanOnSuccess = async (decodedText, decodedResult) => {
       // let data = await getCode(parseInt(decodedText));
 
-      let data = await getCode(parseInt("1645071189110"));
+      let data = await getCode(parseInt(decodedText));
       console.log(data);
       data.empLogin = true;
       const codeData = await updateCode(data);
