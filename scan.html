@@ -338,7 +338,7 @@
       let count = 0;
       querySnapshot.forEach((doc) => {
         console.log(doc.data());
-        if ((data.date === doc.data().date) && (code == doc.data().employee.nid)) {
+        if ((code == doc.data().employee.nid)) {
           count = + 1;
         }
       });
@@ -546,7 +546,8 @@
 
       let data = await getCode(parseInt(decodedText));
       console.log(data);
-      data.empLogin = true;
+      console.log(decodedText);
+      // data.empLogin = true;
       const codeData = await updateCode(data);
     }
 
