@@ -334,12 +334,12 @@
       return count;
     }
 
-    const getUserCount = async (code) => {
+    const getUserCount = async (data, code) => {
       const querySnapshot = await empLoginRef(data.userId);
       let count = 0;
       querySnapshot.forEach((doc) => {
         console.log(doc.data());
-        if ((code == doc.data().employee.nid)) {
+        if ((data.date === doc.data().date) && (code == doc.data().employee.nid)) {
           count = + 1;
         }
       });
@@ -549,7 +549,7 @@
       console.log(data);
       console.log(decodedText);
       // data.empLogin = true;
-      const emplData = await empLogin(data);
+      const empLoginData = await empLogin(data);
     }
 
     empLogin1.addEventListener("click", empLoginScanOnSuccess);
