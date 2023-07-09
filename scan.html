@@ -545,7 +545,7 @@
     const empLoginScanOnSuccess = async (decodedText, decodedResult) => {
       // let data = await getCode(parseInt(decodedText));
 
-      let data = await getCode(parseInt(decodedText));
+      let data = await getEmplData(parseInt(decodedText));
       console.log(data);
       console.log(decodedText);
       if (data !== undefined) {
