@@ -335,7 +335,7 @@
     }
 
     const getUserCount = async (data, code) => {
-      const querySnapshot = await empLoginRef(data.userId);
+      const querySnapshot = await empLoginRef(data.nid);
       let count = 0;
       querySnapshot.forEach((doc) => {
         console.log(doc.data());
@@ -549,7 +549,7 @@
       console.log(data);
       console.log(decodedText);
       // data.empLogin = true;
-      const empLoginData = await empLogin(decodedText);
+      const empLoginData = await empLogin(code);
     }
 
     empLogin1.addEventListener("click", empLoginScanOnSuccess);
