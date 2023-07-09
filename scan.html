@@ -308,6 +308,7 @@
 
     const empLogin = async (code) => {
       const querySnapshot = await empLoginRef(code);
+      alert("Emplyee login successful");
     }
 
     const getEmplData = async (code) => {
@@ -333,8 +334,8 @@
       return count;
     }
 
-    const getUserCount = async (data, code) => {
-      const querySnapshot = await empLoginRef(data.code);
+    const getUserCount = async (code) => {
+      const querySnapshot = await empLoginRef(data.userId);
       let count = 0;
       querySnapshot.forEach((doc) => {
         console.log(doc.data());
@@ -547,8 +548,8 @@
       let data = await getCode(parseInt(decodedText));
       console.log(data);
       console.log(decodedText);
-      // data.empLogin = true;
-      const codeData = await updateCode(data);
+      data.empLogin = true;
+      const emplData = await empLogin(data);
     }
 
     empLogin1.addEventListener("click", empLoginScanOnSuccess);
