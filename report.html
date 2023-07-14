@@ -207,8 +207,50 @@
 
     const auth = getAuth();
 
+    // function to draw graph
+    // const getReportGraphQuery = (year) => {
+    //   const q = query(collection(database, BARCODE), where("months", "in", year));
+    //   return getDocs(q);
+    // }
+
+    // const getReportGraphData = async () => {
+    // const querySnapshot = await getReportGraphQuery(getLast12Months());
+    // let graphData = [];
+    // let finalData = [];
+    // querySnapshot.forEach((doc) => {
+    //     graphData.push({ ...doc.data() });
+    //   });
+
+    //   getLast12Months().forEach((val) => {
+    //     let count = 0;
+    //     graphData.forEach(qrData => {
+    //       if (qrData.date === val) {
+    //         count += parseInt(qrData.count);
+    //       }
+    //     });
+    //     finalData.push(count);
+    //   });
+    //   console.log(getLast12Months());
+    //   console.log("================================================================");
+    //   console.log(graphData);
+    //   console.log("================================================================");
+    //   console.log(finalData);
+    //   return finalData;
+    // }
+
+
+    // window.addEventListener("DOMContentLoaded", async (e) => {
+    //   let [ 
+    //   graphData,
+    //   ] = await Promise.all(
+    //     [
+    //     getGraphData()
+    // ]);
+    
 
     var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    // var yValues = graphData;
+
 
     new Chart("productionChart", {
       type: "line",
@@ -233,6 +275,8 @@
         }
       }
     });
+
+  
 
   </script>
 
