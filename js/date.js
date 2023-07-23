@@ -33,6 +33,25 @@ const getLast7DaysDate = () => {
     return week;
 }
 
+function getLast12Months(date) {
+
+    date = new Date(date);
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+
+    return  monthIndex + '/' + year;
+}
+
+let now = new Date();
+
+for ( let i=12; i>0; i--) {
+    let newdate = now.setMonth(now.getMonth() - 1);
+    console.log(getLast12Months(newdate ));
+}
+
+
+
 const getThisMonthDate = () => {
     const dateArr = [];
     const noOfDays = Array(30).keys();
@@ -71,3 +90,4 @@ const format2Date = (dateData) => {
     const dateArr = dateData.split("-");
     return dateArr[2] + '/' + dateArr[1] + '/' + dateArr[0]
 }
+
