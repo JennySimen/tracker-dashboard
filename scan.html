@@ -285,8 +285,10 @@
       return getDocs(q);
     }
 
-    const updateCode = async (code) => {
-      const querySnapshot = await updateCheckInRef(code);
+    const updateCode = async (userId) => {
+      // const querySnapshot = await updateCheckInRef(code);
+      const q = await doc(collection(database, EMPLOYEE_TABLE));
+      //add update code
       alert("Code check-in updated");
     }
 
@@ -308,6 +310,7 @@
 
     const empLogin = async (code) => {
       const querySnapshot = await empLoginRef(code);
+
       alert("Emplyee login successful");
     }
 
@@ -551,7 +554,7 @@
       if (data !== undefined) {
       // data.empLogin = true;
       const empLoginData = await empLogin(data);
-      }
+      console.log(empLoginData);
     }
 
     empLogin1.addEventListener("click", empLoginScanOnSuccess);
