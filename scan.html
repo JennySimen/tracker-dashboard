@@ -285,12 +285,29 @@
       return getDocs(q);
     }
 
-    const updateCode = async (userId) => {
+    // const updateCode = async (user) => {
       // const querySnapshot = await updateCheckInRef(code);
-      const q = await doc(collection(database, EMPLOYEE_TABLE));
+      // const q = await doc(collection(database, EMPLOYEE_TABLE));
       //add update code
-      alert("Code check-in updated");
+      // return updateDoc(doc(database, EMPLOYEE_TABLE, user.id), use);
+      // alert("Code check-in updated");
+    // }
+
+    const updateCode = async (user) => {
+      const querySnapshot = await updateCheckInRef(code);
+      const q = await doc(collection(database, EMPLOYEE_TABLE));
+      const userData = {
+        id: decodedText,
+        data: {
+          last_active: getTodayDate(),
+        }
+      }
+      updateEmployee(userData);
     }
+
+    // const updateEmployeeRef = (user) => {
+    //   return updateDoc(doc(database, "employee", user.id), user.data);
+    // };
 
     const addFBBCountQuery = async (fbbCount) => {
       // Generate unique id
@@ -688,4 +705,4 @@
 
 </html>
 
-<!-- git pull --rebase upstream main  git push origin main     -->
+//  <!-- git pull --rebase upstream main  git push origin main     -->
