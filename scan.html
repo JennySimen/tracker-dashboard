@@ -80,36 +80,6 @@
     </nav>
 
     <div class="scan-body">
-      <!-- <div class="card-section">
-        <div class="box-container">
-          <div class="box">
-            <img src="assets/images/scanUser.png">
-            <p>Click on the button to open up the scanner</p>
-            <div id="scan-user">
-              <button id="scan-user" class="user-trigger">Scan Employee</button>
-            </div>
-          </div>
-
-          <div class="box">
-            <img src="assets/images/package.png">
-            <p>Click on the button to open up the scanner</p>
-            <button id="check-in" class="checkIn-trigger">Check-in goods</button>
-          </div>
-
-          <div class="box">
-            <img src="assets/images/package.png">
-            <p>Click on the button to open up the scanner</p>
-            <button id="check-out" class="checkOut-trigger">Check-out goods</button>
-          </div>
-
-          <div class="box">
-            <img src="assets/images/logout.webp">
-            <p>Click on the button to open up the scanner</p>
-            <button id="logoutEmp" class="logout-trigger">Logout Employee</button>
-          </div>
-        </div>
-      </div> -->
-
       <div class="card-section">
         <div class="box-container">
           <div class="box">
@@ -122,7 +92,7 @@
               <button id="check-out" class="checkOut-trigger hide-btn">Check-out goods</button>
             </div>
             <button id="loginEmp" class="login-trigger">Login Employee</button>
-            <button id="logoutEmp" class="logout-trigger">Logout Employee</button>
+            <!-- <button id="logoutEmp" class="logout-trigger">Logout Employee</button> -->
 
           </div>
 
@@ -175,7 +145,7 @@
       </div>
 
 
-      <div class="logout-modal">
+      <!-- <div class="logout-modal">
         <div class="modal-content">
           <span class="logout-close-button"><i class="bx bx-x"></i></span>
           <h1>Logout Employee</h1>
@@ -184,7 +154,7 @@
             <div id="reader-code-logout" width="00px"></div>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
   </section>
@@ -381,7 +351,7 @@
       let loginCode = await getCode(parseInt(decodedText));
       let scanEmployee = await getCode(parseInt(decodedText));
       let loginEmpVal = await getCode(parseInt(decodedText));
-      let logoutEmpVal = await getCode(parseInt(decodedText));
+      // let logoutEmpVal = await getCode(parseInt(decodedText));
 
       // data.checked_in = true; //update 1 value ie check-in
       // checkoutCode.checked_out = true;
@@ -560,25 +530,25 @@
 
     // ***************************************** STOP EMPLOYEE LOGIN SCAN ***********************************************
 
-    let employeeLogoutScanner = new Html5QrcodeScanner (
-      "reader-code-logout", QRconfig, /* verbose= */ false
-    );
+    // let employeeLogoutScanner = new Html5QrcodeScanner (
+    //   "reader-code-logout", QRconfig, /* verbose= */ false
+    // );
 
-    const empLogout1 = document.querySelector(".logout-trigger"); //Remove this later
+    // const empLogout1 = document.querySelector(".logout-trigger"); //Remove this later
 
 
-    const empLogoutScanOnSuccess = async (decodedText, decodedResult) => {
-      // let data = await getCode(parseInt(decodedText));
+    // const empLogoutScanOnSuccess = async (decodedText, decodedResult) => {
+    //   // let data = await getCode(parseInt(decodedText));
 
-      let data = await getCode(parseInt("1645071189110"));
-      console.log(data);
-      data.empLogout = true;
-      const codeData = await updateCode(data);
-    }
+    //   let data = await getCode(parseInt("1645071189110"));
+    //   console.log(data);
+    //   data.empLogout = true;
+    //   const codeData = await updateCode(data);
+    // }
 
-    empLogout1.addEventListener("click", empLogoutScanOnSuccess);
+    // empLogout1.addEventListener("click", empLogoutScanOnSuccess);
 
-    employeeLogoutScanner.render(empLogoutScanOnSuccess);
+    // employeeLogoutScanner.render(empLogoutScanOnSuccess);
   </script>
 
   <script>
