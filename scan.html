@@ -260,20 +260,9 @@
       return updateDoc(doc(database, BARCODE, code.id), code);
     };
 
-    // const getScanEmpRef = (code) => {
-    //   return updateDoc(doc(database, EMPLOYEE_TABLE, code.nid), where("code", "==", "nid"));
-    //   alert("User scanned correctly")
-    // }
-
-    // const getScanEmployee = async () => {
-    //   const querySnapshot = await getScanEmpRef();
-    //   let scanEmp = [];
-    //   // querySnapshot.forEach((doc) => {
-    //   //   scanEmp.push({ ...doc.data() });
-    //   // });
-    //   return scanEmp;
-    // }
-
+    const updateEmplDataRef = (emplData) => {
+      return updateDoc(doc(database, EMPLOYEE_TABLE, emplData.id), emplData.data);
+    }
 
     const empLoginRef = (code) => {
       const q = query(collection(database, EMPLOYEE_TABLE), where("NID", "==", code));
@@ -285,29 +274,11 @@
       return getDocs(q);
     }
 
-    // const updateCode = async (user) => {
-      // const querySnapshot = await updateCheckInRef(code);
-      // const q = await doc(collection(database, EMPLOYEE_TABLE));
-      //add update code
-      // return updateDoc(doc(database, EMPLOYEE_TABLE, user.id), use);
-      // alert("Code check-in updated");
-    // }
-
-    const updateCode = async (user) => {
+    const updateCode = async (userId) => {
       const querySnapshot = await updateCheckInRef(code);
-      const q = await doc(collection(database, EMPLOYEE_TABLE));
-      const userData = {
-        id: decodedText,
-        data: {
-          last_active: getTodayDate(),
-        }
-      }
-      updateEmployee(userData);
+      //add update code
+      alert("Code check-in updated");
     }
-
-    // const updateEmployeeRef = (user) => {
-    //   return updateDoc(doc(database, "employee", user.id), user.data);
-    // };
 
     const addFBBCountQuery = async (fbbCount) => {
       // Generate unique id
@@ -326,8 +297,15 @@
     }
 
     const empLogin = async (code) => {
-      const querySnapshot = await empLoginRef(code);
-
+      const employeeData = await getEmplData(code);
+      console.log(employeeData);
+      const userData = {
+        id: employeeData.id,
+        data: {
+          last_active: getTodayDate(),
+        }
+      }
+     await updateEmplDataRef(userData); 
       alert("Emplyee login successful");
     }
 
@@ -393,7 +371,7 @@
     const scanUser = document.getElementById("scan-user");
     const checkIn = document.getElementById("check-in");
     const checkOut = document.getElementById("check-out");
-    const loginEmp = document.getElementById("loginEmp");
+    // const loginEmp = document.getElementById("loginEmp");
     const logoutEmp = document.getElementById("logoutEmp");
 
 
@@ -565,18 +543,20 @@
     const empLoginScanOnSuccess = async (decodedText, decodedResult) => {
       // let data = await getCode(parseInt(decodedText));
 
-      let data = await getCode(parseInt(decodedText));
+      // let data = await getCode(parseInt("6342839839021"));
+      let data = "563489476235";
       console.log(data);
-      console.log(decodedText);
+      // console.log(decodedText);
       if (data !== undefined) {
       // data.empLogin = true;
       const empLoginData = await empLogin(data);
       console.log(empLoginData);
     }
-
+    
+    }
     empLogin1.addEventListener("click", empLoginScanOnSuccess);
 
-    employeeLoginScanner.render(empLoginScanOnSuccess);
+    // employeeLoginScanner.render(empLoginScanOnSuccess);
 
     // ***************************************** STOP EMPLOYEE LOGIN SCAN ***********************************************
 
@@ -599,7 +579,6 @@
     empLogout1.addEventListener("click", empLogoutScanOnSuccess);
 
     employeeLogoutScanner.render(empLogoutScanOnSuccess);
-
   </script>
 
   <script>
@@ -674,7 +653,7 @@
       }
     }
 
-    loginTrigger.addEventListener("click", toggleModal4);
+    // loginTrigger.addEventListener("click", toggleModal4);
     loginCloseButton.addEventListener("click", toggleModal4);
     window.addEventListener("click", windowOnClick);
   </script>
@@ -705,4 +684,4 @@
 
 </html>
 
-//  <!-- git pull --rebase upstream main  git push origin main     -->
+// <!-- git pull --rebase upstream main  git push origin main     -->
