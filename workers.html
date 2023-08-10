@@ -410,6 +410,14 @@
       var gender = document.getElementById('gender').value;
       var pic = document.getElementById('pic').value;
 
+
+      if (NID == "" && name == "" && category == "" && gender == "") {
+      alert("Complete the missing fields");
+        
+      window.location.reload();
+      }
+
+      else {
       const employeeData = {
         NID: NID,
         gender: gender,
@@ -422,7 +430,7 @@
       await addEmployee(employeeData);
 
       window.location.reload();
-
+    }
     });
 
     const deleteBtns = document.querySelectorAll(".del-btn");
