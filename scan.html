@@ -512,13 +512,14 @@
 
     const empLoginScanOnSuccess = async (decodedText, decodedResult) => {
 
-      let data = await getCode(parseInt(decodedText));
+      let data = decodedText;
+
+      console.log(decodedText);
 
       // let data = await getCode(parseInt("6342839839021"));
       // let data = "563489476235";
       console.log(data);
       // data.login = true;
-      console.log(decodedText);
 
       if (data !== undefined) {
       // data.empLogin = true;
