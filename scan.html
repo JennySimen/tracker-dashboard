@@ -400,7 +400,8 @@
       // TODO:
       // Display loader here
 
-      let data = await getCode(parseInt(decodedText));
+      // let data = await getCode(parseInt(decodedText));
+       let data = await getCode(decodedText);
       // let data = "436515413523";
       // console.log("QR data: ", data);
       const emplData = await getEmplData(data);
@@ -524,7 +525,7 @@
       if (data !== undefined) {
       // data.empLogin = true;
       const empLoginData = await empLogin(data);
-      console.log(empLoginData);
+      // console.log(empLoginData);
     }  
     
     }
