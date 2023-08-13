@@ -147,10 +147,10 @@
             <a href="#prod-statistics">Monthly Production</a>
           </div>
           <div class="sub-menu">
-            <a href="#loss-gain">Loss / Gain</a>
+            <a href="#">Employee Performance</a>
           </div>
           <div class="sub-menu">
-            <a href="#">Employee Performance</a>
+            <a href="#loss-gain">Loss / Gain</a>
           </div>
         </div>
       </section>
@@ -208,76 +208,93 @@
     const auth = getAuth();
 
     // function to draw graph
-    // const getReportGraphQuery = (year) => {
-    //   const q = query(collection(database, BARCODE), where("months", "in", year));
-    //   return getDocs(q);
-    // }
+    const getReportGraphQuery = (daysOfMonth) => {
+      
+      const q = query(collection(database, BARCODE),
+      where("date", "in", daysOfMonth),
+      where("checked_in", "==", true),
+      where("checked_out", "==", true),
+      );
+      return getDocs(q);
+    }
 
-    // const getReportGraphData = async () => {
-    // const querySnapshot = await getReportGraphQuery(getLast12Months());
-    // let graphData = [];
-    // let finalData = [];
-    // querySnapshot.forEach((doc) => {
-    //     graphData.push({ ...doc.data() });
-    //   });
+    const getReportGraphData = async () => {
+      let finalData = [];
+      for (const monthDates of get12MonthsDates()) { //monthDates = is used to label the names of the month
+        let monthResult = [];
 
-    //   getLast12Months().forEach((val) => {
-    //     let count = 0;
-    //     graphData.forEach(qrData => {
-    //       if (qrData.date === val) {
-    //         count += parseInt(qrData.count);
-    //       }
-    //     });
-    //     finalData.push(count);
-    //   });
-    //   console.log(getLast12Months());
-    //   console.log("================================================================");
-    //   console.log(graphData);
-    //   console.log("================================================================");
-    //   console.log(finalData);
-    //   return finalData;
-    // }
+        for (const days of monthDates ){  //days = 3 arrays of 10 items
+          const querySnapshot = await getReportGraphQuery(days);
+          querySnapshot.forEach((doc) => {
+            monthResult.push({...doc.data()});
+          });
+        };
+        console.log(monthResult);
+        finalData.push(monthResult.length);
+      };
+      console.log(finalData);
+      return finalData;
+    }
 
 
-    // window.addEventListener("DOMContentLoaded", async (e) => {
-    //   let [ 
-    //   graphData,
-    //   ] = await Promise.all(
-    //     [
-    //     getGraphData()
-    // ]);
-    
+    const getBarcodesQuery = () => {
+      const q = query(collection(database, BARCODE));
+      return getDocs(q);
+    };
 
-    var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    // var yValues = graphData;
+    const getBarcodes = async () => {
+      const querySnapshot = await getBarcodesQuery();
+      let barcodes = [];
+      querySnapshot.forEach((doc) => {
+        barcodes.push({ ...doc.data() });
+      });
+      console.log(barcodes);
+      return barcodes;
+    }
+   
+    window.addEventListener("DOMContentLoaded", async (e) => {
+      // let [ graphData ] = await Promise (getReportGraphData());
+      let [
+      barcodes,
+    ] = await Promise.all(
+      [
+        getReportGraphData(),
+      ]
+    );
+
+      var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      var yValues = barcodes;
 
 
-    new Chart("productionChart", {
-      type: "line",
-      data: {
-        labels: xValues,
-        datasets: [{
-          data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000, 5000, 7000],
-          borderColor: "green",
-          fill: false,
-          legendText: "employee"
-        }, {
-          data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100, 699, 3500],
-          borderColor: "blue",
-          fill: false,
-          legendText: "employee",
-          showInLegend: true,
-        }]
-      },
-      options: {
-        legend: {
-          display: true
-        }
-      }
+      new Chart("productionChart", {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [
+            {
+            // data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000, 5000, 7000],
+            data: yValues,
+            borderColor: "green",
+            fill: false,
+            legendText: "Total harvest"
+          }, 
+          {
+            data: [16, 17, 10, 9, 2, 7, 0, 5, 6, 7, 5, 7],
+            borderColor: "blue",
+            fill: false,
+            legendText: "Employee count",
+            showInLegend: true,
+          }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: "Report"
+            }
+          }
+        });
     });
-
-  
-
   </script>
 
   <script>
@@ -298,4 +315,6 @@
 
 </html>
 
-<!-- functions fo data of both lines on graph -->
+ <!-- functions fo data of both lines on graph -->
+
+<!-- query all dates from january -->
