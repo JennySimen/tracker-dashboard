@@ -19,3 +19,13 @@
     color: #085877;
   }
   
+  .submit-btn-short{
+    width: 30%;
+    background-color: #085877;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 0;
+    border: 1px solid #085877;
+    border-radius: 4px;
+    cursor: pointer;
+  }

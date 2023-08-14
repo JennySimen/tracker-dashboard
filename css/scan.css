@@ -89,7 +89,7 @@
 
 .home-section {
   position: relative;
-  background: #f5f5f5;
+  background: #fff;
   min-height: 100vh;
   width: calc(100% - 240px);
   left: 240px;
