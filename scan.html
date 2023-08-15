@@ -93,11 +93,12 @@
             </div>
             <button id="loginEmp" class="login-trigger">Login Employee</button>
             <!-- <button id="logoutEmp" class="logout-trigger">Logout Employee</button> -->
-
-          </div>
-
-        </div>
-      </div>
+            <p>---------------------------------</p>
+        <form class="weight">
+        <label for="tons">Weight/tons</label>
+        <input type="text" id="tons" name="tons"><br><br>
+        <button type="button" id="savebtn" class="submit-btn-short">submit</button>
+        </form>
 
       <div class="reader-modal">
         <div class="modal-content">
@@ -156,7 +157,7 @@
         </div>
       </div> -->
 
-
+     
   </section>
 
 
@@ -337,6 +338,36 @@
 
       return barcodes[0];
     }
+
+     // This function saves weight/tons input
+     const submitTonsQuery = async (tonsData) => {
+      // Generate unique id
+      const newTonsRef = await doc(collection(database, COUNTER));
+      tonsData.id = newTonsRef.id;
+      return setDoc(newTonsRef, tonsData);
+    };
+
+    const tonsCounter = async (tonsData) => {
+      try {
+        const querySnapshot = await submitTonsQuery(tonsData);
+        alert("tons saved");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    savebtn.addEventListener('click', async (e) => {
+
+      var Tons = document.getElementById('tons').value;
+
+      const counterData = {
+        tons: Tons,
+        day: getTodayDate()
+      }
+
+      await tonsCounter(counterData);    
+    });
+
 
     const scanUser = document.getElementById("scan-user");
     const checkIn = document.getElementById("check-in");
