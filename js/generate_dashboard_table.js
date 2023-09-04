@@ -79,3 +79,16 @@ const generate_employee_table = (data) => {
     }
     return tr;
 }
+
+const generate_weight_table = (data) => {
+    let tr = "";
+    data.forEach(weight => {
+        tr += "<tr>";
+        tr += "<td>" + weight["mon"] + "</td>";
+        tr += "<td>" + weight["val"] + "</td>";
+        tr += "<td>" + weight["percentage"] + "</td>";
+        tr += "</tr>";
+    });
+
+    return tr;
+}
