@@ -467,9 +467,9 @@
     const checkIn1 = document.querySelector(".checkIn-trigger"); //Remove this later
 
     const checkInScanOnSuccess = async (decodedText, decodedResult) => {
-      // let data = await getCode(parseInt(decodedText));
+      let data = await getCode(parseInt(decodedText));
 
-      let data = await getCode(parseInt("1645071189110"));
+      // let data = await getCode(parseInt("1645071189110"));
       console.log(data);
       data.checked_in = true;
       const codeData = await updateCode(data);
@@ -507,9 +507,9 @@
     const checkout1 = document.querySelector(".checkOut-trigger"); //Remove this later
 
     const checkoutScanOnSuccess = async () => {
-      // let data = await getCode(parseInt(decodedText));
+      let data = await getCode(parseInt(decodedText));
 
-      let data = await getCode(parseInt("1651155588702"));
+      // let data = await getCode(parseInt("1651155588702"));
 
       data.checked_out = true;
       const codeData = await updateCode(data);
