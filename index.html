@@ -68,11 +68,6 @@
         <span class="dashboard">Dashboard</span>
       </div>
 
-      <!-- <div class="profile-details">
-        <img src="images/profile.jpg" alt="">
-        <span class="admin_name">Admin</span>
-        <i class='bx bx-chevron-down'></i>
-      </div> -->
     </nav>
     <div id="loader" class="loader show">
       <div class="loader-body">
@@ -301,11 +296,34 @@
       return getDocs(q);
     };
 
-    // This function runs the query and resolves the result
+    // This function returns the result
     const getBarcodeCount = async () => {
       const querySnapshot = await getBarcodeCountQuery();
       return querySnapshot.size;
     }
+
+    //This function runs query for tons per day
+    const getTonsQuery = () => {
+      const q = query(collection(database, COUNTER), where("day", "==", getTodayDate()));
+      return getDocs(q);
+    }
+
+    //This function runs query and resolves 
+        const getDailyTonsCount =  async () => {
+          const querySnapshot = await getTonsQuery();
+
+          let sum = 0;
+          let ton = {
+          val: 0,
+          };
+          querySnapshot.forEach((doc) => {
+
+          sum += doc.data().tons;
+
+          });
+          return sum;
+        };
+
 
     // This function builds the query for all users count in firestore database
     const getTopWorkersQuery = () => {
@@ -421,7 +439,8 @@
       let [
         usersCount,
         workersCount,
-        dailyFBBCount,
+        // dailyFBBCount,
+        dailyTonsCount,
         barcodeCount,
         userFirst10Data,
         topWorkers,
@@ -430,7 +449,8 @@
         [
           getTodayUserCount(),
           getWorkersCount(),
-          getDailyFBBCount(),
+          // getDailyFBBCount(),
+          getDailyTonsCount(),
           getBarcodeCount(),
           getfirst10UserData(),
           getTopWorkers(),
@@ -444,7 +464,8 @@
       if (
         typeof usersCount === "number" &&
         typeof workersCount === "number" &&
-        typeof dailyFBBCount === "number" &&
+        // typeof dailyFBBCount === "number" &&
+        typeof dailyTonsCount === "number" &&
         typeof barcodeCount === "number" &&
         typeof userFirst10Data === "object"
       ) {
@@ -454,7 +475,7 @@
 
       document.getElementById("user-count").innerText = padO(usersCount);
       document.getElementById("worker-count").innerText = padO(workersCount);
-      document.getElementById("ffb-daily-count").innerText = padO(dailyFBBCount);
+      document.getElementById("ffb-daily-count").innerText = dailyTonsCount;
       document.getElementById("barcode-count").innerText = padO(barcodeCount);
       let tableBody = document.getElementById("dashboard-table-data").innerHTML + generate_table(userFirst10Data);
       document.getElementById("dashboard-table-data").innerHTML = tableBody;
