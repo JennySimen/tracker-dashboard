@@ -431,9 +431,9 @@
       // TODO:
       // Display loader here
 
-      let data = await getCode(parseInt(decodedText));
+      // let data = await getCode(parseInt(decodedText));
       //  let data = await getCode(pdecodedText);
-      // let data = "436515413523";
+      let data = decodedText;
       // console.log("QR data: ", data);
       const emplData = await getEmplData(data);
       activeUser.userId = emplData.id;
