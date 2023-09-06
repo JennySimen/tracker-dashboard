@@ -449,10 +449,10 @@
       checkInBtn.classList.toggle("hide-btn");
       checkOutBtn.classList.toggle("hide-btn");
       userTrigger.classList.toggle("hide-btn");
-      userTrigger1.classList.toggle("hide-btn");
+      // userTrigger1.classList.toggle("hide-btn");
     }
 
-    // userTrigger1.addEventListener("click", userCheckScanOnSuccess);
+    userTrigger.addEventListener("click", userCheckScanOnSuccess);
 
     userCheckScanner.render(userCheckScanOnSuccess);
 
