@@ -432,8 +432,9 @@
       // Display loader here
 
       // let data = await getCode(parseInt(decodedText));
-      //  let data = await getCode(pdecodedText);
+      //  let data = await getCode(decodedText);
       let data = decodedText;
+
       // console.log("QR data: ", data);
       const emplData = await getEmplData(data);
       activeUser.userId = emplData.id;
@@ -467,7 +468,7 @@
     const checkIn1 = document.querySelector(".checkIn-trigger"); //Remove this later
 
     const checkInScanOnSuccess = async (decodedText, decodedResult) => {
-      let data = await getCode(parseInt(decodedText));
+      let data = await getCode(decodedText);
 
       // let data = await getCode(parseInt("1645071189110"));
       console.log(data);
