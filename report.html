@@ -71,15 +71,6 @@
         <i class='bx bx-menu sidebarBtn'></i>
         <span class="dashboard">Dashboard</span>
       </div>
-      <!-- <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <i class='bx bx-search'></i>
-      </div> -->
-      <!-- <div class="profile-details">
-        <img src="images/profile.jpg" alt="">
-        <span class="admin_name">Admin</span>
-        <i class='bx bx-chevron-down'></i>
-      </div> -->
     </nav>
     <!-- navbar ends here -->
 
@@ -98,42 +89,14 @@
 
         <div id="loss-gain" class="report-table">
           <h1>Loss /Gain statistics</h1>
-          <table>
-            <tr>
-              <th>Month</th>
-              <th>Total FFB Produce</th>
-              <th>% Loss/Gain</th>
-            </tr>
-            <tr>
-              <td>January</td>
-              <td>678</td>
-              <td>20%<i class='bx bx-up-arrow-alt green icon-large'></i></td>
-            </tr>
-            <tr>
-              <td>February</td>
-              <td>1234</td>
-              <td>10%<i class='bx bx-down-arrow-alt red icon-large'></i></td>
-            </tr>
-            <tr>
-              <td>March</td>
-              <td>867</td>
-              <td>5%<i class='bx bx-down-arrow-alt red icon-large'></i></td>
-            </tr>
-            <tr>
-              <td>April</td>
-              <td>867</td>
-              <td>0%<i class='bx bx-right-arrow-alt icon-large'></i></td>
-            </tr>
-            <tr>
-              <td>May</td>
-              <td>867</td>
-              <td>1%<i class='bx bx-down-arrow-alt green icon-large'></i></td>
-            </tr>
-            <tr>
-              <td>June</td>
-              <td>867</td>
-              <td>0%<i class='bx bx-down-arrow-alt icon-large'></i></td>
-            </tr>
+          <table id="myTable">
+            <thead>
+              <tr>
+                <th class="topic">Month</th>
+                <th class="topic">Total FFB Produce</th>
+                <th class="topic">% Loss/Gain</th>
+              </tr>
+            </thead>
             <tbody id="report-table-data"></tbody>
           </table>
         </div>
@@ -207,7 +170,7 @@
 
     const auth = getAuth();
 
-    // function to draw graph
+    // function to get scanned barcode data
     const getReportGraphQuery = (daysOfMonth) => {
       
       const q = query(collection(database, BARCODE),
@@ -252,19 +215,56 @@
       return barcodes;
     }
    
+    // function to get weight of FFB tons
+    const getWeightGraphQuery = (daysOfMonth) => {
+      
+      const q = query(collection(database, COUNTER), where("day", "in", daysOfMonth));
+      return getDocs(q);
+    }
+
+    const getWeightGraphData = async () => {
+      let secondFinalData = [];
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+      for (const [index, monthDates] of get12LastMonthsDates().entries()) { //monthDates = is used to label the names of the month
+        let secondMonthResult = {
+          mon: months[index],
+          val: 0,
+          percentage: 0
+        };
+
+        for (const days of monthDates ){  //days = 3 arrays of 10 items
+          const querySnapshot = await getWeightGraphQuery(days);
+          querySnapshot.forEach((doc) => {
+            secondMonthResult.val += doc.data().tons;
+          });
+        };
+        console.log(secondMonthResult);
+        secondFinalData.push(secondMonthResult);
+
+      };
+      return secondFinalData;
+    }
+
+
     window.addEventListener("DOMContentLoaded", async (e) => {
-      // let [ graphData ] = await Promise (getReportGraphData());
+
       let [
       barcodes,
-    ] = await Promise.all(
+      weights,
+      ] = await Promise.all(
       [
         getReportGraphData(),
+        getWeightGraphData(),
       ]
-    );
+      );
+
+       //generate table for ffb report
+     let tableBody = document.getElementById("report-table-data").innerHTML + generate_weight_table(weights);
+    document.getElementById("report-table-data").innerHTML = tableBody;
 
       var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var yValues = barcodes;
-
+      // var zValues = sumWeight;
 
       new Chart("productionChart", {
         type: "line",
@@ -279,7 +279,8 @@
             legendText: "Total harvest"
           }, 
           {
-            data: [16, 17, 10, 9, 2, 7, 0, 5, 6, 7, 5, 7],
+            // data: [16, 17, 10, 9, 2, 7, 0, 5, 6, 7, 5, 7],
+            // data: zValues,
             borderColor: "blue",
             fill: false,
             legendText: "Employee count",
@@ -293,8 +294,9 @@
               text: "Report"
             }
           }
-        });
+       });
     });
+
   </script>
 
   <script>
