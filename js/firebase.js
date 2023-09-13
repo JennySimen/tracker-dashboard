@@ -5,9 +5,9 @@ const BARCODE = "barcode";
 const USER_FBB_COUNT = "user_fbb_count";
 const COUNTER = "counter";
 
-const WORKERS = "WORKER"
+const WORKERS = "worker"
 const SECURITY = "SECURITY"
-const ADMIN = "ADMINISTRATOR"
+const ADMIN = "admin"
 
 const config = {
     apiKey: "AIzaSyCwxMVF2fcArl-qCk0eu3VXndHRgFVn9Tw",
