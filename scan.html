@@ -96,7 +96,7 @@
             <p>---------------------------------</p>
         <form class="weight">
         <label for="tons">Weight/tons</label>
-        <input type="text" id="tons" name="tons"><br><br>
+        <input type="number" id="tons" name="tons"><br><br>
         <button type="button" id="savebtn" class="submit-btn-short">submit</button>
         </form>
 
@@ -361,7 +361,7 @@
       var Tons = document.getElementById('tons').value;
 
       const counterData = {
-        tons: Tons,
+        tons: Number(Tons),
         day: getTodayDate()
       }
 
