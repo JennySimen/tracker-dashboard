@@ -146,16 +146,18 @@
       </div>
 
 
-      <!-- <div class="logout-modal">
+      <div class="userCount-modal">
         <div class="modal-content">
-          <span class="logout-close-button"><i class="bx bx-x"></i></span>
-          <h1>Logout Employee</h1>
+          <span class="userCount-close-button"><i class="bx bx-x"></i></span>
+          <h1>Enter harvest count</h1>
           <hr />
+          <input type="number" id="count" name="count"><br><br>
+          <button type="button" id="save" class="submit-btn-short">submit</button>
           <div class="col">
-            <div id="reader-code-logout" width="00px"></div>
+            <div id="reader-code-userCount" width="00px"></div>
           </div>
         </div>
-      </div> -->
+      </div>
 
      
   </section>
@@ -447,11 +449,13 @@
       const stopUsrCheckOutBtn = document.querySelector(".stop-empl-trigger");
       const checkInBtn = document.querySelector(".checkIn-trigger");
       const checkOutBtn = document.querySelector(".checkOut-trigger");
+      const usercountModal = document.querySelector(".userModal-trigger");
       stopUsrCheckOutBtn.classList.toggle("hide-btn");
       checkInBtn.classList.toggle("hide-btn");
       checkOutBtn.classList.toggle("hide-btn");
       userTrigger.classList.toggle("hide-btn");
       // userTrigger1.classList.toggle("hide-btn");
+      usercountModal.classList.toggle("show-modal");
     }
 
     userTrigger.addEventListener("click", userCheckScanOnSuccess);
@@ -667,26 +671,26 @@
   </script>
 
 
-  <!-- <script>
+  <script>
     // modal functionality
-    const logoutModal = document.querySelector(".logout-modal");
-    const logoutTrigger = document.querySelector(".logout-trigger");
-    const logoutCloseButton = document.querySelector(".logout-close-button");
+    const userCountModal = document.querySelector(".userCount-modal");
+    const userCountTrigger = document.querySelector(".userCount-trigger");
+    const userCountCloseButton = document.querySelector(".userCount-close-button");
 
     const toggleModal5 = () => {
       logoutModal.classList.toggle("show-modal");
     }
 
     function windowOnClick(event) {
-      if (event.target === logoutModal) {
+      if (event.target === userCounttModal) {
         toggleModal5();
       }
     }
 
-    logoutTrigger.addEventListener("click", toggleModal5);
-    logoutCloseButton.addEventListener("click", toggleModal5);
+    userCountTrigger.addEventListener("click", toggleModal5);
+    userCountCloseButton.addEventListener("click", toggleModal5);
     window.addEventListener("click", windowOnClick);
-  </script> -->
+  </script>
 
 </body>
 

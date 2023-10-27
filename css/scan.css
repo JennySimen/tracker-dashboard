@@ -578,7 +578,7 @@ select {
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.logout-modal {
+.userCount-modal {
   position: fixed;
   left: 0;
   top: 0;
@@ -591,15 +591,15 @@ select {
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.logout-modal h1 {
+.userCount-modal h1 {
   font-weight: 600;
 }
 
-.logout-modal form {
+.userCount-modal form {
   margin-top: 1rem;
 }
 
-.logout-modal .input-section {
+.userCount-modal .input-section {
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
