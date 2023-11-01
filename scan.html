@@ -90,6 +90,7 @@
               <button id="scan-user-logout" class="stop-empl-trigger red-btn hide-btn">Stop Employee</button>
               <button id="check-in" class="checkIn-trigger hide-btn">Check-in goods</button>
               <button id="check-out" class="checkOut-trigger hide-btn">Check-out goods</button>
+              <button id="user-count" class="userCount-trigger hide-btn">Input FFB Count</button>
             </div>
             <button id="loginEmp" class="login-trigger">Login Employee</button>
             <!-- <button id="logoutEmp" class="logout-trigger">Logout Employee</button> -->
@@ -376,7 +377,7 @@
     const checkIn = document.getElementById("check-in");
     const checkOut = document.getElementById("check-out");
     const loginEmp = document.getElementById("loginEmp");
-    // const logoutEmp = document.getElementById("logoutEmp");
+    const userCount = document.getElementById("user-count");
 
 
     const onScanSuccess = async (decodedText, decodedResult) => {
@@ -449,15 +450,15 @@
       const stopUsrCheckOutBtn = document.querySelector(".stop-empl-trigger");
       const checkInBtn = document.querySelector(".checkIn-trigger");
       const checkOutBtn = document.querySelector(".checkOut-trigger");
-      // const usercountModal = document.querySelector(".userModal-trigger");
+      const userCountBtn = document.querySelector(".userCount-trigger")
+
       stopUsrCheckOutBtn.classList.toggle("hide-btn");
       checkInBtn.classList.toggle("hide-btn");
       checkOutBtn.classList.toggle("hide-btn");
       userTrigger.classList.toggle("hide-btn");
       // userTrigger1.classList.toggle("hide-btn");
-      // usercountModal.classList.toggle("show-modal");
+      userCountBtn.classList.toggle("hide-btn");
     }
-
     userTrigger.addEventListener("click", userCheckScanOnSuccess);
 
     userCheckScanner.render(userCheckScanOnSuccess);
@@ -671,8 +672,8 @@
   </script>
 
 
-  <script>
-    // modal functionality
+   <script>
+  //   // modal functionality
     const userCountModal = document.querySelector(".userCount-modal");
     const userCountTrigger = document.querySelector(".userCount-trigger");
     const userCountCloseButton = document.querySelector(".userCount-close-button");
@@ -682,7 +683,7 @@
     }
 
     function windowOnClick(event) {
-      if (event.target === userCounttModal) {
+      if (event.target === userCountModal) {
         toggleModal5();
       }
     }
@@ -696,4 +697,4 @@
 
 </html>
 
-// <!-- git pull --rebase upstream main  git push origin main     -->
+ <!-- git pull --rebase upstream main  git push origin main     -->
