@@ -82,8 +82,11 @@
           <div class="chart-header">
             <h1>Statistics (Employee / Statistics)</h1>
           </div>
-          <div>
+          <div class="prodStat show-graph">
             <canvas id="productionChart" style="width:100%;max-width:100%"></canvas>
+          </div>
+          <div class="empStat hide-graph">
+            <canvas id="ffbChart" style="width:100%;max-width:100%"></canvas>
           </div>
         </div>
 
@@ -106,11 +109,11 @@
         <div class="sub-nav">
           <h3>Sections</h3>
           <hr />
-          <div class="sub-menu">
-            <a href="#prod-statistics">Monthly Production</a>
+          <div class="sub-menu prodTrigger">
+            Monthly Production
           </div>
-          <div class="sub-menu">
-            <a href="#">Employee Performance</a>
+          <div class="sub-menu empTrigger">
+            Employee Performance
           </div>
           <div class="sub-menu">
             <a href="#loss-gain">Loss / Gain</a>
@@ -169,6 +172,26 @@
     const database = getFirestore();
 
     const auth = getAuth();
+
+    const prodBtn = document.querySelector(".prodStat");
+    const empBtn = document.querySelector(".empStat");
+    const productionTrigger = document.querySelector(".prodTrigger");
+    const FFBTrigger = document.querySelector(".empTrigger");
+
+    function toggleChart() {
+      prodBtn.classList.toggle("show-graph");
+      empBtn.classList.toggle("show-graph");
+
+      prodBtn.classList.toggle("hide-graph");
+      empBtn.classList.toggle("hide-graph");
+
+    }
+
+    productionTrigger.addEventListener("click", toggleChart);
+    FFBTrigger.addEventListener("click", toggleChart);
+
+
+
 
     // function to get scanned barcode data
     const getReportGraphQuery = (daysOfMonth) => {
@@ -236,6 +259,7 @@
           const querySnapshot = await getWeightGraphQuery(days);
           querySnapshot.forEach((doc) => {
             secondMonthResult.val += doc.data().tons;
+            secondMonthResult.percentage = percentageValue(50, secondMonthResult.val);
           });
         };
         console.log(secondMonthResult);
@@ -245,12 +269,17 @@
       return secondFinalData;
     }
 
+    function percentageValue(defaultValue, currentValue) {
+      return ((currentValue/defaultValue)*100)-100;
+      
+    }
+
 
     window.addEventListener("DOMContentLoaded", async (e) => {
 
       let [
       barcodes,
-      weights,
+      weights,  
       ] = await Promise.all(
       [
         getReportGraphData(),
@@ -262,9 +291,11 @@
      let tableBody = document.getElementById("report-table-data").innerHTML + generate_weight_table(weights);
     document.getElementById("report-table-data").innerHTML = tableBody;
 
+    //function to hide and display graph
+
       var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var yValues = barcodes;
-      // var zValues = sumWeight;
+      // var zValues = weightLine;
 
       new Chart("productionChart", {
         type: "line",
@@ -276,14 +307,15 @@
             data: yValues,
             borderColor: "green",
             fill: false,
-            legendText: "Total harvest"
+            legendText: "Employees",
+            legendText: "QR used"
           }, 
           {
             // data: [16, 17, 10, 9, 2, 7, 0, 5, 6, 7, 5, 7],
             // data: zValues,
             borderColor: "blue",
             fill: false,
-            legendText: "Employee count",
+            legendText: "Tons",
             showInLegend: true,
           }]
         },
@@ -295,7 +327,43 @@
             }
           }
        });
-    });
+
+      var iValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      // var yValues = barcodes;
+      // var zValues = weightLine;
+
+      new Chart("ffbChart", {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [
+            {
+            data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000, 5000, 7000],
+            // data: yValues,
+            borderColor: "green",
+            fill: false,
+            legendText: "Employees",
+            legendText: "QR used"
+          }, 
+          {
+            data: [16, 17, 10, 9, 2, 7, 0, 5, 6, 7, 5, 7],
+            // data: zValues,
+            borderColor: "blue",
+            fill: false,
+            legendText: "Tons",
+            showInLegend: true,
+          }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: "Report"
+            }
+          }
+       });
+
+      });
 
   </script>
 
@@ -316,7 +384,3 @@
 </body>
 
 </html>
-
- <!-- functions fo data of both lines on graph -->
-
-<!-- query all dates from january -->
