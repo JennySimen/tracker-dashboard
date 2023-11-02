@@ -86,7 +86,14 @@ const generate_weight_table = (data) => {
         tr += "<tr>";
         tr += "<td>" + weight["mon"] + "</td>";
         tr += "<td>" + weight["val"] + "</td>";
-        tr += "<td>" + weight["percentage"] + "</td>";
+        if (weight["percentage"]>0) {
+            tr += "<td class='green' >" + weight["percentage" ] + "%" + "<i class='bx bx-up-arrow-alt green'></i>" + "</td>";
+        } else if(weight["percentage"]<0) {
+            tr += "<td class='red' >" + Math.abs(weight["percentage" ]) + "%" + "<i class='bx bx-down-arrow-alt red'></i>" + "</td>";
+        }
+        else {
+            tr += "<td class='gray'>" + weight["percentage" ] + "%" + "<i class='bx bx-right-arrow-alt'></i>" + "</td>";
+        }
         tr += "</tr>";
     });
 
