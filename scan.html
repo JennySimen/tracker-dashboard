@@ -474,9 +474,9 @@
     const checkIn1 = document.querySelector(".checkIn-trigger"); //Remove this later
 
     const checkInScanOnSuccess = async (decodedText, decodedResult) => {
-      // let data = await getCode(decodedText);
+      let data = await getCode(decodedText);
 
-      let data = await getCode(parseInt("1431357264597"));
+      // let data = await getCode(parseInt("1431357264597"));
       console.log(data);
       data.checked_in = true;
       const codeData = await updateCode(data);
