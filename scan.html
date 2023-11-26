@@ -484,24 +484,24 @@
 
     checkIn1.addEventListener("click", checkInScanOnSuccess);
 
-    codeCheckInScanner.render(userCheckScanOnSuccess);
+    codeCheckInScanner.render(checkInScanOnSuccess);
 
     // ***************************************** STOP CODE CHECK IN SCAN ***********************************************
 
     // ***************************************** START USER LOGOUT SCAN ***********************************************
 
-    const userLogout1 = document.querySelector(".stop-empl-trigger"); //Remove this later
+    // const userLogout1 = document.querySelector(".stop-empl-trigger"); //Remove this later
 
-    const userLogoutScanOnSuccess = async () => {
-      const checkInBtn = document.querySelector(".checkIn-trigger");
-      const checkOutBtn = document.querySelector(".checkOut-trigger");
-      checkInBtn.classList.toggle("hide-btn");
-      checkOutBtn.classList.toggle("hide-btn");
-      userLogout1.classList.toggle("hide-btn");
-      userTrigger1.classList.toggle("hide-btn");
-    }
+    // const userLogoutScanOnSuccess = async () => {
+    //   const checkInBtn = document.querySelector(".checkIn-trigger");
+    //   const checkOutBtn = document.querySelector(".checkOut-trigger");
+    //   checkInBtn.classList.toggle("hide-btn");
+    //   checkOutBtn.classList.toggle("hide-btn");
+    //   userLogout1.classList.toggle("hide-btn");
+    //   userTrigger1.classList.toggle("hide-btn");
+    // }
 
-    userLogout1.addEventListener("click", userLogoutScanOnSuccess);
+    // userLogout1.addEventListener("click", userLogoutScanOnSuccess);
 
     // ***************************************** STOP USER LOGOUT SCAN ***********************************************
 
