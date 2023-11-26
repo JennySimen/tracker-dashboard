@@ -513,11 +513,11 @@
 
     const checkout1 = document.querySelector(".checkOut-trigger"); //Remove this later
 
-    const checkoutScanOnSuccess = async () => {
+    const checkoutScanOnSuccess = async (decodedText, decodedResult) => {
       let data = await getCode(parseInt(decodedText));
 
       // let data = await getCode(parseInt("1651155588702"));
-
+      console.log(data);
       data.checked_out = true;
       const codeData = await updateCode(data);
 
