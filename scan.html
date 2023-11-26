@@ -248,7 +248,7 @@
       return getDocs(q);
     }
 
-    const updateCode = async (userId) => {
+    const updateCode = async (code) => {
       const querySnapshot = await updateCheckInRef(code);
       //add update code
       alert("Code check-in updated");
