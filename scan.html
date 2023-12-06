@@ -382,13 +382,13 @@
     }
 
     save.addEventListener('click', async (e) => {
-      var userHarvest = document.getElementById('usercount').value;
+      var userHarvest = document.getElementById('count').value;
 
       const userCount = {
         count: Number(userHarvest)
       }
-      usercount.value = "";
-      await fruitCounter(userCount);
+      count.value = "";
+      await fruitCounter(Count);
     })
 
     const scanUser = document.getElementById("scan-user");
