@@ -372,6 +372,24 @@
       await tonsCounter(counterData);    
     });
 
+    const fruitCounter = async (fruitData) => {
+      try {
+        const querySnapshot = await submitFruitQuery(fruitData);
+        alert("Fruit count saved");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    save.addEventListener('click', async (e) => {
+      var userHarvest = document.getElementById('usercount').value;
+
+      const userCount = {
+        count: Number(userHarvest)
+      }
+      usercount.value = "";
+      await fruitCounter(userCount);
+    })
 
     const scanUser = document.getElementById("scan-user");
     const checkIn = document.getElementById("check-in");
@@ -530,7 +548,9 @@
           },
           date: activeUser.date,
           name: activeUser.name,
-          userId: activeUser.userId
+          userId: activeUser.userId,
+          packages: +1,
+          count: fruitCounter(usercount)
         }
         await addFBBCount(fbb_count);
       }
