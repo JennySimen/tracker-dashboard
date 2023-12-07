@@ -259,8 +259,9 @@
     const addFBBCountQuery = async (fbbCount) => {
       // Generate unique id
       const newIdRef = await doc(collection(database, USER_FBB_COUNT));
-      fbbCount.id = newIdRef.id;
-      window.lastId = fbbCount.id;
+      const newId = newIdRef.id;
+      fbbCount.id = newId;
+      window.lastId = newId;
       return setDoc(newIdRef, fbbCount);
     };
 
