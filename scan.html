@@ -532,9 +532,11 @@
     const checkout1 = document.querySelector(".checkOut-trigger"); //Remove this later
 
     const checkoutScanOnSuccess = async (decodedText, decodedResult) => {
-      let data = await getCode(parseInt(decodedText));
+      let data;
+      if(typeof data === undefined) {
+        data = await getCode(parseInt(decodedText));
 
-      // let data = await getCode(parseInt("1651155588702"));
+         // let data = await getCode(parseInt("1651155588702"));
       console.log(data);
       data.checked_out = true;
       const codeData = await updateCode(data);
@@ -554,6 +556,9 @@
         }
         await addFBBCount(fbb_count);
     }
+      }
+
+     
     // else if(ffbCount !== 0) {
     //   const ffb_count = {
     //       code: {
