@@ -258,7 +258,7 @@
       // Generate unique id
       const newIdRef = await doc(collection(database, USER_FBB_COUNT));
       fbbCount.id = newIdRef.id;
-      lastId.id = fbbCount.id;
+      window.lastId = fbbCount.id;
       return setDoc(newIdRef, fbbCount);
     };
 
@@ -373,14 +373,14 @@
       await tonsCounter(counterData);    
     });
 
-    const fruitCounter = async (fruitData) => {
-      try {
-        const querySnapshot = await submitFruitQuery(fruitData);
-        alert("Fruit count saved");
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    // const fruitCounter = async (fruitData) => {
+    //   try {
+    //     const querySnapshot = await submitFruitQuery(fruitData);
+    //     alert("Fruit count saved");
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // }
 
     document.getElementById("saveCount").addEventListener('click', async (e) => {
       // var userHarvest = document.getElementById('count').value;
@@ -390,7 +390,7 @@
       // }
       // count.value = "";
       // await fruitCounter(userCount);
-      console.log(lastId);
+      console.log(window.lastId);
     })
 
     const scanUser = document.getElementById("scan-user");
@@ -445,9 +445,7 @@
       date: ""
     };
 
-    let lastId = {
-      id: null
-    };
+    window.lastId = null;
 
     let userCheckScanner = new Html5QrcodeScanner(
       "reader-user-ckeck", QRconfig, /* verbose= */ false
