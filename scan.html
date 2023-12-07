@@ -254,11 +254,16 @@
       alert("Code value updated");
     }
 
+    // const addFBBCountQuery = async (fbbCount) => {
+    //   // Generate unique id
+    //   const newIdRef = await doc(collection(database, USER_FBB_COUNT));
+    //   fbbCount.id = newIdRef.id;
+    //   return setDoc(newIdRef, fbbCount);
+    // };
+
     const addFBBCountQuery = async (fbbCount) => {
-      // Generate unique id
-      const newIdRef = await doc(collection(database, USER_FBB_COUNT));
-      fbbCount.id = newIdRef.id;
-      return setDoc(newIdRef, fbbCount);
+      // update user fruit count
+      return updateDoc(doc(database, USER_FBB_COUNT), packages);
     };
 
     const addFBBCount = async (fbbCount) => {
@@ -349,6 +354,10 @@
       tonsData.id = newTonsRef.id;
       return setDoc(newTonsRef, tonsData);
     };
+
+    const submitFruitQuery = async(fruitData) => {
+      
+    }
 
     const tonsCounter = async (tonsData) => {
       try {
@@ -554,6 +563,12 @@
         }
         await addFBBCount(fbb_count);
       }
+      // else if(ffbCount !== 0) {
+      //   const ffb_count = {
+      //     packages: +1
+      //   }
+      //   await addFBBCount(ffb_count);
+      // }
     }
 
     checkout1.addEventListener("click", checkoutScanOnSuccess);
