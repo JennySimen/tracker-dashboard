@@ -258,7 +258,7 @@
       // Generate unique id
       const newIdRef = await doc(collection(database, USER_FBB_COUNT));
       fbbCount.id = newIdRef.id;
-      lastNewId.id = fbbCount.id;
+      lastId.id = fbbCount.id;
       return setDoc(newIdRef, fbbCount);
     };
 
@@ -445,6 +445,10 @@
       date: ""
     };
 
+    let lastId = {
+      id: null
+    };
+
     let userCheckScanner = new Html5QrcodeScanner(
       "reader-user-ckeck", QRconfig, /* verbose= */ false
     );
@@ -530,10 +534,6 @@
     let codeCheckoutScanner = new Html5QrcodeScanner(
       "reader-code-checkout", QRconfig, /* verbose= */ false
     );
-
-    let lastId = {
-      id: null
-    }
 
     const checkout1 = document.querySelector(".checkOut-trigger"); //Remove this later
 
