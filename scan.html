@@ -230,6 +230,8 @@
     //Firestore connection
     const database = getFirestore(app);
 
+    window.lastId = null;
+
     const updateCheckInRef = (code) => {
       return updateDoc(doc(database, BARCODE, code.id), code);
     };
@@ -444,8 +446,6 @@
       name: "",
       date: ""
     };
-
-    window.lastId = null;
 
     let userCheckScanner = new Html5QrcodeScanner(
       "reader-user-ckeck", QRconfig, /* verbose= */ false
