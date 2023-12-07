@@ -256,7 +256,9 @@
 
     const addFBBCountQuery = async (fbbCount) => {
       // Generate unique id
-      return updateDoc(doc(database, USER_FBB_COUNT, code.id), ffbCount);
+      const newIdRef = await doc(collection(database, USER_FBB_COUNT));
+      fbbCount.id = newIdRef.id;
+      return setDoc(newIdRef, fbbCount);
     };
 
     const addFBBCount = async (fbbCount) => {
@@ -379,15 +381,15 @@
       }
     }
 
-    save.addEventListener('click', async (e) => {
-      var userHarvest = document.getElementById('count').value;
+    // save.addEventListener('click', async (e) => {
+    //   var userHarvest = document.getElementById('count').value;
 
-      const userCount = {
-        count: Number(userHarvest)
-      }
-      count.value = "";
-      await fruitCounter(userCount);
-    })
+    //   const userCount = {
+    //     count: Number(userHarvest)
+    //   }
+    //   count.value = "";
+    //   await fruitCounter(userCount);
+    // })
 
     const scanUser = document.getElementById("scan-user");
     const checkIn = document.getElementById("check-in");
@@ -552,19 +554,19 @@
         }
         await addFBBCount(fbb_count);
     }
-    else if(ffbCount !== 0) {
-      const ffb_count = {
-          code: {
-            id: data.code
-          },
-          date: activeUser.date,
-          name: activeUser.name,
-          userId: activeUser.userId,
-          packages: +1
-          // count: fruitCounter(usercount)
-        }
-        await addFBBCount(fbb_count);
-      }
+    // else if(ffbCount !== 0) {
+    //   const ffb_count = {
+    //       code: {
+    //         id: data.code
+    //       },
+    //       date: activeUser.date,
+    //       name: activeUser.name,
+    //       userId: activeUser.userId,
+    //       packages: +1
+    //       // count: fruitCounter(usercount)
+    //     }
+    //     await addFBBCount(fbb_count);
+    //   }
     }
 
     checkout1.addEventListener("click", checkoutScanOnSuccess);
