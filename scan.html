@@ -153,7 +153,7 @@
           <h1>Enter harvest count</h1>
           <hr />
           <input type="number" id="count" name="count"><br><br>
-          <button type="button" id="save" class="submit-btn-short">submit</button>
+          <button type="button" id="saveCount" class="submit-btn-short">submit</button>
           <div class="col">
             <div id="reader-code-userCount" width="00px"></div>
           </div>
@@ -258,6 +258,7 @@
       // Generate unique id
       const newIdRef = await doc(collection(database, USER_FBB_COUNT));
       fbbCount.id = newIdRef.id;
+      lastNewId.id = fbbCount.id;
       return setDoc(newIdRef, fbbCount);
     };
 
@@ -381,15 +382,16 @@
       }
     }
 
-    // save.addEventListener('click', async (e) => {
-    //   var userHarvest = document.getElementById('count').value;
+    document.getElementById("saveCount").addEventListener('click', async (e) => {
+      // var userHarvest = document.getElementById('count').value;
 
-    //   const userCount = {
-    //     count: Number(userHarvest)
-    //   }
-    //   count.value = "";
-    //   await fruitCounter(userCount);
-    // })
+      // const userCount = {
+      //   count: Number(userHarvest)
+      // }
+      // count.value = "";
+      // await fruitCounter(userCount);
+      console.log(lastId);
+    })
 
     const scanUser = document.getElementById("scan-user");
     const checkIn = document.getElementById("check-in");
@@ -529,6 +531,10 @@
       "reader-code-checkout", QRconfig, /* verbose= */ false
     );
 
+    let lastId = {
+      id: null
+    }
+
     const checkout1 = document.querySelector(".checkOut-trigger"); //Remove this later
 
     const checkoutScanOnSuccess = async (decodedText, decodedResult) => {
@@ -557,21 +563,6 @@
         await addFBBCount(fbb_count);
     }
       }
-
-     
-    // else if(ffbCount !== 0) {
-    //   const ffb_count = {
-    //       code: {
-    //         id: data.code
-    //       },
-    //       date: activeUser.date,
-    //       name: activeUser.name,
-    //       userId: activeUser.userId,
-    //       packages: +1
-    //       // count: fruitCounter(usercount)
-    //     }
-    //     await addFBBCount(fbb_count);
-    //   }
     }
 
     checkout1.addEventListener("click", checkoutScanOnSuccess);
