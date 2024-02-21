@@ -295,7 +295,7 @@
 
       var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var yValues = barcodes;
-      // var zValues = weightLine;
+      var zValues = weightLine;
 
       new Chart("productionChart", {
         type: "line",
@@ -312,7 +312,7 @@
           }, 
           {
             // data: [16, 17, 10, 9, 2, 7, 0, 5, 6, 7, 5, 7],
-            // data: zValues,
+            data: zValues,
             borderColor: "blue",
             fill: false,
             legendText: "Tons",
@@ -329,8 +329,8 @@
        });
 
       var iValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      // var yValues = barcodes;
-      // var zValues = weightLine;
+      var yValues = barcodes;
+      var zValues = weightLine;
 
       new Chart("ffbChart", {
         type: "line",
@@ -338,16 +338,16 @@
           labels: xValues,
           datasets: [
             {
-            data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000, 5000, 7000],
-            // data: yValues,
+            // data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000, 5000, 7000],
+            data: yValues,
             borderColor: "green",
             fill: false,
             legendText: "Employees",
             legendText: "QR used"
           }, 
           {
-            data: [16, 17, 10, 9, 2, 7, 0, 5, 6, 7, 5, 7],
-            // data: zValues,
+            // data: [16, 17, 10, 9, 2, 7, 0, 5, 6, 7, 5, 7],
+            data: zValues,
             borderColor: "blue",
             fill: false,
             legendText: "Tons",
