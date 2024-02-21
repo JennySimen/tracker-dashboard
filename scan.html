@@ -540,11 +540,11 @@
 
       let data = await getCode(parseInt(decodedText));
 
-// let data = await getCode(parseInt("1431357264597"));
-console.log(data);
-data.checked_in = true;
-const codeData = await updateCode(data);
-}
+      // let data = await getCode(parseInt("1431357264597"));
+      console.log(data);
+      data.checked_out = true;
+      const codeData = await updateCode(data);
+      }
 
     //   let data;
     //   if(typeof data === undefined) {
