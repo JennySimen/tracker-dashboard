@@ -537,32 +537,41 @@
     const checkout1 = document.querySelector(".checkOut-trigger"); //Remove this later
 
     const checkoutScanOnSuccess = async (decodedText, decodedResult) => {
-      let data;
-      if(typeof data === undefined) {
-        data = await getCode(parseInt(decodedText));
 
-         // let data = await getCode(parseInt("1651155588702"));
-      console.log(data);
-      data.checked_out = true;
-      const codeData = await updateCode(data);
+      let data = await getCode(parseInt(decodedText));
 
-      // Add data in fbb_count table
-      let fbbCount = await getUserFBBCountData(activeUser, data.code)
-      if (fbbCount === 0) {
-        const fbb_count = {
-          code: {
-            id: data.code
-          },
-          date: activeUser.date,
-          name: activeUser.name,
-          userId: activeUser.userId,
-          packages: +1
-          // count: fruitCounter(usercount)
-        }
-        await addFBBCount(fbb_count);
-    }
-      }
-    }
+// let data = await getCode(parseInt("1431357264597"));
+console.log(data);
+data.checked_in = true;
+const codeData = await updateCode(data);
+}
+
+    //   let data;
+    //   if(typeof data === undefined) {
+    //     data = await getCode(parseInt(decodedText));
+
+    //      // let data = await getCode(parseInt("1651155588702"));
+    //   console.log(data);
+    //   data.checked_out = true;
+    //   const codeData = await updateCode(data);
+
+    //   Add data in fbb_count table
+    //   let fbbCount = await getUserFBBCountData(activeUser, data.code)
+    //   if (fbbCount === 0) {
+    //     const fbb_count = {
+    //       code: {
+    //         id: data.code
+    //       },
+    //       date: activeUser.date,
+    //       name: activeUser.name,
+    //       userId: activeUser.userId,
+    //       packages: +1
+    //       // count: fruitCounter(usercount)
+    //     }
+    //     await addFBBCount(fbb_count);
+    // }
+    //   }
+    // }
 
     checkout1.addEventListener("click", checkoutScanOnSuccess);
 
