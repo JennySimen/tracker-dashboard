@@ -469,7 +469,7 @@
       let [
         usersCount,
         workersCount,
-        // dailyFBBCount,
+        dailyFBBCount,
         dailyTonsCount,
         barcodeCount,
         userFirst10Data,
@@ -479,7 +479,7 @@
         [
           getTodayUserCount(),
           getWorkersCount(),
-          // getDailyFBBCount(),
+          getDailyFBBCount(),
           getDailyTonsCount(),
           getBarcodeCount(),
           getfirst10UserData(),
@@ -495,7 +495,7 @@
       if (
         typeof usersCount === "number" &&
         typeof workersCount === "number" &&
-        // typeof dailyFBBCount === "number" &&
+        typeof dailyFBBCount === "number" &&
         typeof dailyTonsCount === "number" &&
         typeof barcodeCount === "number" &&
         typeof userFirst10Data === "object"
